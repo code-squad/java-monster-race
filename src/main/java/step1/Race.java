@@ -17,6 +17,10 @@ public class Race {
         monstersNum = new HashSet<>();
     }
 
+    /**
+     * public void startRace()
+     * 입력 값을 받고 기본적인 validation 을 체크 합니다.
+     */
     public void startRace() {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int input;
@@ -32,9 +36,7 @@ public class Race {
             }
 
             System.out.println("시도할 회수는 몇 회 인가요?");
-            input = Integer.parseInt(br.readLine());
-
-            this.roundCnt = input;
+            this.roundCnt = Integer.parseInt(br.readLine());
 
             br.close();
         } catch (Exception e) {
@@ -42,6 +44,10 @@ public class Race {
         }
     }
 
+    /**
+     * private int movedDistance()
+     * 몬스터가 이동한 거리를 return 합니다.
+     */
     private int movedDistance() {
         int distance = 0;
 
@@ -53,6 +59,10 @@ public class Race {
         return distance;
     }
 
+    /**
+     * public void resultsOfMatch()
+     * movedDistance() 의 return 값을 기반으로 이동한 거리를 출력해줍니다.
+     */
     public void resultsOfMatch() {
         System.out.println("\n<실행 결과>");
 
