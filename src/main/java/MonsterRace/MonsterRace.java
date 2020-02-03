@@ -1,4 +1,4 @@
-package step1;
+package MonsterRace;
 
 public class MonsterRace {
     public static void main(String[] args) {

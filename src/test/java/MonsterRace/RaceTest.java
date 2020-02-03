@@ -1,11 +1,9 @@
-package step1;
+package MonsterRace;
 
 import org.junit.jupiter.api.*;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class RaceTest {
     Race race;

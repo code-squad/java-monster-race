@@ -1,4 +1,4 @@
-package step1;
+package MonsterRace;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
