@@ -1,5 +1,8 @@
 package MonsterRace_Step1;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Main {
 //    초간단 몬스터 경주 게임을 구현한다.
 //    주어진 횟수 동안 n마리의 몬스터는 전진 또는 멈출 수 있다.
@@ -9,6 +12,7 @@ public class Main {
 
     static int monsterCnt = 0;
     static int moveCnt = 0;
+    static List<Monster> monsterList = new ArrayList<>();
 
     public int getMonsterCnt() {
         return monsterCnt;
@@ -16,6 +20,10 @@ public class Main {
 
     public int getMoveCnt() {
         return moveCnt;
+    }
+
+    public List<Monster> getMonsterList() {
+        return monsterList;
     }
 
     public void setMonsterCnt(int monsterCnt) {
@@ -26,12 +34,17 @@ public class Main {
         this.moveCnt = moveCnt;
     }
 
+    public void setMonsterList(List<Monster> monsterList) {
+        this.monsterList = monsterList;
+    }
+
     public static void main(String[] args) {
         Input in = new Input();
         Make mk = new Make();
+        Output out = new Output();
+
         in.inputMonster();
         mk.makeMonster();
-
-
+        out.resultGame();
     }
 }
