@@ -68,9 +68,8 @@ public class Step3 {
 
         IntStream.range(0, MONSTER_COUNT)
                 .filter(index -> randomValue >= conditionValue[index])
-                .forEach(index -> {
-                    moveLengthMap.put(monsterType[index], moveLengthMap.get(monsterType[index]) + moveMonster(range[index]));
-                });
+                .forEach(index -> moveLengthMap.put(monsterType[index],
+                        moveLengthMap.get(monsterType[index]) + moveMonster(range[index])));
     }
 
     public String moveMonster(int range) {
