@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="2c6f230c-d531-4ac8-9c2d-f5025bdc97e6" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JUnit5 Test Class" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="step2" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1XHkgTitczcAU7NMWAV8uAiDfUs" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="add_unversioned_files" value="true" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="restartRequiresConfirmation" value="false" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="step1" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JUnit.RaceTest">
+    <configuration name="MonsterRace" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="MonsterRace.MonsterRace" />
+      <module name="java-monster-race" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="MonsterRace.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RaceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="java-monster-race" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="MonsterRace.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="MonsterRace" />
+      <option name="MAIN_CLASS_NAME" value="MonsterRace.RaceTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.RaceTest" />
+        <item itemvalue="Application.MonsterRace" />
+        <item itemvalue="JUnit.RaceTest" />
+        <item itemvalue="Application.MonsterRace" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="2c6f230c-d531-4ac8-9c2d-f5025bdc97e6" name="Default Changelist" comment="" />
+      <created>1580710518337</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1580710518337</updated>
+      <workItem from="1580710520023" duration="1864000" />
+      <workItem from="1580712551429" duration="6460000" />
+    </task>
+    <task id="LOCAL-00001" summary="init MonsterRace Project">
+      <created>1580711703710</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1580711703710</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Make MonsterRace">
+      <created>1580715724884</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1580715724884</updated>
+    </task>
+    <task id="LOCAL-00003" summary="add javadoc">
+      <created>1580716106795</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1580716106795</updated>
+    </task>
+    <task id="LOCAL-00004" summary="remove ignore file">
+      <created>1580718241604</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1580718241604</updated>
+    </task>
+    <task id="LOCAL-00005" summary="rename packge (step -&gt; MonsterRace)">
+      <created>1580719636149</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1580719636149</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="1">
+          <value>
+            <State>
+              <option name="SHOW_ONLY_AFFECTED_CHANGES" value="true" />
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="HEAD" />
+                      </list>
+                    </value>
+                  </entry>
+                  <entry key="roots">
+                    <value>
+                      <list>
+                        <option value="$PROJECT_DIR$" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="step2" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+              <option name="COLUMN_WIDTH">
+                <map>
+                  <entry key="2" value="191" />
+                  <entry key="3" value="191" />
+                </map>
+              </option>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="OPEN_TABS">
+      <set>
+        <option value="1" />
+      </set>
+    </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="step2" />
+                </option>
+              </RecentGroup>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="step1" />
+                </option>
+              </RecentGroup>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="HEAD" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="init MonsterRace Project" />
+    <MESSAGE value="Make MonsterRace" />
+    <MESSAGE value="add javadoc" />
+    <MESSAGE value="remove ignore file" />
+    <MESSAGE value="rename packge (step -&gt; MonsterRace)" />
+    <option name="LAST_COMMIT_MESSAGE" value="rename packge (step -&gt; MonsterRace)" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="320" y="115" width="811" height="669" key="#Project_Structure" timestamp="1580714643900">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="320" y="115" width="811" height="669" key="#Project_Structure/0.0.1440.900@0.0.1440.900" timestamp="1580714643900" />
+    <state x="533" y="173" key="#com.intellij.ide.util.MemberChooser" timestamp="1580713918610">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="533" y="173" key="#com.intellij.ide.util.MemberChooser/0.0.1440.900@0.0.1440.900" timestamp="1580713918610" />
+    <state x="247" y="7" width="931" height="793" key="CommitChangelistDialog2" timestamp="1580719636031">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="247" y="7" width="931" height="793" key="CommitChangelistDialog2/0.0.1440.900@0.0.1440.900" timestamp="1580719636031" />
+    <state x="137" y="32" key="DiffContextDialog" timestamp="1580718148915">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="137" y="32" key="DiffContextDialog/0.0.1440.900@0.0.1440.900" timestamp="1580718148915" />
+    <state width="1398" height="208" key="GridCell.Tab.0.bottom" timestamp="1580719577651">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="208" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1580719577651" />
+    <state width="1398" height="208" key="GridCell.Tab.0.center" timestamp="1580719577650">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="208" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1580719577650" />
+    <state width="1398" height="208" key="GridCell.Tab.0.left" timestamp="1580719577649">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="208" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1580719577649" />
+    <state width="1398" height="208" key="GridCell.Tab.0.right" timestamp="1580719577651">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="208" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1580719577651" />
+    <state x="320" y="190" key="Vcs.Push.Dialog.v2" timestamp="1580719651936">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="320" y="190" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1580719651936" />
+    <state x="499" y="184" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1580714658674">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="499" y="184" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.0.1440.900@0.0.1440.900" timestamp="1580714658674" />
+  </component>
+</project>
