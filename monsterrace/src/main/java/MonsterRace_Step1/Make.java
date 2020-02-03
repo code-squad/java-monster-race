@@ -14,16 +14,31 @@ public class Make {
     }
 
     public Monster makeMove(int moveCnt) {
-        Random random = new Random();
         int moveStep = 0;
         while(moveCnt > 0){
-            int oneStep = random.nextInt(10);
-            if(oneStep > 4){
-                moveStep++;
-            }
+            moveStep += makeOneStep();
             moveCnt--;
         }
         return new Monster(moveStep);
     }
 
+    public int makeOneStep() {
+        Random random = new Random();
+        int oneStep = random.nextInt(10);
+        if(oneStep > 4){
+            return 1;
+        }
+        return 0;
+    }
+
+    public String barMaker(int moveStep){
+        String result = "";
+        StringBuffer sb = new StringBuffer();
+        while(moveStep > 0){
+            sb.append("-");
+            moveStep --;
+        }
+        result = sb.toString();
+        return result;
+    }
 }
