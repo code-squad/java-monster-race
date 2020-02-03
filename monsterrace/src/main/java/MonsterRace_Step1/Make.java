@@ -4,10 +4,9 @@ import java.util.List;
 import java.util.Random;
 
 public class Make {
-    public void makeMonster() {
-        Main main = new Main();
+    public void makeMonster(Main main) {
         List<Monster> monsterList = main.getMonsterList();
-        for(int i=0;i<main.getMonsterCnt();i++){
+        for (int i = 0; i < main.getMonsterCnt(); i++) {
             monsterList.add(makeMove(main.getMoveCnt()));
         }
         main.setMonsterList(monsterList);
@@ -15,7 +14,7 @@ public class Make {
 
     public Monster makeMove(int moveCnt) {
         int moveStep = 0;
-        while(moveCnt > 0){
+        while (moveCnt > 0) {
             moveStep += makeOneStep();
             moveCnt--;
         }
@@ -25,7 +24,7 @@ public class Make {
     public int makeOneStep() {
         Random random = new Random();
         int oneStep = random.nextInt(10);
-        if(oneStep > 4){
+        if (oneStep > 4) {
             return 1;
         }
         return 0;
@@ -34,7 +33,7 @@ public class Make {
     public String barMaker(int moveStep){
         String result = "";
         StringBuffer sb = new StringBuffer();
-        while(moveStep > 0){
+        while (moveStep > 0) {
             sb.append("-");
             moveStep --;
         }

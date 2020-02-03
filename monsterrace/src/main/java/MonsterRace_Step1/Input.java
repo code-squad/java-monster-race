@@ -4,9 +4,8 @@ import java.util.Scanner;
 
 public class Input {
 
-    public void inputMonster() {
+    public void inputMonster(Main main) {
         Scanner sc = new Scanner(System.in);
-        Main main = new Main();
         System.out.println("<스릴 만점 건전한 몬스터 경주>");
         System.out.println("몬스터는 모두 몇마리 인가요?");
         main.setMonsterCnt(sc.nextInt());

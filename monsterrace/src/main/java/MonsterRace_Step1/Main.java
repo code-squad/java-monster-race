@@ -10,9 +10,9 @@ public class Main {
 //    전진하는 조건은 0에서 9까지 random값 중 4이상이면 전진한다.
 //    몬스터의 상태를 화면에 출력한다. 어느 시점에 출력할 것인지에 대한 제약은 없다.
 
-    static int monsterCnt = 0;
-    static int moveCnt = 0;
-    static List<Monster> monsterList = new ArrayList<>();
+    private int monsterCnt = 0;
+    private int moveCnt = 0;
+    private List<Monster> monsterList = new ArrayList<>();
 
     public int getMonsterCnt() {
         return monsterCnt;
@@ -39,12 +39,13 @@ public class Main {
     }
 
     public static void main(String[] args) {
+        Main main = new Main();
         Input in = new Input();
         Make mk = new Make();
         Output out = new Output();
 
-        in.inputMonster();
-        mk.makeMonster();
-        out.resultGame();
+        in.inputMonster(main);
+        mk.makeMonster(main);
+        out.resultGame(main);
     }
 }
