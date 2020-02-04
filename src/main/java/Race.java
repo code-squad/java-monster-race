@@ -1,7 +1,4 @@
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 
 public class Race {
     public int numOfMonster;
@@ -11,13 +8,23 @@ public class Race {
     public void getMonsterNumber() {
         System.out.println("Enter number of monsters");
         Scanner scanner = new Scanner(System.in);
-        numOfMonster = scanner.nextInt();
+        try {
+            numOfMonster = scanner.nextInt();
+        } catch (InputMismatchException e) {
+            System.out.println("int please");
+            getMonsterNumber();
+        }
     }
 
     public void getAttempt() {
         System.out.println("how many times do you want to try");
         Scanner scanner = new Scanner(System.in);
-        numOfRound = scanner.nextInt();
+        try {
+            numOfRound = scanner.nextInt();
+        } catch (InputMismatchException e) {
+            System.out.println("int please");
+            getAttempt();
+        }
     }
 
     public void makeMonsterList() {
