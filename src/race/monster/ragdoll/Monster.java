@@ -10,18 +10,22 @@ public class Monster {
         this.moveCount = 0;
     }
 
-    void count() {
+    void countMove(int numOfTries) {
         Random random = new Random();
-        int randomNumber = random.nextInt(9);
 
-        if (randomNumber >= 4) {
-            ++moveCount;
+        for (int i = 0; i < numOfTries; i++) {
+            int randomNumber = random.nextInt(9);
+
+            if (randomNumber >= 4) {
+                ++moveCount;
+            }
         }
     }
+
     public String toString() {
         StringBuilder strBuilder = new StringBuilder();
 
-        for (int index = 0; index < moveCount; index++) {
+        for (int i = 0; i < moveCount; i++) {
             strBuilder.append("-");
         }
 
