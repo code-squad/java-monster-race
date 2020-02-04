@@ -1,5 +1,9 @@
 package MonsterRace;
 
+/**
+ * The enum TextTemplate
+ * 프로그램에 사용될 문자열을 모두 모아두었습니다.
+ */
 public enum TextTemplate {
     START_RACE("<스릴만점 건전한 몬스터 경주>"),
     Q_MONSTER_COUNT("몬스터는 모두 몇 마리인가요?"),

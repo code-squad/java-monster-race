@@ -7,11 +7,11 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 public class Race {
-    int roundCount;
-    List<Monster> monsters;
+    int _roundCount;
+    List<Monster> _monsters;
 
     public Race() {
-        monsters = new ArrayList<Monster>();
+        _monsters = new ArrayList<Monster>();
     }
 
     /**
@@ -24,11 +24,12 @@ public class Race {
         try {
             System.out.println(TextTemplate.START_RACE.getText());
             System.out.println(TextTemplate.Q_MONSTER_COUNT.getText());
+            System.out.println(TextTemplate.Q_MONSTER_COUNT.getText());
             IntStream.range(0, Integer.parseInt(br.readLine()))
-                    .forEach(i -> monsters.add(new Monster()));
+                    .forEach(i -> _monsters.add(new Monster()));
 
             System.out.println(TextTemplate.Q_ROUND_COUNT.getText());
-            this.roundCount = Integer.parseInt(br.readLine());
+            this._roundCount = Integer.parseInt(br.readLine());
 
             br.close();
         } catch (Exception e) {
@@ -43,9 +44,8 @@ public class Race {
     public void resultsOfMatch() {
         System.out.println("\n<실행 결과>");
 
-        for (int i = 0; i < monsters.size(); i++) {
-            IntStream.range(0, monsters.get(i).run(roundCount))
-                    .forEach(notUse -> System.out.print("-"));
+        for (int i = 0; i < _monsters.size(); i++) {
+            IntStream.range(0, _monsters.get(i).getDistance(_roundCount)).forEach(notUse -> System.out.print("-"));
             System.out.println();
         }
     }
