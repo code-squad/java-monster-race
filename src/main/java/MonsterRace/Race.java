@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.IntStream;
 
 public class Race {
@@ -22,19 +23,41 @@ public class Race {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         try {
-            System.out.println(TextTemplate.START_RACE.getText());
+            System.out.println(TextTemplate.P_START_RACE.getText());
             System.out.println(TextTemplate.Q_MONSTER_COUNT.getText());
-            System.out.println(TextTemplate.Q_MONSTER_COUNT.getText());
-            IntStream.range(0, Integer.parseInt(br.readLine()))
-                    .forEach(i -> _monsters.add(new Monster()));
+//            IntStream.range(0, Integer.parseInt(br.readLine()))
+//                    .forEach(i -> _monsters.add(new Monster()));
+            int monsterCount = Integer.parseInt(br.readLine());
+
+            System.out.println(TextTemplate.Q_MONSTER_NAME_TYPE.getText());
+            for (int i = 0; i < monsterCount; i++) {
+//                if (!addMonster()) throw new Exception();
+                addMonster(br.readLine().replaceAll(" ", "").split(","));
+            }
 
             System.out.println(TextTemplate.Q_ROUND_COUNT.getText());
             this._roundCount = Integer.parseInt(br.readLine());
 
             br.close();
         } catch (Exception e) {
-            System.out.println(TextTemplate.INPUT_ERR.getText());
+            System.out.println(TextTemplate.E_INPUT.getText());
         }
+    }
+
+    private boolean addMonster(String[] monsterInfo) {
+        if (monsterInfo[1].equals(MonsterEnum.RUN.getText())) {
+            _monsters.add(new RunMonster(monsterInfo[0], monsterInfo[1]));
+        }
+
+        if (monsterInfo[1].equals(MonsterEnum.FLY.getText())) {
+            _monsters.add(new FlyMonster(monsterInfo[0], monsterInfo[1]));
+        }
+
+        if (monsterInfo[1].equals(MonsterEnum.ESPER.getText())) {
+            _monsters.add(new EsperMonster(monsterInfo[0], monsterInfo[1]));
+        }
+
+        return true;
     }
 
     /**
@@ -45,8 +68,13 @@ public class Race {
         System.out.println("\n<실행 결과>");
 
         for (int i = 0; i < _monsters.size(); i++) {
-            IntStream.range(0, _monsters.get(i).getDistance(_roundCount)).forEach(notUse -> System.out.print("-"));
+            System.out.print(_monsters.get(i).toString());
+//            IntStream.range(0, _monsters.get(i).getDistance(_roundCount)).forEach(notUse -> System.out.print("-"));
+            IntStream.range(0, _monsters.get(i).setDistance(_roundCount));
             System.out.println();
         }
+
+        System.out.println();
+//        _monsters.stream().max((x, y) -> x.getDistance())
     }
 }
