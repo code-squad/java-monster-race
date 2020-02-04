@@ -36,7 +36,7 @@ public class MonsterTest {
     }
 
     @Test
-    public void createMonster(){
+    public void createMonster() {
         game.startGame();
     }
 
