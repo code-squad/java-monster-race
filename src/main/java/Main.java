@@ -4,21 +4,26 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
-    public int numOfMonster = 0;
-    public int numOfRound = 0;
+    public int numOfMonster;
+    public int numOfRound;
     List<Monster> monsters = new ArrayList<Monster>();
 
-    public void getUserInput() {
-        Scanner scan = new Scanner(System.in);
-        System.out.println("Enter number of Monsters");
-        numOfMonster = scan.nextInt();
+    public void getMonsterNumber() {
+        System.out.println("Enter number of monsters");
+        Scanner scanner = new Scanner(System.in);
+        numOfMonster = scanner.nextInt();
+    }
 
+    public void getAttempt() {
+        System.out.println("how many times do you want to try");
+        Scanner scanner = new Scanner(System.in);
+        numOfRound = scanner.nextInt();
+    }
+
+    public void makeMonsterList() {
         for(int i = 0; i < numOfMonster; i++) {
             monsters.add(new Monster(i));
         }
-
-        System.out.println("How many rounds do you want to play?");
-        numOfRound = scan.nextInt();
     }
 
     public void raceIntro() {
@@ -46,12 +51,14 @@ public class Main {
     }
 
     public void endRace() {
-        System.out.println("- Game Over -");
+        System.out.println("- Game Over - ");
     }
 
     public static void main(String[] args) {
         Main main = new Main();
-        main.getUserInput();
+        main.getMonsterNumber();
+        main.getAttempt();
+        main.makeMonsterList();
         main.raceIntro();
         main.startRace();
         main.endRace();
