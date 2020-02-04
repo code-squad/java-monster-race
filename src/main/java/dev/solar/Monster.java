@@ -10,9 +10,9 @@ public class Monster {
         this.id = id;
     }
 
-    public void setRandomCount() {
-        int random = (int) (Math.random()*10);
-        if(random >= 4) {
+    public void run() {
+        int random = (int) (Math.random() * 10);
+        if (random >= 4) {
             this.forwardCount += random;
         }
     }
