@@ -3,26 +3,32 @@ import java.util.*;
 public class Race {
     public int numOfMonster;
     public int numOfRound;
+    Scanner scanner;
     List<Monster> monsters = new ArrayList<Monster>();
 
+    public Race() {
+        this.scanner = new Scanner(System.in);
+    }
+
     public void getMonsterNumber() {
-        System.out.println("Enter number of monsters");
-        Scanner scanner = new Scanner(System.in);
-        try {
-            numOfMonster = scanner.nextInt();
-        } catch (InputMismatchException e) {
-            System.out.println("int please");
-            getMonsterNumber();
-        }
+            try {
+                System.out.println("Enter number of monsters");
+                numOfMonster = scanner.nextInt();
+            } catch (InputMismatchException e) {
+                scanner = new Scanner(System.in);
+                System.out.println("Enter integer please");
+                getMonsterNumber();
+            }
+
     }
 
     public void getAttempt() {
-        System.out.println("how many times do you want to try");
-        Scanner scanner = new Scanner(System.in);
         try {
+            System.out.println("how many times do you want to try");
             numOfRound = scanner.nextInt();
         } catch (InputMismatchException e) {
-            System.out.println("int please");
+            scanner = new Scanner(System.in);
+            System.out.println("Enter integer please");
             getAttempt();
         }
     }
@@ -48,7 +54,6 @@ public class Race {
         }
     }
     public String monsterMoves(int numOfRound) {
-        Race race = new Race();
         String moves = "";
         for(int i = 0; i < numOfRound; i++) {
             Random rand = new Random();
