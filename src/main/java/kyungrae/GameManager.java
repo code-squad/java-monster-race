@@ -61,6 +61,9 @@ public class GameManager {
 
     private Monster createMonster(String[] tokens){
         Monster monster = null;
+
+        for(int i=0; i<tokens.length; i++) tokens[i] = tokens[i].trim();
+
         switch (tokens[1]){
             case "달리기":
                 monster = new Runner(tokens[0], tokens[1]);
