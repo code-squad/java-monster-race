@@ -1,6 +1,6 @@
 package com.hsik0225;
 
-public class Main {
+public class GameMachine {
 
     public static void main(String[] args) {
         MonsterRace monsterRace = new MonsterRace();
