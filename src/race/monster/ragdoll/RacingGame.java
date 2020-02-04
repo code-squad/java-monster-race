@@ -3,11 +3,12 @@ package race.monster.ragdoll;
 public class RacingGame {
     private int numOfMonsters;
     private int numOfTries;
-    Monster[] monsters = new Monster[numOfMonsters];
+    Monster[] monsters;
 
     RacingGame(int numOfMonsters, int numOfTries) {
         this.numOfMonsters = numOfMonsters;
         this.numOfTries = numOfTries;
+        this.monsters = new Monster[numOfMonsters];
     }
 
     void createMonsters() {
@@ -17,8 +18,14 @@ public class RacingGame {
     }
 
     void runMonsters() {
-        for (int i = 0; i < numOfTries; i++) {
-            monsters[i].countMove();
+        for (int i = 0; i < numOfMonsters; i++) {
+            monsters[i].countMove(numOfTries);
+        }
+    }
+
+    void printResult() {
+        for (int i = 0; i < numOfMonsters; i++) {
+            System.out.println(monsters[i].toString());
         }
     }
 }
