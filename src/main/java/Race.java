@@ -3,7 +3,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
-public class Main {
+public class Race {
     public int numOfMonster;
     public int numOfRound;
     List<Monster> monsters = new ArrayList<Monster>();
@@ -27,21 +27,21 @@ public class Main {
     }
 
     public void raceIntro() {
-        Main main = new Main();
+        Race race = new Race();
         System.out.println(numOfMonster + " Monsters are ready to play " + numOfRound + " rounds");
         for(Monster monster : monsters) {
             System.out.println( "Monster " + monster.index + " has entered the race");
         }
     }
     public void startRace() {
-        Main main = new Main();
+        Race race = new Race();
         System.out.println("<<<<<<< Game Started !>>>>>>>");
         for (int i = 0; i < numOfMonster; i++ ) {
-            System.out.println("Monster " + monsters.get(i).index + " : " + main.monsterMoves(numOfRound));
+            System.out.println("Monster " + monsters.get(i).index + " : " + race.monsterMoves(numOfRound));
         }
     }
     public String monsterMoves(int numOfRound) {
-        Main main = new Main();
+        Race race = new Race();
         String moves = "";
         for(int i = 0; i < numOfRound; i++) {
             Random rand = new Random();
@@ -55,12 +55,12 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        Main main = new Main();
-        main.getMonsterNumber();
-        main.getAttempt();
-        main.makeMonsterList();
-        main.raceIntro();
-        main.startRace();
-        main.endRace();
+        Race race = new Race();
+        race.getMonsterNumber();
+        race.getAttempt();
+        race.makeMonsterList();
+        race.raceIntro();
+        race.startRace();
+        race.endRace();
     }
 }
