@@ -2,10 +2,10 @@ package MonsterRace;
 
 public class Monster {
     /**
-     * public int run(roundCount)
+     * public int getDistance(roundCount)
      * 몬스터가 이동한 거리를 return 합니다.
      */
-    public int run(int roundCount) {
+    public int getDistance(int roundCount) {
         int distance = 0;
 
         for (int i = 0; i < roundCount; i++) {
