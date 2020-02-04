@@ -3,7 +3,6 @@ package com.company;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 
 public class Menu {
 
@@ -23,14 +22,10 @@ public class Menu {
         return Integer.parseInt(br.readLine());
     }
 
-    public void showResult(int[] result) {
+    public void showResult(String[] result) {
         System.out.println("실행결과");
-        Arrays.stream(result).forEach(value -> {
-            for (int i = 0; i < value; i++) {
-                String s = "-";
-                System.out.print(s);
-            }
-            System.out.println();
-        });
+        for (String str : result) {
+            System.out.println(str);
+        }
     }
 }

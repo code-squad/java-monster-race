@@ -10,9 +10,11 @@ public class Main {
         int monsterCount = menu.inputMonsterCount();
         int attemptCount = menu.inputAttemptCount();
 
-        //다음 단계에 Racing 클래스에서 몬스터를 만들고 경기 진행
-        Monster monster = new Monster(attemptCount);
-        int[] result = monster.runRacing(monsterCount, attemptCount);
-        menu.showResult(result);
+        Racing racing = new Racing();
+        racing.setMonsterCount(monsterCount);
+        racing.setAttemptCount(attemptCount);
+        racing.createMonster();
+        racing.runRacing();
+        menu.showResult(racing.endRacing());
     }
 }
