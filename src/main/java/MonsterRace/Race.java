@@ -43,10 +43,10 @@ public class Race {
     public void resultsOfMatch() {
         System.out.println("\n<실행 결과>");
 
-        monsters.stream().forEach(monster -> {
-            int distance = monster.run(roundCount);
-            IntStream.range(0, distance).forEach(i -> System.out.print("-"));
+        for (int i = 0; i < monsters.size(); i++) {
+            IntStream.range(0, monsters.get(i).run(roundCount))
+                    .forEach(notUse -> System.out.print("-"));
             System.out.println();
-        });
+        }
     }
 }

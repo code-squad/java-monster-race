@@ -9,8 +9,8 @@ public class Monster {
         int distance = 0;
 
         for (int i = 0; i < roundCount; i++) {
-            double cnt = Math.random() * 9;
-            distance += (cnt >= 4) ? cnt : 0;
+            double randomCount = Math.random() * 9;
+            distance += (randomCount >= 4) ? randomCount : 0;
         }
 
         return distance;
