@@ -1,6 +1,8 @@
 package com.hsik0225;
 
+import java.util.Random;
 import java.util.Scanner;
+import java.util.stream.IntStream;
 
 public class MonsterRace {
     public MonsterRace(){
@@ -23,7 +25,21 @@ public class MonsterRace {
         return Integer.parseInt(inputLine);
     }
 
-    public void startGame(){
+    public void move(int CHALLENGE_COUNT){
+        Random random = new Random();
+        IntStream.range(0, CHALLENGE_COUNT)
+                .map(count -> random.nextInt(10))
+                .filter(randomValue -> randomValue >= 4)
+                .forEach(randomValue -> {
+                    moveAppend();
+                });
+    }
 
+    public void moveAppend(){
+
+    }
+
+    public void startGame(){
+        System.out.println("<실행 결과>");
     }
 }
