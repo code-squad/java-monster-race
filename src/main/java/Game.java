@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Scanner;
 
 public class Game {
@@ -26,14 +27,16 @@ public class Game {
 
     private void inputMonsterCount(){
         System.out.println("몬스터는 모두 몇 마리인가요?");
-        monsterCount = scanner.nextInt();
+        monsterCount = Optional.ofNullable(scanner.nextInt()).orElse(0);
+        if(monsterCount == 0) throw new IllegalArgumentException("올바르지 않은 몬스터 갯수 입력입니다");
     }
 
     private void inputAttemptCount(){
         System.out.println("시도할 회수는 몇 회 인가요?");
-        attemptCount = scanner.nextInt();
+        attemptCount = Optional.ofNullable(scanner.nextInt()).orElse(0);
+        if(attemptCount == 0) throw new IllegalArgumentException("올바르지 않은 시도 횟수 입력입니다");
     }
-    private void createMonsters(){
+    private void createMonsters() {
         for (int i = 0; i < monsterCount; i++) {
             monsterList.add(new Monster(attemptCount));
         }
