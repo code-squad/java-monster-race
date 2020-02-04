@@ -1,32 +1,37 @@
 import java.io.IOException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class MonsterMain {
     public void start() throws IOException {
         InputView inputView = new InputView();
         System.out.println("<재미있는 몬스터 레이스>");
+
         int monsterNumber = inputView.monsterNumber();
         int tryNumber = inputView.tryNumber();
-        MonsterGame monsterGame = new MonsterGame();
-        List<List> raceResult = monsterGame.raceResult(monsterNumber, tryNumber);
+
+        MonsterGame monsterGame = new MonsterGame(monsterNumber, tryNumber);
+        monsterGame.race();
+
+        List<List<Integer>> gameResult = monsterGame.gameResult();
         MonsterMain monsterMain = new MonsterMain();
         System.out.println("<실행 결과>");
-        monsterMain.printResult(raceResult);
+        monsterMain.printResult(gameResult);
     }
 
-    public void printResult(List<List> raceResult) {
-        char positionChar = '-';
-        for (int i = 0; i < raceResult.size(); i++) {
-            List<Integer> integers = raceResult.get(i);
-            int sum = integers.stream().reduce(0, (a, b) -> a + b);
-            System.out.println(charTimes(positionChar, sum));
-        }
+    public String printResult(List<List<Integer>> raceResult) {
+        return raceResult.stream()
+                .map(x -> x.stream().reduce(0, Integer::sum))
+                .map(this::charTimes)
+                .collect(Collectors.joining("\n"));
     }
 
-    public String charTimes(char str, int times) {
+    private String charTimes(int times) {
+        char character = '-';
+
         String result = "";
         for (int i = 0; i < times; i++) {
-            result += str;
+            result += character;
         }
         return result;
     }
