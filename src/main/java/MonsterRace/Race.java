@@ -22,17 +22,17 @@ public class Race {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         try {
-            System.out.println("<스릴만점 건전한 몬스터 경주>");
-            System.out.println("몬스터는 모두 몇 마리인가요?");
+            System.out.println(TextTemplate.START_RACE.getText());
+            System.out.println(TextTemplate.Q_MONSTER_COUNT.getText());
             IntStream.range(0, Integer.parseInt(br.readLine()))
                     .forEach(i -> monsters.add(new Monster()));
 
-            System.out.println("시도할 회수는 몇 회 인가요?");
+            System.out.println(TextTemplate.Q_ROUND_COUNT.getText());
             this.roundCount = Integer.parseInt(br.readLine());
 
             br.close();
         } catch (Exception e) {
-            System.out.println("### Input Fail : 각 입력 값은 Integer 의 범위에 있어야 합니다.");
+            System.out.println(TextTemplate.INPUT_ERR.getText());
         }
     }
 
