@@ -33,7 +33,6 @@ public class Main {
         System.out.println("<<<<<<< Game Started !>>>>>>>");
         for (int i = 0; i < numOfMonster; i++ ) {
             System.out.println("Monster " + monsters.get(i).index + " : " + main.monsterMoves(numOfRound));
-//            System.out.println("Monster" + (i+1) + " : " +  main.monsterMoves(numOfRound));
         }
     }
     public String monsterMoves(int numOfRound) {
