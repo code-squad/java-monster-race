@@ -9,18 +9,19 @@ public class Race {
     public void racing(){
         setting();
         System.out.println("<실행 결과>");
-//        monsters.forEach(monster -> monster.run());
-        monsters.forEach(Monster::run);
+        monsters.forEach(monster -> monster.run(count));
     }
 
     public void setting(){
-        System.out.println("몬스터는 모두 몇 마리인가요?");
+        System.out.println("몬스터 레이스");
+
         Scanner scanner = new Scanner(System.in);
+        System.out.println("몬스터는 모두 몇 마리인가요?");
         monster = scanner.nextInt();
         System.out.println("시도할 회수는 몇 회 인가요?");
         count = scanner.nextInt();
         for(int i=0; i<monster; i++){
-            monsters.add(new Monster(count));
+            monsters.add(new Monster());
         }
     }
 }
