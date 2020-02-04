@@ -1,11 +1,12 @@
 import java.util.Random;
 
 public class Monster {
-    private String step;
-    private Random random;
     private static final int FORWARD_RANGE = 9;
     private static final int FORWARD_CONDITION = 4;
     private static final String FORWARD = "-";
+
+    private String step;
+    private Random random;
 
     public Monster(int count) {
         this.step = "";
