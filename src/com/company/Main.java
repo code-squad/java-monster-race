@@ -3,15 +3,16 @@ package com.company;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Random;
 
 public class Main {
 
     public static void main(String[] args) throws IOException {
         Main m = new Main();
         m.startRacing();
-        m.inputMonsterCount();
-        m.inputAttemptCount();
-        m.runRacing();
+        int monsterCount = m.inputMonsterCount();
+        int attemptCount = m.inputAttemptCount();
+        m.runRacing(monsterCount, attemptCount);
         m.showResult();
     }
 
@@ -31,7 +32,31 @@ public class Main {
         return Integer.parseInt(br.readLine());
     }
 
-    public void runRacing() { }
+    public int[] runRacing(int monsterCount, int attemptCount) {
+        int[] monsterStep = new int[monsterCount];
+        for (int count = 0; count < monsterCount; count++) {
+            monsterStep[count] = runMonster(attemptCount);
+        }
+        return monsterStep;
+    }
+
+    public int runMonster(int attemptCount) {
+        int stepCount = 0;
+        Random random = new Random();
+
+        for (int count = 0; count < attemptCount; count++) {
+            stepCount += countMonsterStep(calculateMonsterStep(random.nextInt(10)));
+        }
+        return stepCount;
+    }
+
+    public boolean calculateMonsterStep(int randomNumber) {
+        return randomNumber >= 4;
+    }
+
+    public int countMonsterStep(boolean checkStep) {
+        return checkStep ? 1 : 0;
+    }
 
     public void showResult() { }
 }
