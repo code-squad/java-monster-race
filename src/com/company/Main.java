@@ -3,6 +3,7 @@ package com.company;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 import java.util.Random;
 
 public class Main {
@@ -12,8 +13,8 @@ public class Main {
         m.startRacing();
         int monsterCount = m.inputMonsterCount();
         int attemptCount = m.inputAttemptCount();
-        m.runRacing(monsterCount, attemptCount);
-        m.showResult();
+        int[] result = m.runRacing(monsterCount, attemptCount);
+        m.showResult(result);
     }
 
     public void startRacing() {
@@ -58,5 +59,14 @@ public class Main {
         return checkStep ? 1 : 0;
     }
 
-    public void showResult() { }
+    public void showResult(int[] result) {
+        System.out.println("실행결과");
+        Arrays.stream(result).forEach(value -> {
+            for (int i = 0; i < value; i++) {
+                String s = "-";
+                System.out.print(s);
+            }
+            System.out.println();
+        });
+    }
 }
