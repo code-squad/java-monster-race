@@ -8,17 +8,21 @@ public class Monster {
     private String step;
     private Random random;
 
-    public Monster(int count) {
+    public Monster(int attemptCount) {
         this.step = "";
         this.random = new Random();
-        forWard(count);
+        forWard(attemptCount);
     }
 
-    private void forWard(int count){
-        for (int start = 0; start < count; start++) {
-            int isForward = random.nextInt(FORWARD_RANGE);
-            if(isForward >= FORWARD_CONDITION) step += FORWARD;
+    private void forWard(int attemptCount) {
+        for (int start = 0; start < attemptCount; start++) {
+            int isForward = getRandomInt();
+            if (isForward >= FORWARD_CONDITION) step += FORWARD;
         }
+    }
+
+    private int getRandomInt() {
+        return random.nextInt(FORWARD_RANGE);
     }
 
     public void run() {
