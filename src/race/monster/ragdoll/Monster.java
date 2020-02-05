@@ -10,25 +10,39 @@ public class Monster {
         this.moveCount = 0;
     }
 
-    void countMove(int numOfTries) {
+    String decideMoveOrStop() {
+        String decision = "STOP";
+
         Random random = new Random();
+        int randomNum = random.nextInt(9);
+        if (randomNum >= 4) {
+            decision = "MOVE";
+        }
 
+        return decision;
+    }
+
+    void move(String decision) {
+        if (decision.equals("MOVE")) {
+            ++moveCount;
+        }
+        return;
+    }
+
+    void run(int numOfTries) {
         for (int i = 0; i < numOfTries; i++) {
-            int randomNumber = random.nextInt(9);
-
-            if (randomNumber >= 4) {
-                ++moveCount;
-            }
+            String decision = decideMoveOrStop();
+            move(decision);
         }
     }
 
     public String toString() {
-        StringBuilder strBuilder = new StringBuilder();
+        StringBuilder strBuilder = new StringBuilder(" ");
 
         for (int i = 0; i < moveCount; i++) {
             strBuilder.append("-");
         }
 
-        return strBuilder.toString();
+        System.out.println(strBuilder.toString());
     }
 }
