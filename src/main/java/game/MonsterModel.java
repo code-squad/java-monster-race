@@ -22,7 +22,6 @@ public class MonsterModel {
 
     // 몬스터 리스트를 반환한다.
     public Monster[] getMonsterList() {
-        Monster[] monsters = monsterList.stream().toArray(Monster[]::new);
-        return new Monster[0];
+        return monsterList.stream().toArray(Monster[]::new);
     }
 }

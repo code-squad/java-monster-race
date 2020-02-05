@@ -28,7 +28,7 @@ public class GameController {
 
     // 라운드 반복 횟수를 입력 받는다.
     public void getRoundCount() {
-        System.out.println("몬스터는 모두 몇 마리인가요?");
+        System.out.println("시도할 횟수는 몇 회인가요?");
 
         nRound = getInt();
     }
@@ -41,6 +41,7 @@ public class GameController {
 
     // 결과를 출력한다.
     public void printResult() {
+        System.out.println("<실행 결과>");
         MonsterView.printResult(monsterModel.getMonsterList());
     }
 
