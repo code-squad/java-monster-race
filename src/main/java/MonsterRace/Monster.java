@@ -1,81 +1,53 @@
 package MonsterRace;
 
-// 달리기, 비행, 에스퍼
-// 몬스터의 이동은 타입에 따라 달라진다. 달리기: 랜덤값이 4이상인 경우 1칸 이동, 비행: 랜덤값이 6이상인 경우 3칸 이동,
-// 에스퍼: 랜덤값이 9인 경우 무작위 숫자 (1 < x < 100) 만큼 전진
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
-public abstract class Monster {
-    private String _name;
-    private String _type;
-    public int _distance;
+public class Monster {
 
-    public Monster(String _name, String _type) {
-        this._name = _name;
-        this._type = _type;
-        this._distance = 0;
+  private MoveBehavior moveBehavior;
+  private String name;
+  private String type;
+  private String movedDistance;
+
+  public Monster(String name, String type) {
+    try {
+      switch (type) {
+        case "달리기":
+          this.moveBehavior = new Run();
+          break;
+        case "비행":
+          this.moveBehavior = new Fly();
+          break;
+        case "에스퍼":
+          this.moveBehavior = new Esper();
+          break;
+        default:
+          throw new Exception();
+      }
+    } catch (Exception e) {
+      System.out.println(Text.E_MONSTER_INFO.getText());
     }
 
-    /**
-     * public abstract int getDistance(roundCount)
-     * 몬스터의 타입에 따라 이동한 거리를 return 합니다.
-     */
-    public abstract int setDistance(int roundCount);
+    this.name = name;
+    this.type = type;
+  }
 
-    @Override
-    public String toString() {
-        return this._name + " [" + this._type + "] : ";
-    }
+  public void move(int roundCount) {
+    movedDistance = (Stream.generate(() -> "-").limit(moveBehavior.getMoveCount(roundCount)))
+        .collect(Collectors.joining());
+  }
 
-    public int getDistance() {
-        return _distance;
-    }
-}
+  public String getMovedDistance() {
+    return movedDistance;
+  }
 
-class RunMonster extends Monster {
-    public RunMonster(String _name, String _type) {
-        super(_name, _type);
-    }
+  public String getName() {
+    return name;
+  }
 
-    @Override
-    public int setDistance(int roundCount) {
-        for (int i = 0; i < roundCount; i++) {
-            double randomCount = Math.random() * 9;
-            _distance += (randomCount >= 4) ? 1 : 0;
-        }
-
-        return _distance;
-    }
-}
-
-class FlyMonster extends Monster {
-    public FlyMonster(String _name, String _type) {
-        super(_name, _type);
-    }
-
-    @Override
-    public int setDistance(int roundCount) {
-        for (int i = 0; i < roundCount; i++) {
-            double randomCount = Math.random() * 9;
-            _distance += (randomCount >= 6) ? 3 : 0;
-        }
-
-        return _distance;
-    }
-}
-
-
-class EsperMonster extends Monster {
-    public EsperMonster(String _name, String _type) {
-        super(_name, _type);
-    }
-
-    @Override
-    public int setDistance(int roundCount) {
-        for (int i = 0; i < roundCount; i++) {
-            double randomCount = Math.random() * 9;
-            _distance += (randomCount >= 6) ? (Math.random() * 98) + 1 : 0;
-        }
-
-        return _distance;
-    }
+  @Override
+  public String toString() {
+    return this.name + " [" + this.type + " : " + movedDistance.length() + "] : " + this.movedDistance;
+  }
 }
