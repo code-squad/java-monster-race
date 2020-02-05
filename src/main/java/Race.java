@@ -11,25 +11,25 @@ public class Race {
     }
 
     public void getMonsterNumber() {
-            try {
-                System.out.println("Enter number of monsters");
-                numOfMonster = scanner.nextInt();
-            } catch (InputMismatchException e) {
-                scanner = new Scanner(System.in);
-                System.out.println("Enter integer please");
-                getMonsterNumber();
-            }
+        try {
+            System.out.println("Enter number of monsters");
+            numOfMonster = scanner.nextInt();
+        } catch (InputMismatchException e) {
+            scanner = new Scanner(System.in);
+            System.out.println("Enter integer please");
+            getMonsterNumber();
+        }
 
     }
 
-    public void getAttempt() {
+    public void getAttemptNumber() {
         try {
             System.out.println("how many times do you want to try");
             numOfRound = scanner.nextInt();
         } catch (InputMismatchException e) {
             scanner = new Scanner(System.in);
             System.out.println("Enter integer please");
-            getAttempt();
+            getAttemptNumber();
         }
     }
 
@@ -39,7 +39,7 @@ public class Race {
         }
     }
 
-    public void raceIntro() {
+    public void printRaceIntro() {
         Race race = new Race();
         System.out.println(numOfMonster + " Monsters are ready to play " + numOfRound + " rounds");
         for(Monster monster : monsters) {
@@ -69,9 +69,9 @@ public class Race {
     public static void main(String[] args) {
         Race race = new Race();
         race.getMonsterNumber();
-        race.getAttempt();
+        race.getAttemptNumber();
         race.makeMonsterList();
-        race.raceIntro();
+        race.printRaceIntro();
         race.startRace();
         race.endRace();
     }
