@@ -1,5 +1,7 @@
 import java.util.*;
 
+import static java.lang.Integer.parseInt;
+
 public class Race {
     public int numOfMonster;
     public int numOfRound;
@@ -11,26 +13,22 @@ public class Race {
     }
 
     public void getMonsterNumber() {
-        try {
-            System.out.println("Enter number of monsters");
-            numOfMonster = scanner.nextInt();
-        } catch (InputMismatchException e) {
-            scanner = new Scanner(System.in);
-            System.out.println("Enter integer please");
-            getMonsterNumber();
-        }
-
+        System.out.println("Enter number of monsters");
+        while( !scanner.hasNextInt() || (numOfMonster = scanner.nextInt()) < 0 ) {
+                System.out.println("Enter integer please");
+                scanner = new Scanner(System.in);
+            }
+                System.out.println("correct integer");
     }
 
+
     public void getAttemptNumber() {
-        try {
-            System.out.println("how many times do you want to try");
-            numOfRound = scanner.nextInt();
-        } catch (InputMismatchException e) {
-            scanner = new Scanner(System.in);
+        System.out.println("how many times do you want to try");
+        while( !scanner.hasNextInt() || (numOfRound = scanner.nextInt()) < 0 ) {
             System.out.println("Enter integer please");
-            getAttemptNumber();
+            scanner = new Scanner(System.in);
         }
+            System.out.println("correct integer");
     }
 
     public void makeMonsterList() {
