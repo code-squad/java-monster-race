@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class MonsterGame {
     private static final int MIN_RANDOM_NUMBER = 0;
@@ -30,6 +31,28 @@ public class MonsterGame {
 
     public List<List<Integer>> gameResult() {
         return this.gameResult;
+    }
+
+    public void consoleFormatGameResult() {
+        String gameResult = gameResultFormat();
+        System.out.println(gameResult);
+    }
+
+    private String gameResultFormat() {
+        return gameResult.stream()
+                .map(x -> x.stream().reduce(0, Integer::sum))
+                .map(this::charTimes)
+                .collect(Collectors.joining("\n"));
+    }
+
+    private String charTimes(int times) {
+        char character = '-';
+
+        String result = "";
+        for (int i = 0; i < times; i++) {
+            result += character;
+        }
+        return result;
     }
 
     private List<Integer> singleRaceResult() {

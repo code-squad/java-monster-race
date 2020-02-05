@@ -1,6 +1,4 @@
 import java.io.IOException;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class MonsterMain {
     public void start() throws IOException {
@@ -13,26 +11,7 @@ public class MonsterMain {
         MonsterGame monsterGame = new MonsterGame(monsterNumber, tryNumber);
         monsterGame.race();
 
-        List<List<Integer>> gameResult = monsterGame.gameResult();
-        MonsterMain monsterMain = new MonsterMain();
         System.out.println("<실행 결과>");
-        monsterMain.printResult(gameResult);
-    }
-
-    public String printResult(List<List<Integer>> raceResult) {
-        return raceResult.stream()
-                .map(x -> x.stream().reduce(0, Integer::sum))
-                .map(this::charTimes)
-                .collect(Collectors.joining("\n"));
-    }
-
-    private String charTimes(int times) {
-        char character = '-';
-
-        String result = "";
-        for (int i = 0; i < times; i++) {
-            result += character;
-        }
-        return result;
+        monsterGame.consoleFormatGameResult();
     }
 }
