@@ -1,18 +1,14 @@
-# java-monster-race
+# step2  
 
-코드스쿼드 백엔드 자바 학습 프로젝트 1
+step1에서 피드백 받은 내용들과 lucas의 요구 사항들을 통해 코드 수정
 
-## 구현하기
+Input class 추가 - 사용자의 입력을 받는 부분을 분리
 
-- lucas의 요구사항 문서를 참고해서 구현한다.
-- 요구사항에 대한 구현을 완료한 후 자신의 github 아이디에 해당하는 브랜치에 Pull Request(이하 PR)를 통해 코드 리뷰 요청을 한다.
+Output class 추가 - 콘솔에 출력하는 부분을 분리
 
-## PR 보내는 법
+Message class 추가 - 변하지 않는 문자열을 모아둠
 
-- 코드 리뷰 피드백에 대한 개선 작업을 하고 다시 PUSH한다.
-- 모든 피드백을 완료하면 다음 단계를 도전하고 앞의 과정을 반복한다.
+Main, Monster, Race class 수정 - 기존의 클래스에서 입력과 출력을 하는 부분들을 Input과 Output으로 대체
 
-## 온라인 코드 리뷰 과정
 
-- [텍스트와 이미지로 살펴보는 코드스쿼드의 온라인 코드 리뷰 과정](https://github.com/code-squad/codesquad-docs/blob/master/codereview/README.md)
-- [동영상으로 살펴보는 코드스쿼드의 온라인 코드 리뷰 과정](https://youtu.be/a5c9ku-_fok)
+
