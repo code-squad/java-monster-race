@@ -7,4 +7,6 @@ public interface Move {
     void isForward();
 
     void forward();
+
+    void run();
 }

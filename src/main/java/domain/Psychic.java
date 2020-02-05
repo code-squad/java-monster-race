@@ -1,8 +1,8 @@
 package domain;
 
-public class Psychic extends Monster implements Move {
-    private static final int FORWARD_CONDITION = 6;
-    private static final int PSYCHIC_BONUS = 100;
+public class Psychic extends Monster {
+    private final int FORWARD_CONDITION = 9;
+    private final int PSYCHIC_BONUS = 100;
 
     public Psychic(String name) {
         super(name);
@@ -13,21 +13,10 @@ public class Psychic extends Monster implements Move {
     }
 
     @Override
-    public void attempt(int attemptCount) {
-        if (attemptCount == 0) return;
-        isForwardStack.add(random.nextInt(FORWARD_RANGE));
-        attempt(attemptCount - FORWARD);
-    }
-
-    @Override
     public void isForward() {
         if (isForwardStack.isEmpty()) return;
-        if (isForwardStack.pop() >= FORWARD_CONDITION)
-            step += randomForward();
+        if (isForwardStack.pop() >= FORWARD_CONDITION) step += randomForward();
+        isForward();
     }
 
-    @Override
-    public void forward() {
-        System.out.println(this.toString());
-    }
 }

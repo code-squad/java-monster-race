@@ -3,7 +3,7 @@ package domain;
 import java.util.Random;
 import java.util.Stack;
 
-public abstract class Monster {
+public abstract class Monster implements Move {
     protected static final int FORWARD_RANGE = 9;
     protected static final int FORWARD = 1;
 
@@ -32,6 +32,26 @@ public abstract class Monster {
     public Stack<Integer> getIsForwardStack() {
         return isForwardStack;
     }
+
+
+    @Override
+    public void attempt(int attemptCount) {
+        if (attemptCount == 0) return;
+        isForwardStack.add(random.nextInt(FORWARD_RANGE));
+        attempt(attemptCount - 1);
+    }
+
+    @Override
+    public void forward() {
+        System.out.println(this.toString());
+    }
+
+    @Override
+    public void run() {
+        isForward();
+        forward();
+    }
+
 
     @Override
     public String toString() {
