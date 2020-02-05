@@ -1,19 +1,28 @@
 public class Monster {
 
     private int traces;
+    private static final int RANDOM_MAX = 10;
+    private static final int FOWARD_PERCENTAGE = 4;
 
     public void update(){
-        boolean isForward = (int) (Math.random() * 10) >= 4;
-
-        if(isForward)
+        if(isForward())
             traces++;
     }
 
-    public void print(){
+    public boolean isForward(){
+        int randomNumber = (int)(Math.random() * RANDOM_MAX);
+        return (randomNumber >= FOWARD_PERCENTAGE);
+    }
+
+    public void render(){
+        ConsoleIO.renderTraces(getTraces());
+    }
+
+    public StringBuilder getTraces(){
         StringBuilder buffer = new StringBuilder();
         for(int i = 0; i < this.traces; ++i){
             buffer.append("-");
         }
-        System.out.println(buffer);
+        return buffer;
     }
 }
