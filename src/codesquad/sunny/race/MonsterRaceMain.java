@@ -21,7 +21,6 @@ public class MonsterRaceMain {
         
         System.out.println("실행결과");
         racePrint();
-
     }
 
     private static int makeRandomCount() {
@@ -32,19 +31,18 @@ public class MonsterRaceMain {
     private static void racePrint() {
         for (int monster = 0; monster < monsterCount ; monster++) {
             for (int chance = 0; chance < tryCount ; chance++) {
-
+                System.out.print(conditionalForward());
             }
-
+            System.out.println();
         }
     }
 
     private static String conditionalForward() {
         StringBuilder sb = new StringBuilder();
-        String foward = "";
         if (makeRandomCount() > 3) {
             sb.append("-");
         }
-        foward = sb.toString();
-        return foward;
+        return sb.toString();
     }
+
 }
