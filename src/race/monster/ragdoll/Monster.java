@@ -4,26 +4,26 @@ import java.util.Random;
 import java.lang.StringBuilder;
 
 public class Monster {
-    int moveCount;
+    private int moveCount;
 
-    Monster() {
+    public Monster() {
         this.moveCount = 0;
     }
 
-    String decideMoveOrStop() {
-        String decision = "STOP";
+    boolean decideMoveOrStop() {
+        boolean decision = false;
 
         Random random = new Random();
         int randomNum = random.nextInt(9);
         if (randomNum >= 4) {
-            decision = "MOVE";
+            decision = true;
         }
 
         return decision;
     }
 
-    void move(String decision) {
-        if (decision.equals("MOVE")) {
+    void move(boolean decision) {
+        if (decision) {
             ++moveCount;
         }
         return;
@@ -31,7 +31,7 @@ public class Monster {
 
     void run(int numOfTries) {
         for (int i = 0; i < numOfTries; i++) {
-            String decision = decideMoveOrStop();
+            boolean decision = decideMoveOrStop();
             move(decision);
         }
     }
@@ -43,6 +43,6 @@ public class Monster {
             strBuilder.append("-");
         }
 
-        System.out.println(strBuilder.toString());
+        return strBuilder.toString();
     }
 }
