@@ -6,5 +6,8 @@ public class MonsterRaceGame {
         int trialNumber = inputHandler.getTrialNumber();
         int monsterNumber = inputHandler.getMonsterNumber();
 
+        Status status = new Status();
+        System.out.println("<실행 결과>");
+        System.out.println(status.showStatus(monsterNumber, trialNumber));
     }
 }
