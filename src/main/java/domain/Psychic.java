@@ -15,7 +15,7 @@ public class Psychic extends Monster {
     @Override
     public void isForward() {
         if (isForwardStack.isEmpty()) return;
-        if (isForwardStack.pop() >= FORWARD_CONDITION) step += randomForward();
+        if (isForwardStack.pop() == FORWARD_CONDITION) step += randomForward();
         isForward();
     }
 

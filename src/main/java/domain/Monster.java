@@ -4,7 +4,7 @@ import java.util.Random;
 import java.util.Stack;
 
 public abstract class Monster implements Move {
-    protected static final int FORWARD_RANGE = 9;
+    protected static final int FORWARD_RANGE = 10;
     protected static final int FORWARD = 1;
 
     protected String name;
@@ -20,8 +20,7 @@ public abstract class Monster implements Move {
 
     private String makeStep() {
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < step; i++)
-            sb.append('-');
+        for (int i = 0; i < step; i++) sb.append('-');
         return sb.toString();
     }
 
@@ -38,7 +37,7 @@ public abstract class Monster implements Move {
     public void attempt(int attemptCount) {
         if (attemptCount == 0) return;
         isForwardStack.add(random.nextInt(FORWARD_RANGE));
-        attempt(attemptCount - 1);
+        attempt(attemptCount - FORWARD);
     }
 
     @Override
@@ -51,7 +50,6 @@ public abstract class Monster implements Move {
         isForward();
         forward();
     }
-
 
     @Override
     public String toString() {

@@ -11,8 +11,7 @@ public class Flying extends Monster {
     @Override
     public void isForward() {
         if (isForwardStack.isEmpty()) return;
-        if (isForwardStack.pop() >= FORWARD_CONDITION)
-            step += (FORWARD * FLYING_BONUS);
+        if (isForwardStack.pop() >= FORWARD_CONDITION) step += (FORWARD * FLYING_BONUS);
         isForward();
     }
 }
