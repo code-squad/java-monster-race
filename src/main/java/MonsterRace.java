@@ -27,6 +27,9 @@ public class MonsterRace {
             result = 0;
         }
         return result;
+
+
+
     }
 
     private void initMonster(int countOfMonster){
