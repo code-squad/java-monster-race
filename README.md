@@ -16,3 +16,66 @@
 
 - [텍스트와 이미지로 살펴보는 코드스쿼드의 온라인 코드 리뷰 과정](https://github.com/code-squad/codesquad-docs/blob/master/codereview/README.md)
 - [동영상으로 살펴보는 코드스쿼드의 온라인 코드 리뷰 과정](https://youtu.be/a5c9ku-_fok)
+
+
+
+---
+
+# step1
+
+### 설계도
+
+**MonsterRace 클래스**
+
+* monsterCnt : 경주할 몬스터 마릿수
+
+* attemptCnt : 시도 횟수
+
+
+
+**Monster 클래스**
+
+몬스터 객체는 각자 구분가능한 id 값과 해당 회차에 앞으로 전진할 이동 횟수 값을 가진다.
+
+* id - 몬스터 구분
+
+* forwardCount - 전진 횟수 : random값 4이상으로
+* toString() : overriding 전진 상태를 String으로 return
+
+* setRandomCount() : 전진 횟수를 random으로 뽑아서 forwardCount에 합산
+
+
+
+---
+
+# step2
+
+1. 변수 및 메소드명 수정
+
+- setRandomCount() -> run()
+
+* monsterCnt ->  monsterCount
+* attemptCun -> attemptCount
+
+
+
+2. 메서드가 한 가지 일만 하도록 분리
+
+**MonsterRace 클래스**
+
+* mosters 리스트와 monsterCount, attemptCount 변수를 클래스의 멤버 변수로 변경
+* main() : MonsterRace 객체 생성 후, 전체적인 경기 흐름 동작
+* inputInfo() : 사용자로부터 경기에 필요한 정보를 입력받는다.
+* addMonster() : 몬스터 객체를 생성해서 mosters 리스트에 추가
+* play() : 경기 진행. 시도 횟수만큼 몬스터들이 run()
+
+
+
+3. **Scanner 입력 시, 숫자 외 입력값에 대한 에러처리 추가**
+
+`InputMismatchException` 에러 발생 시, 안내문구 출력 후, 재입력을 받는다.
+
+
+
+---
+
