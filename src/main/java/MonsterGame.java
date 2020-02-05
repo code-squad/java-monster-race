@@ -1,35 +1,34 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 public class MonsterGame {
-    private static final int MIN_RANDOM_NUMBER = 0;
     private static final int MAX_RANDOM_NUMBER = 9;
+    private static final int MIN_RANDOM_NUMBER = 0;
     private int monsterNumber;
     private int tryNumber;
-    private List<List<Integer>> gameResult;
+    private List<Monster> gameResult;
 
 
     public MonsterGame(int monsterNumber, int tryNumber) {
         this.monsterNumber = monsterNumber;
         this.tryNumber = tryNumber;
+        this.gameResult = new ArrayList<>();
     }
 
     private int randomNumber() {
-        return (int) Math.floor(Math.random() * (MAX_RANDOM_NUMBER + 1)) - MIN_RANDOM_NUMBER;
+        return new Random().nextInt(MAX_RANDOM_NUMBER + 1 - MIN_RANDOM_NUMBER) + MIN_RANDOM_NUMBER;
     }
 
-    public List<List<Integer>> race() {
-        List<List<Integer>> result = new ArrayList<>();
+    public List<Monster> race() {
         for (int i = 0; i < monsterNumber; i++) {
-            result.add(singleRaceResult());
+            singleMonsterRace(i);
         }
-
-        this.gameResult = result;
-        return result;
+        return gameResult;
     }
 
-    public List<List<Integer>> gameResult() {
+    public List<Monster> gameResult() {
         return this.gameResult;
     }
 
@@ -39,10 +38,7 @@ public class MonsterGame {
     }
 
     private String gameResultFormat() {
-        return gameResult.stream()
-                .map(x -> x.stream().reduce(0, Integer::sum))
-                .map(this::charTimes)
-                .collect(Collectors.joining("\n"));
+        return gameResult.stream().map(monster -> charTimes(monster.position())).collect(Collectors.joining("\n"));
     }
 
     private String charTimes(int times) {
@@ -55,12 +51,16 @@ public class MonsterGame {
         return result;
     }
 
-    private List<Integer> singleRaceResult() {
-        List<Integer> result = new ArrayList<>();
+    private Monster singleMonsterRace(int monsterIndex) {
+        Monster monster = new Monster();
+
         for (int i = 0; i < tryNumber; i++) {
-            result.add(forwardNumber(randomNumber()));
+            monster.move(forwardNumber(randomNumber()));
         }
-        return result;
+
+        this.gameResult.add(monsterIndex, monster);
+
+        return this.gameResult.get(monsterIndex);
     }
 
     private int forwardNumber(int randomResult) {
