@@ -7,11 +7,14 @@ public class MonsterMain {
 
         int monsterNumber = inputView.monsterNumber();
         int tryNumber = inputView.tryNumber();
+        inputView.close();
 
         MonsterGame monsterGame = new MonsterGame(monsterNumber, tryNumber);
         monsterGame.race();
 
         System.out.println("<실행 결과>");
         monsterGame.consoleFormatGameResult();
+
+
     }
 }
