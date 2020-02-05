@@ -1,22 +1,43 @@
+import org.junit.Before;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+
 
 import static org.junit.Assert.*;
 
 public class MonsterTest {
 
-    @Test
-    public void monsterCreate(){
-        List<Monster> list = new ArrayList<>();
+    int monsterCount = 3;
+    int attemptCount = 5;
+    Game game = new Game();
 
-        for (int i = 0; i < 3; i++) {
-            list.add(new Monster(5));
-        }
+    @Before
+    public void monsterCount() {
+        InputStream in = new ByteArrayInputStream(String.valueOf(monsterCount).getBytes());
+        System.setIn(in);
+        game.createScanner();
+        game.inputMonsterCount();
 
-        for (int i = 0; i < 3; i++) {
-            list.get(i).run();
-        }
+        assertEquals(game.monsterCount, this.monsterCount);
+
     }
+
+    @Before
+    public void attemptCount() {
+        InputStream in = new ByteArrayInputStream(String.valueOf(attemptCount).getBytes());
+        System.setIn(in);
+        game.createScanner();
+        game.inputAttemptCount();
+
+        assertEquals(game.attemptCount, this.attemptCount);
+
+    }
+
+    @Test
+    public void createMonster() {
+        game.startGame();
+    }
+
 }

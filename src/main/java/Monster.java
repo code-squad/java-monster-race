@@ -1,4 +1,5 @@
 import java.util.Random;
+import java.util.Stack;
 
 public class Monster {
     private static final int FORWARD_RANGE = 9;
@@ -7,18 +8,31 @@ public class Monster {
 
     private String step;
     private Random random;
+    private Stack<Integer> isForwardStack;
 
-    public Monster(int count) {
+    public Monster(int attemptCount) {
         this.step = "";
         this.random = new Random();
-        forWard(count);
+        this.isForwardStack = new Stack<>();
+
+        addIsForwardInt(attemptCount);
+        isForward();
     }
 
-    private void forWard(int count){
-        for (int start = 0; start < count; start++) {
-            int isForward = random.nextInt(FORWARD_RANGE);
-            if(isForward >= FORWARD_CONDITION) step += FORWARD;
+    private void isForward() {
+        if (isForwardStack.isEmpty()) return;
+        if (isForwardStack.pop() >= FORWARD_CONDITION) step += FORWARD;
+        isForward();
+    }
+
+    private void addIsForwardInt(int attemptCount) {
+        for (int i = 0; i < attemptCount; i++) {
+            isForwardStack.add(getRandomInt());
         }
+    }
+
+    private int getRandomInt() {
+        return random.nextInt(FORWARD_RANGE);
     }
 
     public void run() {
