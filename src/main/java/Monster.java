@@ -9,7 +9,7 @@ public class Monster {
         random = new Random();
     }
 
-    public void move() {
+    public void moveIfConditionSatisfied() {
         if (random.nextInt(10) >= 4) { // exclusive bound
             positionString += "-";
         }
