@@ -13,7 +13,6 @@ public class InputView {
     public int monsterNumber() throws IOException {
         System.out.println("몬스터는 모두 몇 마리인가요?");
         return Integer.parseInt(bufferedReader.readLine());
-
     }
 
     public int tryNumber() throws IOException {
@@ -24,5 +23,4 @@ public class InputView {
     public void close() throws IOException {
         bufferedReader.close();
     }
-
 }
