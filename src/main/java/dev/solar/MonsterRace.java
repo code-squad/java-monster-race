@@ -26,17 +26,31 @@ public class MonsterRace {
     }
 
     public void inputInfo() {
+        inputMonsterInfo();
+        inputAttemptInfo();
+    }
+
+    public void inputMonsterInfo() {
         try {
             String promptMonster = "몬스터는 모두 몇 마리인가요?";
-            String promptAttempt = "시도할 회수는 몇 회 인가요?";
 
             System.out.println(promptMonster);
             monsterCount = Integer.parseInt(scanner.nextLine());
-            System.out.println(promptAttempt);
+        } catch (NumberFormatException e) {
+            System.out.println("숫자 값만 입력하실 수 있습니다. 다시 입력해주세요.");
+            inputMonsterInfo();
+        }
+    }
+
+    public void inputAttemptInfo() {
+        try {
+            String promptMonster = "시도할 회수는 몇 회 인가요?";
+
+            System.out.println(promptMonster);
             attemptCount = Integer.parseInt(scanner.nextLine());
         } catch (NumberFormatException e) {
             System.out.println("숫자 값만 입력하실 수 있습니다. 다시 입력해주세요.");
-            inputInfo();
+            inputAttemptInfo();
         }
     }
 
