@@ -10,11 +10,11 @@ public class Monster {
         this.moveCount = 0;
     }
 
-    boolean decideMoveOrStop() {
+    private boolean decideMoveOrStop() {
         boolean decision = false;
 
         Random random = new Random();
-        int randomNum = random.nextInt(9);
+        int randomNum = random.nextInt(10);
         if (randomNum >= 4) {
             decision = true;
         }
@@ -22,9 +22,9 @@ public class Monster {
         return decision;
     }
 
-    void move(boolean decision) {
+    private void move(boolean decision) {
         if (decision) {
-            ++moveCount;
+            moveCount++;
         }
         return;
     }
