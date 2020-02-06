@@ -2,20 +2,42 @@ import java.util.Random;
 
 public class Monster {
     int index;
-    String name;
-    String vehicle;
-    int moves = 0;
+    private String name;
+    private String vehicle;
+    public int moves;
+
+    public Monster() {
+    }
 
     public Monster(int index) {
         this.index = index;
     }
 
-    public String monsterMoves(int numOfRound) {
-        String moves = "";
-        for(int i = 0; i < numOfRound; i++) {
-            Random rand = new Random();
-            int rand_int1 = rand.nextInt(10);
-            if(rand_int1 >= 4) moves += "-";
-        } return moves;
+    public int getMoves() {
+        return this.moves;
+    }
+
+    public void oneStepForward(Monster monster) {
+        monster.moves += 1;
+    }
+
+    public void moveOneMonsterOneTme(Monster monster) {
+        Random random = new Random();
+        int randomInt = random.nextInt(10);
+        if (randomInt > 3) {
+            oneStepForward(monster);
+        }
+    }
+
+    public void moveOneMonsterFullTime(Race raceInput, Monster monster) {
+        for (int i = 0; i < raceInput.numOfRound; i++) {
+            moveOneMonsterOneTme(monster);
+        }
+    }
+
+    public void moveAllMonstersFullTime(Race raceInput) {
+        for (Monster monster : raceInput.monsters) {
+            moveOneMonsterFullTime(raceInput, monster);
+        }
     }
 }
