@@ -3,12 +3,13 @@ import java.util.Scanner;
 public class ConsoleIO {
     private static Scanner scanner = new Scanner(System.in);
 
-    public static void printLine(String line){
+    public static void printLine(CharSequence line){
         System.out.println(line);
     }
 
-    public static void renderTraces(StringBuilder traces){
-        System.out.println(traces);
+    public static int printLineReturnInt(String line){
+        printLine(line);
+        return getInputDataByInt();
     }
 
     public static int getInputDataByInt(){
