@@ -10,11 +10,11 @@ public class Monster {
         Random random = new Random();
 
         for (int count = 0; count < attemptCount; count++) {
-            this.stepCount += countMonsterStep(calculateMonsterStep(random.nextInt(10)));
+            this.stepCount += countMonsterStep(judgeRandomNumber(random.nextInt(10)));
         }
     }
 
-    public boolean calculateMonsterStep(int randomNumber) {
+    public boolean judgeRandomNumber(int randomNumber) {
         return randomNumber >= 4;
     }
 
