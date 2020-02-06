@@ -9,16 +9,16 @@ public class Monster {
             traces++;
     }
 
-    public boolean isForward(){
+    public void render(){
+        ConsoleIO.printLine(getTraces());
+    }
+
+    private boolean isForward(){
         int randomNumber = (int)(Math.random() * RANDOM_MAX);
         return (randomNumber >= FOWARD_PERCENTAGE);
     }
 
-    public void render(){
-        ConsoleIO.renderTraces(getTraces());
-    }
-
-    public StringBuilder getTraces(){
+    private StringBuilder getTraces(){
         StringBuilder buffer = new StringBuilder();
         for(int i = 0; i < this.traces; ++i){
             buffer.append("-");
