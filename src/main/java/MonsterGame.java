@@ -25,6 +25,7 @@ public class MonsterGame {
         for (int i = 0; i < monsterNumber; i++) {
             singleMonsterRace(i);
         }
+
         return gameResult;
     }
 
@@ -33,21 +34,22 @@ public class MonsterGame {
     }
 
     public void consoleFormatGameResult() {
-        String gameResult = gameResultFormat();
+        String gameResult = formatGameResult();
         System.out.println(gameResult);
     }
 
-    private String gameResultFormat() {
-        return gameResult.stream().map(monster -> charTimes(monster.position())).collect(Collectors.joining("\n"));
+    private String formatGameResult() {
+        return gameResult.stream().map(monster -> formatMonsterLocation(monster.position())).collect(Collectors.joining("\n"));
     }
 
-    private String charTimes(int times) {
+    private String formatMonsterLocation(int times) {
         char character = '-';
-
         String result = "";
+
         for (int i = 0; i < times; i++) {
             result += character;
         }
+
         return result;
     }
 
@@ -59,7 +61,6 @@ public class MonsterGame {
         }
 
         this.gameResult.add(monsterIndex, monster);
-
         return this.gameResult.get(monsterIndex);
     }
 
