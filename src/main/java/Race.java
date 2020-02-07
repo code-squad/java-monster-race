@@ -1,10 +1,10 @@
 import java.util.*;
 
 public class Race {
-    int numOfMonster;
-    int numOfRound;
+    static int numOfMonster;
+    static int numOfRound;
     Scanner scanner;
-    List<Monster> monsters = new ArrayList<Monster>();
+    static List<Monster> monsters = new ArrayList<Monster>();
 
     public Race() {
         this.scanner = new Scanner(System.in);
@@ -14,6 +14,12 @@ public class Race {
         getMonsterNumber();
         getAttemptNumber();
         makePlayerList();
+    }
+
+    public void makePlayerList() {
+        for (int i = 0; i < Race.numOfMonster; i++) {
+            monsters.add(new Monster());
+        }
     }
 
     public void getMonsterNumber() {
@@ -32,38 +38,47 @@ public class Race {
         }
     }
 
-    public void makePlayerList() {
-        for (int i = 0; i < numOfMonster; i++) {
-            monsters.add(new Monster(i));
+    public void moveOneMonsterOneTme(Monster monster) {
+        Random random = new Random();
+        int randomInt = random.nextInt(10);
+        if (randomInt > 3) {
+            monster.oneStepForward();
         }
     }
 
-    public void start(Race race) {
+    public void moveOneMonsterFullTime(Monster monster) {
+        for (int i = 0; i < numOfRound; i++) {
+            moveOneMonsterOneTme(monster);
+        }
+    }
+
+    public void moveAllMonstersFullTime() {
+        for (Monster monster : monsters) {
+            moveOneMonsterFullTime(monster);
+        }
+    }
+
+    public void start() {
         Monster monster = new Monster();
         printRaceIntro();
-        monster.moveAllMonstersFullTime(race);
-        monster.printAllMonsterLocation(race);
+        moveAllMonstersFullTime();
+        monster.printAllMonsterLocation();
     }
 
     public void printRaceIntro() {
         System.out.println(numOfMonster + " Monsters are ready to play " + numOfRound + " rounds");
-        for (Monster monster : monsters) {
-            System.out.println("Monster " + monster.index + " has entered the race");
-        }
         System.out.println("- Game Start! -");
     }
 
     public void end() {
         System.out.println("- Game Over - ");
-        System.out.println("Winner is ~~~~~");
     }
 
     public static void main(String[] args) {
         Race race = new Race();
         Monster monster = new Monster();
         race.prepare();
-        race.start(race);
+        race.start();
         race.end();
-
     }
 }
