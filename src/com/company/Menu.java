@@ -3,6 +3,9 @@ package com.company;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.stream.Stream;
 
 public class Menu {
 
@@ -14,6 +17,17 @@ public class Menu {
         System.out.println("몬스터는 모두 몇 마리인가요?");
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         return Integer.parseInt(br.readLine());
+    }
+
+    public ArrayList inputMonsterInformation(int monsterCount) throws IOException {
+        System.out.println("경주할 몬스터 이름과 종류를 입력하세요 (쉼표(,)를 기준으로 구분).");
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        ArrayList<String> monsterInformation = new ArrayList<>();
+        for(int i=0; i<monsterCount; i++){
+            String[] information = br.readLine().split(", ");
+            monsterInformation.addAll(Arrays.asList(information));
+        }
+        return monsterInformation;
     }
 
     public int inputAttemptCount() throws IOException {
