@@ -38,9 +38,11 @@ public class Race {
         }
     }
 
-    public void start() {
+    public void start(Race race) {
         Monster monster = new Monster();
         printRaceIntro();
+        monster.moveAllMonstersFullTime(race);
+        monster.printAllMonsterLocation(race);
     }
 
     public void printRaceIntro() {
@@ -60,8 +62,8 @@ public class Race {
         Race race = new Race();
         Monster monster = new Monster();
         race.prepare();
-        race.start();
-        monster.moveAllMonstersFullTime(race);
-        monster.printAllMonsterLocation(race);
+        race.start(race);
+        race.end();
+
     }
 }
