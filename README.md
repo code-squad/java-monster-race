@@ -16,13 +16,3 @@
 
 - [텍스트와 이미지로 살펴보는 코드스쿼드의 온라인 코드 리뷰 과정](https://github.com/code-squad/codesquad-docs/blob/master/codereview/README.md)
 - [동영상으로 살펴보는 코드스쿼드의 온라인 코드 리뷰 과정](https://youtu.be/a5c9ku-_fok)
-- 수정
-
-
-
-현재진행상황
----
-
-메소드가 한 번에 한 가지 일만 하도록 구현.
-들여쓰기를 한 번만 하도록 구현.
-몬스터 클래스와 레이스 클래스 역할 분담.
