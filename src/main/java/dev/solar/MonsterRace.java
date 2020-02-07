@@ -2,13 +2,21 @@ package dev.solar;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 import java.util.stream.Stream;
 
 public class MonsterRace {
+    private Scanner scanner;
     private InputHandler inputHandler;
     private List<Monster> monsters;
     private int monsterCount;
     private int attemptCount;
+
+    public MonsterRace() {
+        this.scanner = new Scanner(System.in);
+        this.inputHandler = new InputHandler(this.scanner);
+        this.monsters = new ArrayList<>();
+    }
 
     public static void main(String[] args) {
         MonsterRace monsterRace = new MonsterRace();
@@ -16,11 +24,7 @@ public class MonsterRace {
         monsterRace.addMonsters();
         monsterRace.play();
         monsterRace.printResult();
-    }
-
-    public MonsterRace() {
-        this.inputHandler = new InputHandler();
-        this.monsters = new ArrayList<>();
+        monsterRace.terminate();
     }
 
     private void inputInfo() {
@@ -45,5 +49,9 @@ public class MonsterRace {
     private void printResult() {
         Stream<Monster> monsterStream = monsters.stream();
         monsterStream.forEach(monster -> System.out.println(monster));
+    }
+
+    private void terminate() {
+        scanner.close();
     }
 }
