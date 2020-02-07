@@ -1,4 +1,5 @@
 import util.Message;
+import domain.Monster;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,7 +60,7 @@ public class Game {
 
     private void createMonsters() {
         for (int i = 0; i < monsterCount; i++) {
-            monsterList.add(new Monster(attemptCount));
+            //monsterList.add(new Monster(attemptCount));
         }
     }
 

@@ -25,27 +25,23 @@ public class MonsterTest {
     }
 
     @Test
-    public void runnerForward() {
+    public void countAttempt() {
         runner.attempt(attemptCount);
-        assertEquals(10, runner.getIsForwardStack().size());
+        assertEquals(attemptCount, runner.getSteps().size());
 
-        runner.run();
-    }
-
-    @Test
-    public void flyingForward() {
         flying.attempt(attemptCount);
-        assertEquals(10, flying.getIsForwardStack().size());
+        assertEquals(attemptCount, flying.getSteps().size());
 
-        flying.run();
+        psychic.attempt(attemptCount);
+        assertEquals(attemptCount, psychic.getSteps().size());
+
     }
 
     @Test
-    public void psychicForward() {
-        psychic.attempt(attemptCount);
-        assertEquals(10, psychic.getIsForwardStack().size());
-
-        psychic.run();
+    public void getName(){
+        assertEquals(crong, runner.getName());
+        assertEquals(jk, flying.getName());
+        assertEquals(honux, psychic.getName());
     }
 
 

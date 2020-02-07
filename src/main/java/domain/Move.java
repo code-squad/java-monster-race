@@ -1,12 +1,14 @@
 package domain;
 
+import java.util.Random;
+
 public interface Move {
+
+    Random random = new Random();
 
     void attempt(int attemptCount);
 
     void isForward();
 
-    void forward();
-
-    void run();
+    void start();
 }
