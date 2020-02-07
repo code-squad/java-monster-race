@@ -37,13 +37,14 @@ public class MonsterRace {
 
     public void makeMonsters(){
         for (int index = 0; index < input.getMONSTER_COUNT(); index++) {
-            monsters.add(new Monster());
+            Monster monster = new Monster();
+            monsters.add(monster);
         }
     }
 
     public void run() {
-        for (int index = 0; index < input.getMONSTER_COUNT(); index++) {
-            
+        for (int i = 0; i < ; i++) {
+            monsters.get(i).move(makeRandomNumber(10));
         }
     }
 }
