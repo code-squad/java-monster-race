@@ -16,6 +16,7 @@ public class MonsterRace {
         input = new Input();
         output = new Output();
         random = new Random();
+        monsters = new ArrayList<>();
     }
 
     public void startGame(){
