@@ -1,3 +1,5 @@
+package util;
+
 public class Message {
 
     private final String start = "<스릴만점 건전한 몬스터 경주>";
