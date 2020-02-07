@@ -7,12 +7,12 @@ public class ConsoleIO {
         System.out.println(line);
     }
 
-    public static int printLineReturnInt(String line){
+    public static int print(String line){
         printLine(line);
-        return getInputDataByInt();
+        return getPositiveInt();
     }
 
-    public static int getInputDataByInt(){
+    public static int getPositiveInt(){
         int input;
         try{
             input = Integer.parseInt(scanner.nextLine());
@@ -25,5 +25,14 @@ public class ConsoleIO {
     public static void close(){
         if(scanner != null)
             scanner.close();
+    }
+
+    private class InvalidRangeException extends RuntimeException{
+        public InvalidRangeException() {
+        }
+
+        public InvalidRangeException(String message) {
+            super(message);
+        }
     }
 }
