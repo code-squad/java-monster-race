@@ -1,9 +1,9 @@
 import java.util.*;
 
 public class Race {
+    Scanner scanner;
     static int numOfMonster;
     static int numOfRound;
-    Scanner scanner;
     static List<Monster> monsters = new ArrayList<Monster>();
 
     public Race() {
