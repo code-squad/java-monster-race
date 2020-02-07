@@ -13,7 +13,6 @@ public class MonsterRace {
 
     public static void main(String[] args) {
         MonsterRace monsterRace = new MonsterRace();
-        monsterRace.ready();
         monsterRace.inputInfo();
         monsterRace.addMonsters();
         monsterRace.play();
@@ -21,7 +20,7 @@ public class MonsterRace {
         monsterRace.terminate();
     }
 
-    public void ready() {
+    public MonsterRace() {
         this.scanner = new Scanner(System.in);
     }
 
