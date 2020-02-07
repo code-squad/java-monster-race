@@ -21,7 +21,7 @@ public class Race {
     }
 
     public void getAttemptNumber() {
-        System.out.println("how many times do you want to try");
+        System.out.println("how many times do you want to play");
         while (!scanner.hasNextInt() || (numOfRound = scanner.nextInt()) < 0) {
             System.out.println("Enter integer please");
             scanner = new Scanner(System.in);
@@ -61,8 +61,9 @@ public class Race {
         monster.moveAllMonstersFullTime(race);
 
         for (Monster m : race.monsters) {
-            System.out.println(m.moves);
+            monster.printItsLocation(m);
         }
+
         race.endRace();
     }
 }

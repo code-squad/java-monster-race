@@ -40,4 +40,13 @@ public class Monster {
             moveOneMonsterFullTime(raceInput, monster);
         }
     }
+
+    public void printItsLocation(Monster monster) {
+        StringBuffer sb = new StringBuffer();
+        Race race = new Race();
+        for( int i = 0 ; i < monster.moves; i++) {
+            sb.append("-");
+        }
+        System.out.println(monster.index + " : " + sb);
+    }
 }
