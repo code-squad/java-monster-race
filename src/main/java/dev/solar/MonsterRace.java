@@ -6,10 +6,10 @@ import java.util.Scanner;
 import java.util.stream.Stream;
 
 public class MonsterRace {
-    List<Monster> monsters = new ArrayList<>();
     Scanner scanner;
-    int monsterCount;
-    int attemptCount;
+    private List<Monster> monsters = new ArrayList<>();
+    private int monsterCount;
+    private int attemptCount;
 
     public static void main(String[] args) {
         MonsterRace monsterRace = new MonsterRace();
@@ -21,15 +21,15 @@ public class MonsterRace {
     }
 
     public MonsterRace() {
-        this.scanner = new Scanner(System.in);
+        scanner = new Scanner(System.in);
     }
 
-    public void inputInfo() {
+    private void inputInfo() {
         inputMonsterInfo();
         inputAttemptInfo();
     }
 
-    public void inputMonsterInfo() {
+    private void inputMonsterInfo() {
         try {
             String promptMonster = "몬스터는 모두 몇 마리인가요?";
 
@@ -41,7 +41,7 @@ public class MonsterRace {
         }
     }
 
-    public void inputAttemptInfo() {
+    private void inputAttemptInfo() {
         try {
             String promptMonster = "시도할 회수는 몇 회 인가요?";
 
@@ -53,24 +53,24 @@ public class MonsterRace {
         }
     }
 
-    public void addMonsters() {
+    private void addMonsters() {
         for (int i = 0; i < monsterCount; i++) {
             monsters.add(new Monster());
         }
     }
 
-    public void play() {
+    private void play() {
         for (int i = 0; i < attemptCount; i++) {
             monsters.forEach(Monster::run);
         }
     }
 
-    public void printResult() {
+    private void printResult() {
         Stream<Monster> monsterStream = monsters.stream();
         monsterStream.forEach(monster -> System.out.println(monster));
     }
 
-    public void terminate() {
+    private void terminate() {
         scanner.close();
     }
 }
