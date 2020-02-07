@@ -23,7 +23,7 @@ public class Menu {
         System.out.println("경주할 몬스터 이름과 종류를 입력하세요 (쉼표(,)를 기준으로 구분).");
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         ArrayList<String> monsterInformation = new ArrayList<>();
-        for(int i=0; i<monsterCount; i++){
+        for (int i = 0; i < monsterCount; i++) {
             String[] information = br.readLine().split(", ");
             monsterInformation.addAll(Arrays.asList(information));
         }
@@ -36,10 +36,10 @@ public class Menu {
         return Integer.parseInt(br.readLine());
     }
 
-    public void showResult(String[] result) {
-        System.out.println("실행결과");
-        for (String str : result) {
-            System.out.println(str);
+    public void showResult(Monster[] eachMonster) {
+        System.out.println("경기결과");
+        for(int i=0; i<eachMonster.length; i++){
+            System.out.println(eachMonster[i].name+" ["+eachMonster[i].attribute+"] "+eachMonster[i].stepCount);
         }
     }
 }

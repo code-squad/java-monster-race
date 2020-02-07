@@ -7,7 +7,7 @@ public class Racing {
     int monsterCount;
     int attemptCount;
 
-    Racing(int monsterCount, int attemptCount){
+    Racing(int monsterCount, int attemptCount) {
         this.monsterCount = monsterCount;
         this.attemptCount = attemptCount;
     }
@@ -22,8 +22,8 @@ public class Racing {
 
     public void createMonster(ArrayList<String> monsterinformation) {
         monsters = new Monster[this.monsterCount];
-        for (int size = 0; size < this.monsterCount; size++) {
-            this.monsters[size] = new Monster();
+        for (int each = 0; each < this.monsterCount; each++) {
+            this.monsters[each] = new Monster(monsterinformation, each);
         }
     }
 
@@ -33,11 +33,7 @@ public class Racing {
         }
     }
 
-    public String[] endRacing() {
-        String[] result = new String[this.monsters.length];
-        for (int i = 0; i < result.length; i++) {
-            result[i] = String.valueOf(this.monsters[i].stepCount);
-        }
-        return result;
+    public Monster[] endRacing() {
+        return monsters;
     }
 }
