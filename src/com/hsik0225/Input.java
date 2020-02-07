@@ -13,8 +13,8 @@ public class Input {
 
     private int inputDigit() {
         String inputLine = scanner.nextLine();
-        while (!inputLine.matches("[\\d]*") || inputLine.equals("")) {
-            System.out.println("숫자를 입력해주세요");
+        while (!inputLine.matches("[1-9][0-9]*") || inputLine.equals("")) {
+            System.out.println("1~9 사이의 숫자를 입력해주세요");
             inputLine = scanner.nextLine();
         }
         return Integer.parseInt(inputLine);
