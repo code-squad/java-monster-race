@@ -56,7 +56,7 @@ public class MonsterRace {
 
     public void addMonsters() {
         for (int i = 0; i < monsterCount; i++) {
-            monsters.add(new Monster(i));
+            monsters.add(new Monster());
         }
     }
 
