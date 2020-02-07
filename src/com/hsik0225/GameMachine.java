@@ -5,17 +5,13 @@ public class GameMachine {
     private Output output;
     private MonsterRace monsterRace;
 
-    public GameMachine(){
-        input = new Input();
-        output = new Output();
-    }
-
     public void startMonsterRace(){
         MonsterRace monsterRace = new MonsterRace();
+        input = new Input();
+        output = new Output();
+
         output.startMonsterRace();
         output.askMONSTERS_COUNT();
-        input.input();
         output.askCHALLENGE_COUNT();
-        input.input();
     }
 }

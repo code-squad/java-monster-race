@@ -3,6 +3,9 @@ package com.hsik0225;
 import java.util.Scanner;
 
 public class Input {
+    private int MONSTER_COUNT;
+    private int CHALLENGE_COUNT;
+
     public int input() {
         Scanner scanner = new Scanner(System.in);
         String inputLine = scanner.nextLine();
@@ -13,11 +16,11 @@ public class Input {
         return Integer.parseInt(inputLine);
     }
 
-    public int getMONSTER_COUNT(int MONSTER_COUNT){
-        return MONSTER_COUNT;
+    public void setMONSTER_COUNT() {
+        this.MONSTER_COUNT = input();
     }
 
-    public int getCHALLENGE_COUNT(int CHALLENGE_COUNT){
-        return CHALLENGE_COUNT;
+    public void setCHALLENGE_COUNT() {
+        this.CHALLENGE_COUNT = input();
     }
 }
