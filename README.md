@@ -67,13 +67,14 @@
   	return nextInt();
   }
   ```
-
+  
   
 
 + ConsoleIO.java => Input.java 로 변경
 
   + 현재 로직에서 입력과 출력을 구분하는 것이 어려워서 출력은 필요할 때마다 System.out.println()으로 출력하고, 사용자 입력 전용 클래스로 변경함.
 
+ 
   > 객체의 책임을 잘 구분하지 못하는 것 같다.
 
 
