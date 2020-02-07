@@ -12,4 +12,12 @@ public class Input {
         }
         return Integer.parseInt(inputLine);
     }
+
+    public int getMONSTER_COUNT(int MONSTER_COUNT){
+        return MONSTER_COUNT;
+    }
+
+    public int getCHALLENGE_COUNT(int CHALLENGE_COUNT){
+        return CHALLENGE_COUNT;
+    }
 }

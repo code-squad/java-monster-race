@@ -8,11 +8,6 @@ public class Monster {
     int numOfMonster;
     int numOfMove;
 
-    public Monster() {
-        this.numOfMonster = input("몬스터는 모두 몇 마리인가요?");
-        this.numOfMove = input("시도할 회수는 몇 회 인가요?");
-    }
-
     public String move() {
         Random random = new Random();
         StringBuilder stringBuilder = new StringBuilder();
