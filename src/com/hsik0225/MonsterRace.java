@@ -3,8 +3,6 @@ package com.hsik0225;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.Scanner;
-import java.util.stream.IntStream;
 
 public class MonsterRace {
     private Input input;
