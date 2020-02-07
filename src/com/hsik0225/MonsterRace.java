@@ -1,5 +1,6 @@
 package com.hsik0225;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
@@ -27,12 +28,15 @@ public class MonsterRace {
         input.setCHALLENGE_COUNT();
     }
 
-    private int makeRandomNumber(int bound){
-        int randomValue = random.nextInt(bound);
-        if(randomValue>=4){
-            return randomValue;
+    private int setNumOfMove(int bound, int moveCondition){
+        ArrayList<Integer> moveOK = new ArrayList<>();
+        for (int index = 0; index < input.getCHALLENGE_COUNT(); index++) {
+            int randomValue = random.nextInt(bound);
+            if(randomValue>=moveCondition){
+                moveOK.add(randomValue);
+            }
         }
-        return 0;
+        return moveOK.size();
     }
 
     public void makeMonsters(){
@@ -43,8 +47,9 @@ public class MonsterRace {
     }
 
     public void run() {
-        for (int i = 0; i < ; i++) {
-            monsters.get(i).move(makeRandomNumber(10));
+        for (int i = 0; i < input.getMONSTER_COUNT(); i++) {
+            monsters.get(i).move(setNumOfMove(10,4));
         }
+        output.raceResult();
     }
 }
