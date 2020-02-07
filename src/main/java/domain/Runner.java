@@ -2,14 +2,9 @@ package domain;
 
 public class Runner extends Monster {
     private final int FORWARD_CONDITION = 4;
-    private int step;
 
     public Runner(String name) {
         super(name);
-    }
-
-    public int getStep() {
-        return step;
     }
 
     @Override

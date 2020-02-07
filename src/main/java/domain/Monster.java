@@ -8,6 +8,7 @@ public abstract class Monster implements Move {
 
     String name;
     Stack<Integer> steps;
+    int step;
 
     public Monster(String name) {
         this.name = name;
@@ -26,6 +27,10 @@ public abstract class Monster implements Move {
 
     public String getName() {
         return name;
+    }
+
+    public int getStep() {
+        return step;
     }
 
     @Override
