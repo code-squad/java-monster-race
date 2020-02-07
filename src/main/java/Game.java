@@ -11,12 +11,12 @@ import java.util.*;
 
 public class Game {
 
-    Scanner scanner;
-    BufferedReader bufferedReader;
-    List<Monster> monsterList;
-    int monsterCount, attemptCount;
-    Message message;
-    Monster winner;
+    private Scanner scanner;
+    private BufferedReader bufferedReader;
+    private List<Monster> monsterList;
+    private int monsterCount, attemptCount;
+    private Message message;
+    private Monster winner;
 
     public Game() {
         monsterList = new ArrayList<>();
