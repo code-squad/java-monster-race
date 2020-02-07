@@ -11,7 +11,7 @@ public class Input {
         scanner = new Scanner(System.in);
     }
 
-    public int inputDigit() {
+    private int inputDigit() {
         String inputLine = scanner.nextLine();
         while (!inputLine.matches("[\\d]*") || inputLine.equals("")) {
             System.out.println("숫자를 입력해주세요");
