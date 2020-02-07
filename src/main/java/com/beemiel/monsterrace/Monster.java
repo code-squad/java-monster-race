@@ -1,42 +1,59 @@
 package com.beemiel.monsterrace;
 
+import javax.swing.*;
 import java.util.Random;
 
-public class Monster {
+public abstract class Monster {
     private String name;
     private String type;
-
-    public Monster(){}
+    protected String totalMove;
+    protected Random random;
+    protected StringBuffer stringBuffer = new StringBuffer();
 
     public Monster(String name, String type) {
         this.name = name;
         this.type = type;
+        this.random = new Random();
     }
 
-    public String getName() {
-        return name;
-    }
+//    public int canMove(){
+//        return random.nextInt(10);
+//    }
 
-    public String getType() {
-        return type;
-    }
+    abstract public boolean isMove();
+//    {
+////        Random random = new Random();
+//        return random.nextInt(10) > 4;
+//    }
 
-    private boolean getRandom() {
-        Random random = new Random();
-        return random.nextInt(10) > 4;
-    }
+    abstract public void moveOrStop();
+//    public void moveOrStop() {
+//        if (isMove()){
+//            Message.printRun();
+//        }
+//    }
 
-    private void runOrStop() {
-        if (getRandom()){
-            Output.printRun();
+
+//            for(int i=0; i<count; i++){
+//        moveOrStop();
+//    }
+
+    public void run(int count){
+        for(int i=0; i<count; i++){
+            moveOrStop();
         }
     }
+//    abstract public void run(int count);
+//    {
+//        while (count > 0) {
+//            runOrStop();
+//            count--;
+//        }
+//        Message.next();
+//    }
 
-    public void run(int count) {
-        while (count > 0) {
-            runOrStop();
-            count--;
-        }
-        Output.next();
+    @Override
+    public String toString() {
+        return name + "[" + type + "]" + " : " + totalMove;
     }
 }
