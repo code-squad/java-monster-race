@@ -6,7 +6,7 @@ public interface Move {
 
     Random random = new Random();
 
-    void attempt(int attemptCount);
+    void attempt(int tryCount);
 
     void isForward();
 

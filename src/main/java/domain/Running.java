@@ -1,9 +1,9 @@
 package domain;
 
-public class Runner extends Monster {
+public class Running extends Monster {
     private final int FORWARD_CONDITION = 4;
 
-    public Runner(String name) {
+    public Running(String name) {
         super(name);
     }
 

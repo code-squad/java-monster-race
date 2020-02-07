@@ -4,7 +4,7 @@ public class Message {
 
     private final String openGame = "<스릴만점 건전한 몬스터 경주>";
     private final String monsterCount = "몬스터는 모두 몇 마리인가요?";
-    private final String nameAndType = "경주할 몬스터 이름과 종류를 입력하세요 (쉼표(,)를 기준으로 구분)";
+    private final String nameAndType = "경주할 몬스터 이름과 종류를 입력하세요 (쉼표(,)를 기준으로 구분) \n타입 예시 (running, flying, psychic) ";
     private final String attemptCount = "시도할 회수는 몇 회 인가요?";
     private final String start = "<경기 시작>";
     private final String close = "<게임을 종료합니다>";

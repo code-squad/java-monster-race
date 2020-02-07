@@ -1,6 +1,6 @@
 import domain.Flying;
 import domain.Psychic;
-import domain.Runner;
+import domain.Running;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -13,24 +13,24 @@ public class MonsterTest {
     String honux = "호눅스";
     int attemptCount = 10;
 
-    Runner runner;
-    Flying flying;
+    Running running;
+    Flying flier;
     Psychic psychic;
 
     @Before
     public void createObject() {
-        runner = new Runner(crong);
-        flying = new Flying(jk);
+        running = new Running(crong);
+        flier = new Flying(jk);
         psychic = new Psychic(honux);
     }
 
     @Test
     public void countAttempt() {
-        runner.attempt(attemptCount);
-        assertEquals(attemptCount, runner.getSteps().size());
+        running.attempt(attemptCount);
+        assertEquals(attemptCount, running.getSteps().size());
 
-        flying.attempt(attemptCount);
-        assertEquals(attemptCount, flying.getSteps().size());
+        flier.attempt(attemptCount);
+        assertEquals(attemptCount, flier.getSteps().size());
 
         psychic.attempt(attemptCount);
         assertEquals(attemptCount, psychic.getSteps().size());
@@ -39,8 +39,8 @@ public class MonsterTest {
 
     @Test
     public void getName(){
-        assertEquals(crong, runner.getName());
-        assertEquals(jk, flying.getName());
+        assertEquals(crong, running.getName());
+        assertEquals(jk, flier.getName());
         assertEquals(honux, psychic.getName());
     }
 

@@ -20,7 +20,6 @@ public abstract class Monster implements Move {
         return stringBuilder.toString();
     }
 
-
     public Stack<Integer> getSteps() {
         return steps;
     }
@@ -34,10 +33,10 @@ public abstract class Monster implements Move {
     }
 
     @Override
-    public void attempt(int attemptCount) {
-        if (attemptCount == 0) return;
+    public void attempt(int tryCount) {
+        if (tryCount == 0) return;
         steps.add(random.nextInt(FORWARD_RANGE));
-        attempt(attemptCount - FORWARD);
+        attempt(tryCount - FORWARD);
     }
 
     @Override

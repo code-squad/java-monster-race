@@ -1,6 +1,6 @@
 import domain.Flying;
 import domain.Psychic;
-import domain.Runner;
+import domain.Running;
 import util.Message;
 import domain.Monster;
 
@@ -13,13 +13,13 @@ public class Game {
 
     private Scanner scanner;
     private BufferedReader bufferedReader;
-    private List<Monster> monsterList;
-    private int monsterCount, attemptCount;
+    private List<Monster> monsters;
+    private int monsterCount, tryCount;
     private Message message;
     private Monster winner;
 
     public Game() {
-        monsterList = new ArrayList<>();
+        monsters = new ArrayList<>();
         message = new Message();
     }
 
@@ -41,7 +41,7 @@ public class Game {
         inputNameAndType(this.monsterCount);
 
         message.attemptCountMessage();
-        inputAttemptCount();
+        inputTryCount();
     }
 
     private void startGame() {
@@ -78,43 +78,43 @@ public class Game {
         if (input.length == 0) throw new IllegalArgumentException("올바르지 않은 이름, 종류 입력입니다");
         String name = input[0];
         String type = input[1].trim();
-        if (!type.equals("runner") && !type.equals("flying") && !type.equals("esper"))
+        if (!type.equals("running") && !type.equals("flying") && !type.equals("psychic"))
             throw new IllegalArgumentException("올바르지 않은 종류 입력입니다");
 
         createMonsters(name, type);
         inputNameAndType(monsterCount - 1);
     }
 
-    private void inputAttemptCount() {
-        attemptCount = Optional.ofNullable(scanner.nextInt()).orElse(0);
-        if (attemptCount == 0 || attemptCount < 0) throw new IllegalArgumentException("올바르지 않은 시도 횟수 입력입니다");
+    private void inputTryCount() throws IOException {
+        tryCount = Optional.ofNullable(Integer.parseInt(bufferedReader.readLine())).orElse(0);
+        if (tryCount == 0 || tryCount < 0) throw new IllegalArgumentException("올바르지 않은 시도 횟수 입력입니다");
         int index = 0;
-        addMonsterAttempt(index);
+        addTryCount(index);
     }
 
-    private void addMonsterAttempt(int index) {
+    private void addTryCount(int index) {
         if (index >= monsterCount) return;
-        monsterList.get(index).attempt(attemptCount);
-        addMonsterAttempt(index + 1);
+        monsters.get(index).attempt(tryCount);
+        addTryCount(index + 1);
     }
 
     private void createMonsters(String name, String type) {
-        if (type.equals("runner")) monsterList.add(new Runner(name));
-        else if (type.equals("flying")) monsterList.add(new Flying(name));
-        else if (type.equals("esper")) monsterList.add(new Psychic(name));
+        if (type.equals("running")) monsters.add(new Running(name));
+        else if (type.equals("flying")) monsters.add(new Flying(name));
+        else if (type.equals("psychic")) monsters.add(new Psychic(name));
     }
 
     private void printMonsterForward(int index) {
         if (index >= monsterCount) return;
-        monsterList.get(index).start();
+        monsters.get(index).start();
         printMonsterForward(index + 1);
     }
 
     private void findWinner(int maxStep, int index) {
         if (index >= monsterCount) return;
-        if (monsterList.get(index).getStep() > maxStep) {
-            winner = monsterList.get(index);
-            maxStep = monsterList.get(index).getStep();
+        if (monsters.get(index).getStep() > maxStep) {
+            winner = monsters.get(index);
+            maxStep = monsters.get(index).getStep();
         }
         findWinner(maxStep, index + 1);
     }
@@ -122,6 +122,4 @@ public class Game {
     private void printWinner() {
         message.winnerMessage(winner.getName());
     }
-
-
 }

@@ -9,9 +9,8 @@ public class Psychic extends Monster {
     }
 
     private int randomForward() {
-        return random.nextInt(PSYCHIC_BONUS) + FORWARD;
+        return (random.nextInt(PSYCHIC_BONUS) + 1) + FORWARD;
     }
-
 
     @Override
     public void isForward() {
