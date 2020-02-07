@@ -29,24 +29,29 @@ public class Monster {
         }
     }
 
-    public void moveOneMonsterFullTime(Race raceInput, Monster monster) {
-        for (int i = 0; i < raceInput.numOfRound; i++) {
+    public void moveOneMonsterFullTime(Race race, Monster monster) {
+        for (int i = 0; i < race.numOfRound; i++) {
             moveOneMonsterOneTme(monster);
         }
     }
 
-    public void moveAllMonstersFullTime(Race raceInput) {
-        for (Monster monster : raceInput.monsters) {
-            moveOneMonsterFullTime(raceInput, monster);
+    public void moveAllMonstersFullTime(Race race) {
+        for (Monster monster : race.monsters) {
+            moveOneMonsterFullTime(race, monster);
         }
     }
 
-    public void printItsLocation(Monster monster) {
-        StringBuffer sb = new StringBuffer();
-        Race race = new Race();
+    public void printOneMonsterLocation(Monster monster) {
+        StringBuilder sb = new StringBuilder();
         for( int i = 0 ; i < monster.moves; i++) {
             sb.append("-");
         }
         System.out.println(monster.index + " : " + sb);
+    }
+
+    public void printAllMonsterLocation(Race race) {
+        for (Monster m : race.monsters) {
+            printOneMonsterLocation(m);
+        }
     }
 }

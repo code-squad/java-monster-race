@@ -1,7 +1,5 @@
 import java.util.*;
 
-import static java.lang.Integer.parseInt;
-
 public class Race {
     int numOfMonster;
     int numOfRound;
@@ -10,6 +8,12 @@ public class Race {
 
     public Race() {
         this.scanner = new Scanner(System.in);
+    }
+
+    public void prepare() {
+        getMonsterNumber();
+        getAttemptNumber();
+        makePlayerList();
     }
 
     public void getMonsterNumber() {
@@ -28,10 +32,15 @@ public class Race {
         }
     }
 
-    public void makeMonsterList() {
+    public void makePlayerList() {
         for (int i = 0; i < numOfMonster; i++) {
             monsters.add(new Monster(i));
         }
+    }
+
+    public void start() {
+        Monster monster = new Monster();
+        printRaceIntro();
     }
 
     public void printRaceIntro() {
@@ -39,31 +48,20 @@ public class Race {
         for (Monster monster : monsters) {
             System.out.println("Monster " + monster.index + " has entered the race");
         }
-    }
-
-    public void startRace() {
         System.out.println("- Game Start! -");
     }
 
-
-    public void endRace() {
+    public void end() {
         System.out.println("- Game Over - ");
+        System.out.println("Winner is ~~~~~");
     }
 
     public static void main(String[] args) {
         Race race = new Race();
         Monster monster = new Monster();
-        race.getMonsterNumber();
-        race.getAttemptNumber();
-        race.makeMonsterList();
-        race.printRaceIntro();
-        race.startRace();
+        race.prepare();
+        race.start();
         monster.moveAllMonstersFullTime(race);
-
-        for (Monster m : race.monsters) {
-            monster.printItsLocation(m);
-        }
-
-        race.endRace();
+        monster.printAllMonsterLocation(race);
     }
 }
