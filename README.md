@@ -16,18 +16,3 @@
 
 - [텍스트와 이미지로 살펴보는 코드스쿼드의 온라인 코드 리뷰 과정](https://github.com/code-squad/codesquad-docs/blob/master/codereview/README.md)
 - [동영상으로 살펴보는 코드스쿼드의 온라인 코드 리뷰 과정](https://youtu.be/a5c9ku-_fok)
-
-
-
-진행상황 : 몬스터 레이스 2단계 구현
---
-
-
-indent(인덴트, 들여쓰기) depth를 2단계에서 1단계로 줄여라.
-depth의 경우 if문을 사용하는 경우 1단계의 depth가 증가한다. if문 안에 while문을 사용한다면 depth가 2단계가 된다.
-else를 사용하지 마라.
-메소드의 크기가 최대 10라인을 넘지 않도록 구현한다.
-메소드가 한 가지 일만 하도록 최대한 작게 만들어라.
-stream은 가능하면 사용하지 않는다.
-자바 코딩 컨벤션을 지키면서 프로그래밍한다.
-
