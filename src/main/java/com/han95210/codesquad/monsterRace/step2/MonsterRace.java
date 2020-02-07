@@ -1,11 +1,16 @@
-package com.han95210.codesquad.monsterRace.step1;
+package com.han95210.codesquad.monsterRace.step2;
 
 import java.util.Scanner;
 
-public class Step1 {
+public class MonsterRace {
 
-     //횟수가 주어졌을 때 랜덤으로 문자열에 -(dash)로 채워넣기
+    // 횟수가 주어졌을 때 랜덤으로 문자열에 -(dash)로 채워넣기
     String getForwardCount(int numberAttempts) {
+
+        return getString(numberAttempts);
+    }
+
+    public static String getString(int numberAttempts) {
         StringBuilder dashStr = new StringBuilder();
 
         for (int i = 0; i < numberAttempts; i++) {
@@ -18,7 +23,7 @@ public class Step1 {
     }
 
     public static void main(String[] args) {
-        Step1 step1 = new Step1();
+        MonsterRace monsterRace = new MonsterRace();
 
         System.out.println("<스릴만점 건전한 몬스터 경주>");
         System.out.println("몬스터는 모두 몇 마리인가요?");
@@ -38,7 +43,7 @@ public class Step1 {
 
         // 이동 횟수 배열에다가 getForwardCount 함수값 넣기
         for (int i = 0; i < forwardCount.length; i++) {
-            forwardCount[i] = step1.getForwardCount(numberAttempts);
+            forwardCount[i] = monsterRace.getForwardCount(numberAttempts);
         }
 
         // forwardCount 배열의 각 원소 출력
