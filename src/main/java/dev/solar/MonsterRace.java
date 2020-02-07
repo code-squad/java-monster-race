@@ -19,18 +19,10 @@ public class MonsterRace {
     }
 
     private void inputInfo() {
-        inputMonsterInfo();
-        inputAttemptInfo();
-    }
-
-    private void inputMonsterInfo() {
-        String promptMonster = "몬스터는 모두 몇 마리인가요?";
-        monsterCount = inputHandler.inputProperType(promptMonster);
-    }
-
-    private void inputAttemptInfo() {
-        String promptMonster = "시도할 회수는 몇 회 인가요?";
-        attemptCount = inputHandler.inputProperType(promptMonster);
+        String promptMessage = "몬스터는 모두 몇 마리인가요?";
+        monsterCount = inputHandler.inputProperType(promptMessage);
+        promptMessage = "시도할 회수는 몇 회 인가요?";
+        attemptCount = inputHandler.inputProperType(promptMessage);
     }
 
     private void addMonsters() {
