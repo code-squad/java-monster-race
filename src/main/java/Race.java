@@ -79,5 +79,6 @@ public class Race {
         race.prepare();
         race.start(race);
         race.end();
+        System.out.println("hi");
     }
 }
