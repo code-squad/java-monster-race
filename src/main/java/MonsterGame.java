@@ -60,12 +60,12 @@ public class MonsterGame {
 
     private String formatMonsterLocation(int times) {
         char character = '-';
-        String result = "";
+        StringBuffer result = new StringBuffer();
 
         for (int i = 0; i < times; i++) {
-            result += character;
+            result.append(character);
         }
 
-        return result;
+        return result.toString();
     }
 }
