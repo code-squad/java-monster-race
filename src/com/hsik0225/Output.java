@@ -14,6 +14,6 @@ public class Output {
     }
 
     public void raceResult(){
-
+        System.out.println("<실행 결과>");
     }
 }

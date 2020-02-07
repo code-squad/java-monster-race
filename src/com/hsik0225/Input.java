@@ -3,7 +3,7 @@ package com.hsik0225;
 import java.util.Scanner;
 
 public class Input {
-    public int input() {
+    public int digit() {
         Scanner scanner = new Scanner(System.in);
         String inputLine = scanner.nextLine();
         while (!inputLine.matches("[\\d]*") || inputLine.equals("")) {

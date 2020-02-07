@@ -5,19 +5,16 @@ import java.util.Scanner;
 import java.util.stream.IntStream;
 
 public class Monster {
-    int numOfMonster;
-    int numOfMove;
+    private int numOfMove;
+
+    public Monster(int numOfMove){
+        this.numOfMove = numOfMove;
+    }
 
     public String move() {
-        Random random = new Random();
-        StringBuilder stringBuilder = new StringBuilder();
-
-        IntStream.range(0, numOfMove)
-                .map(count -> random.nextInt(10))
-                .filter(randomValue -> randomValue >= 4)
                 .forEach(randomValue -> {
-                    addLength(stringBuilder, randomValue);
-                });
+            addLength(stringBuilder, randomValue);
+        });
         return stringBuilder.toString();
     }
 
