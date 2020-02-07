@@ -2,11 +2,14 @@ public class GameMachine {
 
     public static void main(String[] args) {
 
-        Input.opening();
-        int countOfMonsters = Input.getCountOfMosters();
-        int rounds = Input.getRounds();
+        System.out.println("<스릴만점 건전한 몬스터 경주>");
+        Input input = new Input();
+        int countOfMonsters = input.getCountOfMonsters();
+        int rounds = input.getRounds();
 
         MonsterRace race = new MonsterRace(countOfMonsters, rounds);
-        race.startRace();
+        race.start();
+
+        input.closeScanner();
     }
 }

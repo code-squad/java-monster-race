@@ -4,7 +4,7 @@ public class Input {
 
     private Scanner scanner = new Scanner(System.in);
 
-    public int getCountOfMosters() {
+    public int getCountOfMonsters() {
         System.out.println("출전할 몬스터는 몇 마리?");
         return getPositiveInt();
     }
@@ -14,13 +14,13 @@ public class Input {
         return getPositiveInt();
     }
 
-    public void closeScanner(){
+    public void closeScanner() {
         if(scanner != null)
             scanner.close();
     }
 
     private int getPositiveInt() {
-        int input = 0;
+        int input;
         try{
             input = Integer.parseInt(scanner.nextLine());
             if(input <= 0)
@@ -32,7 +32,7 @@ public class Input {
         return input;
     }
 
-    private class InvalidRangeException extends RuntimeException {
+    private static class InvalidRangeException extends RuntimeException {
 
         public InvalidRangeException(String message) {
             super(message);

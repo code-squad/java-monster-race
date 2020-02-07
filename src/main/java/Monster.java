@@ -4,21 +4,21 @@ public class Monster {
     private static final int RANDOM_MAX = 10;
     private static final int FOWARD_PERCENTAGE = 4;
 
-    public void update(){
+    public void update() {
         if(isForward())
             traces++;
     }
 
-    public void render(){
-        ConsoleIO.printLine(getTraces());
+    public void render() {
+        System.out.println(getTraces());
     }
 
-    private boolean isForward(){
+    private boolean isForward() {
         int randomNumber = (int)(Math.random() * RANDOM_MAX);
         return (randomNumber >= FOWARD_PERCENTAGE);
     }
 
-    private StringBuilder getTraces(){
+    private StringBuilder getTraces() {
         StringBuilder buffer = new StringBuilder();
         for(int i = 0; i < this.traces; ++i){
             buffer.append("-");
