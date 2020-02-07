@@ -1,18 +1,53 @@
 package MonsterRace;
 
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 public class Monster {
-    /**
-     * public int getDistance(roundCount)
-     * 몬스터가 이동한 거리를 return 합니다.
-     */
-    public int getDistance(int roundCount) {
-        int distance = 0;
 
-        for (int i = 0; i < roundCount; i++) {
-            double randomCount = Math.random() * 9;
-            distance += (randomCount >= 4) ? randomCount : 0;
-        }
+  private MoveBehavior moveBehavior;
+  private String name;
+  private String type;
+  private String movedDistance;
 
-        return distance;
+  public Monster(String name, String type) {
+    try {
+      switch (type) {
+        case "달리기":
+          this.moveBehavior = new Run();
+          break;
+        case "비행":
+          this.moveBehavior = new Fly();
+          break;
+        case "에스퍼":
+          this.moveBehavior = new Esper();
+          break;
+        default:
+          throw new Exception();
+      }
+    } catch (Exception e) {
+      System.out.println(Text.E_MONSTER_INFO.getText());
     }
+
+    this.name = name;
+    this.type = type;
+  }
+
+  public void move(int roundCount) {
+    movedDistance = (Stream.generate(() -> "-").limit(moveBehavior.getMoveCount(roundCount)))
+        .collect(Collectors.joining());
+  }
+
+  public String getMovedDistance() {
+    return movedDistance;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  @Override
+  public String toString() {
+    return this.name + " [" + this.type + " : " + movedDistance.length() + "] : " + this.movedDistance;
+  }
 }
