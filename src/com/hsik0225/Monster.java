@@ -11,7 +11,7 @@ public class Monster {
         return moveLength;
     }
 
-    public String move(int numOfMove) {
-        return "-".repeat(numOfMove);
+    public void move(int numOfMove) {
+        this.moveLength = "-".repeat(numOfMove);
     }
 }

@@ -18,7 +18,13 @@ public class MonsterRace {
         random = new Random();
     }
 
-    public void setGame(){
+    public void startGame(){
+        setGame();
+        makeMonsters();
+        startRace();
+    }
+
+    private void setGame(){
         output.startMonsterRace();
 
         output.askMONSTERS_COUNT();
@@ -26,6 +32,22 @@ public class MonsterRace {
 
         output.askCHALLENGE_COUNT();
         input.setCHALLENGE_COUNT();
+    }
+
+    private void makeMonsters(){
+        for (int index = 0; index < input.getMONSTER_COUNT(); index++) {
+            Monster monster = new Monster();
+            monsters.add(monster);
+        }
+    }
+
+    private void startRace() {
+        output.raceResult();
+        for (int i = 0; i < input.getMONSTER_COUNT(); i++) {
+            monsters.get(i).move(setNumOfMove(10,4));
+            String moveLength = monsters.get(i).getMoveLength();
+            output.moveLength(moveLength);
+        }
     }
 
     private int setNumOfMove(int bound, int moveCondition){
@@ -37,21 +59,5 @@ public class MonsterRace {
             }
         }
         return moveOK.size();
-    }
-
-    public void makeMonsters(){
-        for (int index = 0; index < input.getMONSTER_COUNT(); index++) {
-            Monster monster = new Monster();
-            monsters.add(monster);
-        }
-    }
-
-    public void run() {
-        output.raceResult();
-        for (int i = 0; i < input.getMONSTER_COUNT(); i++) {
-            monsters.get(i).move(setNumOfMove(10,4));
-            String moveLength = monsters.get(i).getMoveLength();
-            output.moveLength(moveLength);
-        }
     }
 }
