@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.stream.Stream;
 
 public class MonsterRace {
-    private InputHandler inputHandler = new InputHandler();
-    private List<Monster> monsters = new ArrayList<>();
+    private InputHandler inputHandler;
+    private List<Monster> monsters;
     private int monsterCount;
     private int attemptCount;
 
@@ -16,6 +16,11 @@ public class MonsterRace {
         monsterRace.addMonsters();
         monsterRace.play();
         monsterRace.printResult();
+    }
+
+    public MonsterRace() {
+        this.inputHandler = new InputHandler();
+        this.monsters = new ArrayList<>();
     }
 
     private void inputInfo() {
