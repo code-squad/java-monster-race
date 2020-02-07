@@ -33,14 +33,25 @@ public class Game {
         message.startMessage();
 
         createScanner();
+
+        message.monsterCountMessage();
         inputMonsterCount();
+
+        message.nameAndTypeMessage();
         inputNameAndType(this.monsterCount);
+
+        message.attemptCountMessage();
         inputAttemptCount();
     }
 
     private void startGame() {
-        printMonsterForward();
-        findWinner();
+        int index = 0;
+        int maxStep = 0;
+
+        message.resultMessage();
+
+        printMonsterForward(index);
+        findWinner(maxStep, index);
     }
 
     private void closeGame() {
@@ -56,12 +67,8 @@ public class Game {
     }
 
     private void inputMonsterCount() throws IOException {
-        message.monsterCountMessage();
-
         monsterCount = Optional.ofNullable(Integer.parseInt(bufferedReader.readLine())).orElse(0);
         if (monsterCount == 0 || monsterCount < 0) throw new IllegalArgumentException("올바르지 않은 몬스터 갯수 입력입니다");
-
-        message.nameAndTypeMessage();
     }
 
     private void inputNameAndType(int monsterCount) throws IOException {
@@ -79,11 +86,16 @@ public class Game {
     }
 
     private void inputAttemptCount() {
-        message.attemptCountMessage();
         attemptCount = Optional.ofNullable(scanner.nextInt()).orElse(0);
         if (attemptCount == 0 || attemptCount < 0) throw new IllegalArgumentException("올바르지 않은 시도 횟수 입력입니다");
-        for (int i = 0; i < monsterCount; i++)
-            monsterList.get(i).attempt(attemptCount);
+        int index = 0;
+        addMonsterAttempt(index);
+    }
+
+    private void addMonsterAttempt(int index) {
+        if (index >= monsterCount) return;
+        monsterList.get(index).attempt(attemptCount);
+        addMonsterAttempt(index + 1);
     }
 
     private void createMonsters(String name, String type) {
@@ -92,20 +104,19 @@ public class Game {
         else if (type.equals("esper")) monsterList.add(new Psychic(name));
     }
 
-    private void printMonsterForward() {
-        message.resultMessage();
-
-        for (int i = 0; i < monsterCount; i++)
-            monsterList.get(i).start();
+    private void printMonsterForward(int index) {
+        if (index >= monsterCount) return;
+        monsterList.get(index).start();
+        printMonsterForward(index + 1);
     }
 
-    private void findWinner() {
-        int maxStep = 0;
-        for (int i = 0; i < monsterCount; i++)
-            if (monsterList.get(i).getStep() > maxStep) {
-                winner = monsterList.get(i);
-                maxStep = monsterList.get(i).getStep();
-            }
+    private void findWinner(int maxStep, int index) {
+        if (index >= monsterCount) return;
+        if (monsterList.get(index).getStep() > maxStep) {
+            winner = monsterList.get(index);
+            maxStep = monsterList.get(index).getStep();
+        }
+        findWinner(maxStep, index + 1);
     }
 
     private void printWinner() {
