@@ -10,8 +10,6 @@ public class MonsterRace {
     private Output output;
     private Random random;
     private List<Monster> monsters;
-    private int MONSTER_COUNT;
-    private int CHALLENGE_COUNT;
 
     public MonsterRace(){
         input = new Input();
@@ -23,10 +21,10 @@ public class MonsterRace {
         output.startMonsterRace();
 
         output.askMONSTERS_COUNT();
-        this.MONSTER_COUNT = input.digit();
+        input.setMONSTER_COUNT();
 
         output.askCHALLENGE_COUNT();
-        this.CHALLENGE_COUNT = input.digit();
+        input.setCHALLENGE_COUNT();
     }
 
     private int makeRandomNumber(int bound){
@@ -38,13 +36,14 @@ public class MonsterRace {
     }
 
     public void makeMonsters(){
-        for (int index = 0; index < MONSTER_COUNT; index++) {
-            monsters.add(new Monster(makeRandomNumber(10)));
+        for (int index = 0; index < input.getMONSTER_COUNT(); index++) {
+            monsters.add(new Monster());
         }
     }
 
     public void run() {
-        IntStream.range(0, monster.numOfMonster)
-                .forEach(count -> System.out.println(monster.move()));
+        for (int index = 0; index < input.getMONSTER_COUNT(); index++) {
+            
+        }
     }
 }
