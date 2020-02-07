@@ -3,12 +3,12 @@ package dev.solar;
 import java.util.stream.IntStream;
 
 public class Monster {
-    int forwardCount = 0;
+    private int forwardCount = 0;
 
     public void run() {
         int random = (int) (Math.random() * 10);
         if (random >= 4) {
-            this.forwardCount += random;
+            forwardCount += random;
         }
     }
 
