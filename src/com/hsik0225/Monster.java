@@ -13,18 +13,6 @@ public class Monster {
         this.numOfMove = input("시도할 회수는 몇 회 인가요?");
     }
 
-    public int input(String question) {
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.println(question);
-        String inputLine = scanner.nextLine();
-        while (!inputLine.matches("[\\d]*") || inputLine.equals("")) {
-            System.out.println("숫자를 입력해주세요");
-            inputLine = scanner.nextLine();
-        }
-        return Integer.parseInt(inputLine);
-    }
-
     public String move() {
         Random random = new Random();
         StringBuilder stringBuilder = new StringBuilder();
