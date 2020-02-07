@@ -5,10 +5,10 @@ import java.util.Scanner;
 import java.util.stream.IntStream;
 
 public class Monster {
-    private String numOfMoved;
+    private String moveLength;
 
     public String getMoveLength() {
-        return numOfMoved;
+        return moveLength;
     }
 
     public String move(int numOfMove) {

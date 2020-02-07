@@ -16,4 +16,8 @@ public class Output {
     public void raceResult(){
         System.out.println("<실행 결과>");
     }
+
+    public void moveLength(String moveLength){
+        System.out.println(moveLength);
+    }
 }

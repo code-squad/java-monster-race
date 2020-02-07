@@ -47,9 +47,11 @@ public class MonsterRace {
     }
 
     public void run() {
+        output.raceResult();
         for (int i = 0; i < input.getMONSTER_COUNT(); i++) {
             monsters.get(i).move(setNumOfMove(10,4));
+            String moveLength = monsters.get(i).getMoveLength();
+            output.moveLength(moveLength);
         }
-        output.raceResult();
     }
 }
