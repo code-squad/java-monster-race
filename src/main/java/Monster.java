@@ -22,8 +22,8 @@ public class Monster {
         System.out.println(sb);
     }
 
-    public void printAllMonsterLocation() {
-        for (Monster m : Race.monsters) {
+    public void printAllMonsterLocation(Race race) {
+        for (Monster m : race.monsters) {
             printOneMonsterLocation(m);
         }
     }

@@ -2,9 +2,9 @@ import java.util.*;
 
 public class Race {
     Scanner scanner;
-    static int numOfMonster;
-    static int numOfRound;
-    static List<Monster> monsters = new ArrayList<Monster>();
+    int numOfMonster;
+    int numOfRound;
+    List<Monster> monsters = new ArrayList<Monster>();
 
     public Race() {
         this.scanner = new Scanner(System.in);
@@ -17,7 +17,7 @@ public class Race {
     }
 
     public void makePlayerList() {
-        for (int i = 0; i < Race.numOfMonster; i++) {
+        for (int i = 0; i < numOfMonster; i++) {
             monsters.add(new Monster());
         }
     }
@@ -58,11 +58,11 @@ public class Race {
         }
     }
 
-    public void start() {
+    public void start(Race race) {
         Monster monster = new Monster();
         printRaceIntro();
         moveAllMonstersFullTime();
-        monster.printAllMonsterLocation();
+        monster.printAllMonsterLocation(race);
     }
 
     public void printRaceIntro() {
@@ -76,9 +76,8 @@ public class Race {
 
     public static void main(String[] args) {
         Race race = new Race();
-        Monster monster = new Monster();
         race.prepare();
-        race.start();
+        race.start(race);
         race.end();
     }
 }
