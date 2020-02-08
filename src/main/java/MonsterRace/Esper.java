@@ -16,6 +16,6 @@ public class Esper implements MoveBehavior {
   }
 
   private int esperMoveCount() {
-    return (int) ((Math.random() * 97) + 2);
+    return (int) ((Math.random() * 99) + 1);
   }
 }
