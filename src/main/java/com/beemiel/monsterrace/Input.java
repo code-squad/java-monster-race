@@ -4,16 +4,20 @@ import java.util.Scanner;
 
 public class Input {
     private Scanner scanner = new Scanner(System.in);
-    private Output output = new Output();
+    private Message message = new Message();
 
     public int inputMonster(){
-        output.gameStart();
-        output.getMonster();
-        return scanner.nextInt();
+        message.gameTitle();
+        message.getMonster();
+        return Integer.parseInt(scanner.nextLine());
+    }
+
+    public String[] inputMonsterInfo(){
+        return scanner.nextLine().split(",");
     }
 
     public int inputCount(){
-        output.getTry();
+        message.getTry();
         return scanner.nextInt();
     }
 
