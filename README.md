@@ -164,11 +164,11 @@ public void inputInfo() {
 
 - [x] MonsterRace의 인스턴스 변수의 초기화를 선언과 분리 -> MonsterRace 생성자에서 초기화해주도록 수정
 
-- [ ] input 요청시 promptMessage 문구를 enum으로 구현
-
 - [x] 사용자 입력 값 검증 추가 : 음의 정수 입력 시 재입력 받도록 수정
 
-- [ ] public 접근자인 main 메서드안에서 순서를 가진 메서드 호출문을 가지는 것이 안좋으므로 main 에서 순서대로 호출했던 프로그램의 흐름을 private void run(){} 과 같이 새로운 메서드로 구현하여, main에서는 run()을 호출만 하도록 해준다.
+- [x] 기존 play() 메소드명을 run()으로 수정
+
+- [x] public 접근자인 main 메서드안에서 순서를 가진 메서드 호출문을 가지는 것이 안좋으므로 main 에서 순서대로 호출했던 프로그램의 흐름을 private void play(){} 과 같이 새로운 메서드로 구현하여, main에서는 play()을 호출만 하도록 해준다.
 
 ---
 

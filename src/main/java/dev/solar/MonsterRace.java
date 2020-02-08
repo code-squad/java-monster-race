@@ -20,6 +20,10 @@ public class MonsterRace {
 
     public static void main(String[] args) {
         MonsterRace monsterRace = new MonsterRace();
+        monsterRace.play(monsterRace);
+    }
+
+    private void play(MonsterRace monsterRace) {
         monsterRace.inputInfo();
         monsterRace.addMonsters();
         monsterRace.run();
@@ -48,7 +52,7 @@ public class MonsterRace {
 
     private void printResult() {
         Stream<Monster> monsterStream = monsters.stream();
-        monsterStream.forEach(monster -> System.out.println(monster));
+        monsterStream.forEach(System.out::println);
     }
 
     private void terminate() {
