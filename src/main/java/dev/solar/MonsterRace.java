@@ -20,6 +20,10 @@ public class MonsterRace {
 
     public static void main(String[] args) {
         MonsterRace monsterRace = new MonsterRace();
+        monsterRace.play(monsterRace);
+    }
+
+    private void play(MonsterRace monsterRace) {
         monsterRace.inputInfo();
         monsterRace.addMonsters();
         monsterRace.run();
