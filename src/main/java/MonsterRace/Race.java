@@ -1,12 +1,10 @@
 package MonsterRace;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.stream.IntStream;
 
 public class Race {
 
@@ -28,6 +26,7 @@ public class Race {
       setMonsters();
       setRoundCount();
       printResultsOfMatch();
+      System.out.println(Text.P_RACE_RESULT1 + winnersOfMatch() + Text.P_RACE_RESULT2);
 
       br.close();
     } catch (Exception e) {
@@ -35,56 +34,39 @@ public class Race {
     }
   }
 
-  private void setMonsterNum() {
+  private void setMonsterNum() throws Exception {
     System.out.println(Text.Q_MONSTER_COUNT);
-
-    try {
-      monsterNum = Integer.parseInt(br.readLine());
-    } catch (Exception e) {
-      System.out.println(Text.E_INPUT);
-    }
+    monsterNum = Integer.parseInt(br.readLine());
   }
 
-  private void setMonsters() {
+  private void setMonsters() throws Exception {
     System.out.println(Text.Q_MONSTER_INFO);
-
-    IntStream.range(0, monsterNum).forEach(i -> {
-      try {
-        addMonster(br.readLine());
-      } catch (IOException e) {
-        System.out.println(Text.E_INPUT);
-      }
-    });
+    for (int i = 0; i < monsterNum; i++) addMonster(br.readLine());
   }
 
-  private void setRoundCount() {
+  private void setRoundCount() throws Exception {
     System.out.println(Text.Q_ROUND_COUNT);
-
-    try {
-      roundCount = Integer.parseInt(br.readLine());
-    } catch (Exception e) {
-      System.out.println(Text.E_INPUT);
-    }
+    roundCount = Integer.parseInt(br.readLine());
   }
 
   private void addMonster(String input) {
-    String[] splitInput = input.replaceAll(" ", "").split(",");
+    String[] splitInput = input.split(",");
     String name = splitInput[0];
     String type = splitInput[1];
     monsters.add(new Monster(name, type));
-    System.out.println();
   }
 
-  public void printResultsOfMatch() {
+  private void printResultsOfMatch() {
     for (int i = 0; i < monsters.size(); i++) {
       monsters.get(i).move(roundCount);
       System.out.println(monsters.get(i));
     }
+  }
 
+  private String winnersOfMatch() {
     Comparator<Monster> comparator = Comparator.comparing(Monster::getMovedDistance);
     String winner = monsters.stream().max(comparator).get().getName();
-
-    System.out.println(Text.P_RACE_RESULT1 + winner + Text.P_RACE_RESULT2);
+    return winner;
   }
 
   public static void main(String[] args) {
