@@ -31,18 +31,6 @@ public abstract class Monster {
 
     abstract boolean decideMoveOrStop();
 
-//    {
-//        boolean decision = false;
-//
-//        Random random = new Random();
-//        int randomNum = random.nextInt(10);
-//        if (randomNum >= 4) {
-//            decision = true;
-//        }
-//
-//        return decision;
-//    }
-
     abstract void move(boolean decision);
 
     private Types setType(String typeName) {
