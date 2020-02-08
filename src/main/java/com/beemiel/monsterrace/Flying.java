@@ -14,14 +14,10 @@ public class Flying extends Monster {
     @Override
     public void moveOrStop() {
         if(isMove()){
-            stringBuffer.append(totalMove);
+            stringBuffer = new StringBuffer(totalMove);
             stringBuffer.append("▷▷▷");
             totalMove = stringBuffer.toString();
         }
     }
 
-//    @Override
-//    public void run(int count) {
-//
-//    }
 }
