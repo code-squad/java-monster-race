@@ -24,4 +24,15 @@ public class InputHandler {
             return inputProperType(promptMessage);
         }
     }
+
+    public String[] inputMonsterInfo() {
+        try {
+            String line = scanner.nextLine();
+            String[] monsterInfo = line.split(",");
+            return monsterInfo;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return inputMonsterInfo();
+        }
+    }
 }

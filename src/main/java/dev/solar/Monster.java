@@ -20,15 +20,21 @@ enum MonsterType {
 }
 
 public class Monster {
-    private int forwardCount = 0;
+    private String monsterName;
+    private String monsterType;
+    private int forwardCount;
 
-    public void run() {
+    public void move() {
         int random = (int) (Math.random() * 10);
         if (random >= 4) {
             forwardCount += random;
         }
     }
 
+    public Monster(String monsterName, String monsterType) {
+        this.monsterName = monsterName;
+        this.monsterType = monsterType;
+    }
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

@@ -26,7 +26,7 @@ public class MonsterRace {
     private void play(MonsterRace monsterRace) {
         monsterRace.inputInfo();
         monsterRace.addMonsters();
-        monsterRace.run();
+        monsterRace.move();
         monsterRace.printResult();
         monsterRace.terminate();
     }
@@ -40,13 +40,23 @@ public class MonsterRace {
 
     private void addMonsters() {
         for (int i = 0; i < monsterCount; i++) {
-            monsters.add(new Monster());
+            Monster monster = createMonster();
+            monsters.add(monster);
         }
     }
 
-    private void run() {
+    private Monster createMonster() {
+        String promptMessage = "경주할 몬스터 이름과 종류를 입력하세요.(쉼표(,)를 기준으로 구분)";
+        System.out.println(promptMessage);
+        String[] monsterInfo = inputHandler.inputMonsterInfo();
+        String monsterName = monsterInfo[0];
+        String monsterType = monsterInfo[1];
+        return new Monster(monsterName, monsterType);
+    }
+
+    private void move() {
         for (int i = 0; i < attemptCount; i++) {
-            monsters.forEach(Monster::run);
+            monsters.forEach(Monster::move);
         }
     }
 
