@@ -23,7 +23,7 @@ public class Monster {
           throw new Exception();
       }
     } catch (Exception e) {
-      System.out.println(Text.E_MONSTER_INFO.getText());
+      System.out.println(Text.E_MONSTER_INFO);
     }
 
     this.name = name;

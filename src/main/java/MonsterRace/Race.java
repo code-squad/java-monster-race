@@ -22,7 +22,7 @@ public class Race {
 
   public void startRace() {
     try {
-      System.out.println(Text.P_START_RACE.getText());
+      System.out.println(Text.P_START_RACE);
 
       setMonsterNum();
       setMonsters();
@@ -31,39 +31,39 @@ public class Race {
 
       br.close();
     } catch (Exception e) {
-      System.out.println(Text.E_INPUT.getText());
+      System.out.println(Text.E_INPUT);
     }
   }
 
   private void setMonsterNum() {
-    System.out.println(Text.Q_MONSTER_COUNT.getText());
+    System.out.println(Text.Q_MONSTER_COUNT);
 
     try {
       monsterNum = Integer.parseInt(br.readLine());
     } catch (Exception e) {
-      System.out.println(Text.E_INPUT.getText());
+      System.out.println(Text.E_INPUT);
     }
   }
 
   private void setMonsters() {
-    System.out.println(Text.Q_MONSTER_INFO.getText());
+    System.out.println(Text.Q_MONSTER_INFO);
 
     IntStream.range(0, monsterNum).forEach(i -> {
       try {
         addMonster(br.readLine());
       } catch (IOException e) {
-        System.out.println(Text.E_INPUT.getText());
+        System.out.println(Text.E_INPUT);
       }
     });
   }
 
   private void setRoundCount() {
-    System.out.println(Text.Q_ROUND_COUNT.getText());
+    System.out.println(Text.Q_ROUND_COUNT);
 
     try {
       roundCount = Integer.parseInt(br.readLine());
     } catch (Exception e) {
-      System.out.println(Text.E_INPUT.getText());
+      System.out.println(Text.E_INPUT);
     }
   }
 
@@ -84,7 +84,7 @@ public class Race {
     Comparator<Monster> comparator = Comparator.comparing(Monster::getMovedDistance);
     String winner = monsters.stream().max(comparator).get().getName();
 
-    System.out.println(Text.P_RACE_RESULT1.getText() + winner + Text.P_RACE_RESULT2.getText());
+    System.out.println(Text.P_RACE_RESULT1 + winner + Text.P_RACE_RESULT2);
   }
 
   public static void main(String[] args) {
