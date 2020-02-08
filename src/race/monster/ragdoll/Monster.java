@@ -6,9 +6,7 @@ import java.lang.StringBuilder;
 public class Monster {
     private int moveCount;
 
-    public Monster() {
-        this.moveCount = 0;
-    }
+    public Monster() {}
 
     private boolean decideMoveOrStop() {
         boolean decision = false;
@@ -26,7 +24,6 @@ public class Monster {
         if (decision) {
             moveCount++;
         }
-        return;
     }
 
     void run(int numOfTries) {

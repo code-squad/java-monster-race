@@ -21,6 +21,9 @@ public class RacingGame {
         try {
             getUserInput();
 
+            monsters = new Monster[numOfMonsters];
+            createMonster();
+
             for(Monster monster : monsters) {
                 monster.run(numOfTries);
             }
@@ -46,9 +49,6 @@ public class RacingGame {
         if (numOfMonsters < 0 || numOfTries < 0) {
             throw new IOException("음수가 입력 되었습니다.");
         }
-
-        monsters = new Monster[numOfMonsters];
-        this.createMonster();
     }
 
     private void printResult() {
