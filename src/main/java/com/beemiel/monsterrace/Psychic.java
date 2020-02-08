@@ -20,16 +20,13 @@ public class Psychic extends Monster {
 
     public String moveByRandom(){
         int randomMove = random.nextInt(100)+1;
+        stringBuffer = new StringBuffer(totalMove);
+
         for(int i=0; i<randomMove; i++){
-            stringBuffer.append(totalMove);
             stringBuffer.append("▷");
         }
+
         return stringBuffer.toString();
     }
-
-//    @Override
-//    public void run(int count) {
-//
-//    }
 
 }
