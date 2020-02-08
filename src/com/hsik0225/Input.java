@@ -13,7 +13,7 @@ public class Input {
 
     private int inputDigit() {
         String inputLine = scanner.nextLine();
-        while (!inputLine.matches("[1-9][0-9]*") || inputLine.equals("")) {
+        while (!inputLine.matches("[1-9][0-9]*")) {
             System.out.println("1~9 사이의 숫자를 입력해주세요");
             inputLine = scanner.nextLine();
         }
