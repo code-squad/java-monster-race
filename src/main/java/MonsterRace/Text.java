@@ -1,5 +1,11 @@
 package MonsterRace;
 
+/**
+ * /**
+ * P : Print
+ * Q : Question
+ * E : Error
+ */
 public enum Text {
   P_START_RACE("<스릴만점 건전한 몬스터 경주>"),
   Q_MONSTER_COUNT("몬스터는 모두 몇 마리인가요?"),
@@ -16,7 +22,8 @@ public enum Text {
     this.text = text;
   }
 
-  public String getText() {
+  @Override
+  public String toString() {
     return text;
   }
 }
