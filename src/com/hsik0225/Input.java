@@ -7,13 +7,13 @@ public class Input {
     private int CHALLENGE_COUNT;
     private Scanner scanner;
 
-    public Input(){
+    public Input() {
         scanner = new Scanner(System.in);
     }
 
     private int inputDigit() {
         String inputLine = scanner.nextLine();
-        while (!inputLine.matches("[1-9][0-9]*") || inputLine.equals("")) {
+        while (!inputLine.matches("[1-9][0-9]*")) {
             System.out.println("1~9 사이의 숫자를 입력해주세요");
             inputLine = scanner.nextLine();
         }
