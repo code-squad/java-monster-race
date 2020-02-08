@@ -8,24 +8,7 @@ public class Monster {
   private String movedDistance;
 
   public Monster(String name, String type) {
-    try {
-      switch (type) {
-        case "달리기":
-          this.moveBehavior = new Run();
-          break;
-        case "비행":
-          this.moveBehavior = new Fly();
-          break;
-        case "에스퍼":
-          this.moveBehavior = new Esper();
-          break;
-        default:
-          throw new Exception();
-      }
-    } catch (Exception e) {
-      System.out.println(Text.E_MONSTER_INFO);
-    }
-
+    this.moveBehavior = MonsterType.valueOf(type.trim()).getMoveBehavior();
     this.name = name;
     this.type = type;
   }
