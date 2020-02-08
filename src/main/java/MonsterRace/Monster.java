@@ -1,8 +1,5 @@
 package MonsterRace;
 
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
 public class Monster {
 
   private MoveBehavior moveBehavior;
@@ -34,8 +31,7 @@ public class Monster {
   }
 
   public void move(int roundCount) {
-    movedDistance = (Stream.generate(() -> "-").limit(moveBehavior.getMoveCount(roundCount)))
-        .collect(Collectors.joining());
+    movedDistance = new String(new char[moveBehavior.getMoveCount(roundCount)]).replace("\0", "-");
   }
 
   public String getMovedDistance() {
