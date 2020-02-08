@@ -11,8 +11,8 @@ public class Race {
     }
 
     public void prepare() {
-        getMonsterNumber();
-        getAttemptNumber();
+        getNumberOfMonster();
+        getNumberOfRound();
         makePlayerList();
     }
 
@@ -22,7 +22,7 @@ public class Race {
         }
     }
 
-    public void getMonsterNumber() {
+    public void getNumberOfMonster() {
         System.out.println("Enter number of monsters");
         while (!scanner.hasNextInt() || (numOfMonster = scanner.nextInt()) < 0) {
             System.out.println("Enter integer please");
@@ -30,7 +30,7 @@ public class Race {
         }
     }
 
-    public void getAttemptNumber() {
+    public void getNumberOfRound() {
         System.out.println("how many times do you want to play");
         while (!scanner.hasNextInt() || (numOfRound = scanner.nextInt()) < 0) {
             System.out.println("Enter integer please");
@@ -79,6 +79,5 @@ public class Race {
         race.prepare();
         race.start(race);
         race.end();
-        System.out.println("hi");
     }
 }

@@ -5,6 +5,7 @@ import java.util.Random;
 public class Monster {
     private String name;
     private String vehicle;
+    public String type;
     public int moves;
 
     public Monster() {
