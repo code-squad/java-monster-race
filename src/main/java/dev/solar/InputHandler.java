@@ -13,7 +13,11 @@ public class InputHandler {
         try {
             System.out.println(promptMessage);
             int inputValue = Integer.parseInt(scanner.nextLine());
-            //be expected - 1.check positive
+
+            if(inputValue < 0) {
+                System.out.println("음수는 입력하실 수 없습니다. 다시 입력해주세요.");
+                return inputProperType(promptMessage);
+            }
             return inputValue;
         } catch (NumberFormatException e) {
             System.out.println("숫자 값만 입력하실 수 있습니다. 다시 입력해주세요.");
