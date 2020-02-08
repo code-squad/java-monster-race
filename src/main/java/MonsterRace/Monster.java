@@ -48,6 +48,8 @@ public class Monster {
 
   @Override
   public String toString() {
-    return this.name + " [" + this.type + " : " + movedDistance.length() + "] : " + this.movedDistance;
+    return name + " [" + type + " : " + movedDistance.length() + "] : " + movedDistance;
   }
 }
+
+

@@ -24,10 +24,10 @@ public class Race {
     try {
       System.out.println(Text.P_START_RACE.getText());
 
-      this.setMonsterNum();
-      this.setMonsters();
-      this.setRoundCount();
-      this.printResultsOfMatch();
+      setMonsterNum();
+      setMonsters();
+      setRoundCount();
+      printResultsOfMatch();
 
       br.close();
     } catch (Exception e) {
@@ -39,7 +39,7 @@ public class Race {
     System.out.println(Text.Q_MONSTER_COUNT.getText());
 
     try {
-      this.monsterNum = Integer.parseInt(br.readLine());
+      monsterNum = Integer.parseInt(br.readLine());
     } catch (Exception e) {
       System.out.println(Text.E_INPUT.getText());
     }
@@ -48,9 +48,9 @@ public class Race {
   private void setMonsters() {
     System.out.println(Text.Q_MONSTER_INFO.getText());
 
-    IntStream.range(0, this.monsterNum).forEach(i -> {
+    IntStream.range(0, monsterNum).forEach(i -> {
       try {
-        this.addMonster(br.readLine());
+        addMonster(br.readLine());
       } catch (IOException e) {
         System.out.println(Text.E_INPUT.getText());
       }
@@ -61,7 +61,7 @@ public class Race {
     System.out.println(Text.Q_ROUND_COUNT.getText());
 
     try {
-      this.roundCount = Integer.parseInt(br.readLine());
+      roundCount = Integer.parseInt(br.readLine());
     } catch (Exception e) {
       System.out.println(Text.E_INPUT.getText());
     }
@@ -71,18 +71,18 @@ public class Race {
     String[] splitInput = input.replaceAll(" ", "").split(",");
     String name = splitInput[0];
     String type = splitInput[1];
-    this.monsters.add(new Monster(name, type));
+    monsters.add(new Monster(name, type));
     System.out.println();
   }
 
   public void printResultsOfMatch() {
-    for (int i = 0; i < this.monsters.size(); i++) {
-      this.monsters.get(i).move(this.roundCount);
-      System.out.println(this.monsters.get(i));
+    for (int i = 0; i < monsters.size(); i++) {
+      monsters.get(i).move(roundCount);
+      System.out.println(monsters.get(i));
     }
 
     Comparator<Monster> comparator = Comparator.comparing(Monster::getMovedDistance);
-    String winner = this.monsters.stream().max(comparator).get().getName();
+    String winner = monsters.stream().max(comparator).get().getName();
 
     System.out.println(Text.P_RACE_RESULT1.getText() + winner + Text.P_RACE_RESULT2.getText());
   }
