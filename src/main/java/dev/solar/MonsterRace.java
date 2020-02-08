@@ -13,16 +13,16 @@ public class MonsterRace {
     private int attemptCount;
 
     public MonsterRace() {
-        this.scanner = new Scanner(System.in);
-        this.inputHandler = new InputHandler(this.scanner);
-        this.monsters = new ArrayList<>();
+        scanner = new Scanner(System.in);
+        inputHandler = new InputHandler(scanner);
+        monsters = new ArrayList<>();
     }
 
     public static void main(String[] args) {
         MonsterRace monsterRace = new MonsterRace();
         monsterRace.inputInfo();
         monsterRace.addMonsters();
-        monsterRace.play();
+        monsterRace.run();
         monsterRace.printResult();
         monsterRace.terminate();
     }
@@ -40,7 +40,7 @@ public class MonsterRace {
         }
     }
 
-    private void play() {
+    private void run() {
         for (int i = 0; i < attemptCount; i++) {
             monsters.forEach(Monster::run);
         }
