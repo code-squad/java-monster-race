@@ -35,7 +35,7 @@ class RaceTest {
   void resultsOfMatch2() {
     monsterCnt = 3;
     inputMonster = "크롱, 달리기\n" + "포비, 비행\n" + "호눅스, 에스퍼";
-    roundCnt = 5;
+    roundCnt = 10;
     inputString = monsterCnt + "\n" + inputMonster + "\n" + roundCnt + "\n";
 
     in = new ByteArrayInputStream(inputString.getBytes());
