@@ -7,10 +7,7 @@ public class Playground {
     private int currRound;
 
     public Playground(int numMonsters, int numRounds) {
-        monsters = new ArrayList<>();
-        for (int i = 0; i < numMonsters; i++) {
-            monsters.add(new Monster());
-        }
+        initMonsters(numMonsters);
         totalRounds = numRounds;
         currRound = 0;
     }
@@ -22,10 +19,17 @@ public class Playground {
         }
     }
 
+    private void initMonsters(int numMonsters) {
+        monsters = new ArrayList<>();
+        for (int i = 0; i < numMonsters; i++) {
+            monsters.add(new Monster());
+        }
+    }
+
     private void playRound() {
         System.out.println(String.format("Round %d", currRound));
         for (Monster monster : monsters) {
-            monster.move();
+            monster.moveIfConditionSatisfied();
             System.out.println(monster.getPositionString());
         }
     }
