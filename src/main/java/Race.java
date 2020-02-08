@@ -1,78 +1,84 @@
 import java.util.*;
 
 public class Race {
-    public int numOfMonster;
-    public int numOfRound;
     Scanner scanner;
+    int numOfMonster;
+    int numOfRound;
     List<Monster> monsters = new ArrayList<Monster>();
 
     public Race() {
         this.scanner = new Scanner(System.in);
     }
 
+    public void prepare() {
+        getMonsterNumber();
+        getAttemptNumber();
+        makePlayerList();
+    }
+
+    public void makePlayerList() {
+        for (int i = 0; i < numOfMonster; i++) {
+            monsters.add(new Monster());
+        }
+    }
+
     public void getMonsterNumber() {
-            try {
-                System.out.println("Enter number of monsters");
-                numOfMonster = scanner.nextInt();
-            } catch (InputMismatchException e) {
-                scanner = new Scanner(System.in);
-                System.out.println("Enter integer please");
-                getMonsterNumber();
-            }
-
-    }
-
-    public void getAttempt() {
-        try {
-            System.out.println("how many times do you want to try");
-            numOfRound = scanner.nextInt();
-        } catch (InputMismatchException e) {
-            scanner = new Scanner(System.in);
+        System.out.println("Enter number of monsters");
+        while (!scanner.hasNextInt() || (numOfMonster = scanner.nextInt()) < 0) {
             System.out.println("Enter integer please");
-            getAttempt();
+            scanner = new Scanner(System.in);
         }
     }
 
-    public void makeMonsterList() {
-        for(int i = 0; i < numOfMonster; i++) {
-            monsters.add(new Monster(i));
+    public void getAttemptNumber() {
+        System.out.println("how many times do you want to play");
+        while (!scanner.hasNextInt() || (numOfRound = scanner.nextInt()) < 0) {
+            System.out.println("Enter integer please");
+            scanner = new Scanner(System.in);
         }
     }
 
-    public void raceIntro() {
-        Race race = new Race();
+    public void moveOneMonsterOneTme(Monster monster) {
+        Random random = new Random();
+        int randomInt = random.nextInt(10);
+        if (randomInt > 3) {
+            monster.oneStepForward();
+        }
+    }
+
+    public void moveOneMonsterFullTime(Monster monster) {
+        for (int i = 0; i < numOfRound; i++) {
+            moveOneMonsterOneTme(monster);
+        }
+    }
+
+    public void moveAllMonstersFullTime() {
+        for (Monster monster : monsters) {
+            moveOneMonsterFullTime(monster);
+        }
+    }
+
+    public void start(Race race) {
+        Monster monster = new Monster();
+        printRaceIntro();
+        moveAllMonstersFullTime();
+        monster.printAllMonsterLocation(race);
+    }
+
+    public void printRaceIntro() {
         System.out.println(numOfMonster + " Monsters are ready to play " + numOfRound + " rounds");
-        for(Monster monster : monsters) {
-            System.out.println( "Monster " + monster.index + " has entered the race");
-        }
-    }
-    public void startRace() {
-        Race race = new Race();
-        System.out.println("<<<<<<< Game Started !>>>>>>>");
-        for (int i = 0; i < numOfMonster; i++ ) {
-            System.out.println("Monster " + monsters.get(i).index + " : " + race.monsterMoves(numOfRound));
-        }
-    }
-    public String monsterMoves(int numOfRound) {
-        String moves = "";
-        for(int i = 0; i < numOfRound; i++) {
-            Random rand = new Random();
-            int rand_int1 = rand.nextInt(10);
-            if(rand_int1 >= 4) moves += "-";
-        } return moves;
+        System.out.println("- Game Start! -");
     }
 
-    public void endRace() {
+    public void end() {
         System.out.println("- Game Over - ");
     }
 
     public static void main(String[] args) {
         Race race = new Race();
-        race.getMonsterNumber();
-        race.getAttempt();
-        race.makeMonsterList();
-        race.raceIntro();
-        race.startRace();
-        race.endRace();
+        race.prepare();
+        race.start(race);
+        race.end();
+        System.out.println("hi");
     }
 }
