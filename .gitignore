@@ -18,4 +18,5 @@ buildNumber.properties
 .idea/tasks.xml
 .idea/dictionaries
 .idea/google-java-format.xml
+.idea/uiDesigner.xml
 .gitignore
