@@ -2,12 +2,11 @@ package game;
 
 public class RacingMain {
     public static void main(String[] args) {
-        MonsterModel monsterModel = new MonsterModel();
-        GameController gameController = new GameController(monsterModel);
+        GameController gameController = new GameController();
 
-        gameController.getMonsterCount();
-        gameController.getRoundCount();
-        gameController.startRacing();
+        System.out.println("<스릴만점 건전한 몬스터 경주>");
+        gameController.init();
+        gameController.racingStart();
         gameController.printResult();
     }
 }
