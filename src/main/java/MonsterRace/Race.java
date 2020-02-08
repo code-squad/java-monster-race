@@ -1,76 +1,58 @@
 package MonsterRace;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
 public class Race {
 
-  private int roundCount;
-  private int monsterNum;
   private List<Monster> monsters;
-  private BufferedReader br;
+  private InputHandler inputHandler;
+  private OutputHandler outputHandler;
 
   public Race() {
-    monsters = new ArrayList<Monster>();
-    br = new BufferedReader(new InputStreamReader(System.in));
+    this.monsters = new ArrayList<Monster>();
+    this.inputHandler = new InputHandler();
+    this.outputHandler = new OutputHandler();
   }
 
-  public void startRace() {
+  public void doRace() {
     try {
+      int monsterNum, roundCount;
+
       System.out.println(Text.P_START_RACE);
+      monsterNum = inputHandler.getMonsterNum();
+      setMonsters(monsterNum);
+      roundCount = inputHandler.getRoundCount();
+      moveMonsters(roundCount);
+      outputHandler.printRaceResult(monsters);
+      outputHandler.printWinner(getWinner());
 
-      setMonsterNum();
-      setMonsters();
-      setRoundCount();
-      printResultsOfMatch();
-      System.out.println(Text.P_RACE_RESULT1 + winnersOfMatch() + Text.P_RACE_RESULT2);
-
-      br.close();
+      inputHandler.close();
+      outputHandler.close();
     } catch (Exception e) {
       System.out.println(Text.E_INPUT);
     }
   }
 
-  private void setMonsterNum() throws Exception {
-    System.out.println(Text.Q_MONSTER_COUNT);
-    monsterNum = Integer.parseInt(br.readLine());
-  }
-
-  private void setMonsters() throws Exception {
-    System.out.println(Text.Q_MONSTER_INFO);
-    for (int i = 0; i < monsterNum; i++) addMonster(br.readLine());
-  }
-
-  private void setRoundCount() throws Exception {
-    System.out.println(Text.Q_ROUND_COUNT);
-    roundCount = Integer.parseInt(br.readLine());
-  }
-
-  private void addMonster(String input) {
-    String[] splitInput = input.split(",");
-    String name = splitInput[0];
-    String type = splitInput[1];
-    monsters.add(new Monster(name, type));
-  }
-
-  private void printResultsOfMatch() {
-    for (int i = 0; i < monsters.size(); i++) {
-      monsters.get(i).move(roundCount);
-      System.out.println(monsters.get(i));
+  private void setMonsters(int monsterNum) throws Exception {
+    for (int i = 0; i < monsterNum; i++) {
+      String[] monsterInfo = inputHandler.getMonsterInfo();
+      monsters.add(new Monster(monsterInfo[0], monsterInfo[1]));
     }
   }
 
-  private String winnersOfMatch() {
+  private void moveMonsters(int roundCount) {
+    monsters.stream().forEach(monster -> monster.move(roundCount));
+  }
+
+  private Monster getWinner() {
     Comparator<Monster> comparator = Comparator.comparing(Monster::getMovedDistance);
-    String winner = monsters.stream().max(comparator).get().getName();
-    return winner;
+    return monsters.stream().max(comparator).get();
   }
 
   public static void main(String[] args) {
     Race race = new Race();
-    race.startRace();
+    race.doRace();
   }
 }
