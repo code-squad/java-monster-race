@@ -4,12 +4,12 @@ import java.util.Random;
 import java.lang.StringBuilder;
 
 public abstract class Monster {
-    enum Type {
+    enum Types {
         RUNNER("달리기"), FLYING("비행"), ESPER("에스퍼");
 
         private final String typeName;
 
-        Type(String typeName) {
+        Types(String typeName) {
             this.typeName = typeName;
         }
 
@@ -19,15 +19,17 @@ public abstract class Monster {
     }
 
     private String name;
-    private Type type;
-    private int moveCount;
-    private int rangeAbility;
+    private Types type;
+    int moveCount;
+    int rangeAbility;
 
-    public Monster() {
-        this.moveCount = 0;
+    public Monster(String name, String typeName) {
+        this.name = name;
+        this.type = setType(typeName);
+    this.moveCount = 0;
     }
 
-    public abstract boolean decideMoveOrStop();
+    abstract boolean decideMoveOrStop();
 
 //    {
 //        boolean decision = false;
@@ -41,7 +43,13 @@ public abstract class Monster {
 //        return decision;
 //    }
 
-    public abstract void move(boolean decision);
+    abstract void move(boolean decision);
+
+    private Types setType(String typeName) {
+        Types type = Types.valueOf(typeName);
+
+        return type;
+    }
 
     void run(int numOfTries) {
         for (int i = 0; i < numOfTries; i++) {
