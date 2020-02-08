@@ -1,34 +1,43 @@
 package MonsterRace;
 
+import java.util.Scanner;
+
 public class Game {
-    InputGameInfo inputGameInfo = new InputGameInfo();
-    Stadium stadium = new Stadium();
-    OutputGameResult outputGameResult = new OutputGameResult();
-    private int monsterCnt;
-    private int gameCnt;
 
-    public void setMonsterCnt(String monsterCnt) {
-        this.monsterCnt = Integer.parseInt(monsterCnt);
+    Scanner scanner;
+    private int monsterCount;
+    private int gameCount;
+
+    public Game() {
+        scanner = new Scanner(System.in);
+        inputMonsterCount();
+        inputGameCount();
+        scanner.close();
     }
-
-    public void setGameCnt(String gameCnt) {
-        this.gameCnt = Integer.parseInt(gameCnt);
-    }
-
-    public int getMonsterCnt() {
-        return this.monsterCnt;
-    }
-
-    public int getGameCnt() {
-        return this.gameCnt;
-    }
-
 
     public static void main(String[] args) {
         Game game = new Game();
-        game.inputGameInfo.getGameInfo(game);
-        game.stadium.playGame(game);
-        game.outputGameResult.printResult(game);
+        Stadium stadium = new Stadium(game.monsterCount, game.gameCount);
+        stadium.printResult();
     }
 
+    private void inputMonsterCount() {
+        String monsterCountMessage = "<스릴만점 건전한 몬스터 경주>\n몬스터는 모두 몇 마리인가요?";
+        System.out.println(monsterCountMessage);
+        setMonsterCount(Integer.parseInt(scanner.nextLine()));
+    }
+
+    private void inputGameCount() {
+        String gameCountMessage = "시도할 회수는 몇 회 인가요?";
+        System.out.println(gameCountMessage);
+        setGameCount(Integer.parseInt(scanner.nextLine()));
+    }
+
+    public void setMonsterCount(int monsterCount) {
+        this.monsterCount = monsterCount;
+    }
+
+    public void setGameCount(int gameCount) {
+        this.gameCount = gameCount;
+    }
 }
