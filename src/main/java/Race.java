@@ -1,28 +1,26 @@
-import java.util.ArrayList;
 import java.util.List;
 
-public class Playground {
+public class Race {
+    private int currRound;
     private List<Monster> monsters;
     private int totalRounds;
-    private int currRound;
 
-    public Playground(int numMonsters, int numRounds) {
-        initMonsters(numMonsters);
-        totalRounds = numRounds;
+    public Race() {
         currRound = 0;
     }
 
-    public void playGame() {
+    public void setMonsters(List<Monster> monsters) {
+        this.monsters = monsters;
+    }
+
+    public void setTotalRounds(int totalRounds) {
+        this.totalRounds = totalRounds;
+    }
+
+    public void start() {
         while (currRound < totalRounds) {
             playRound();
             currRound++;
-        }
-    }
-
-    private void initMonsters(int numMonsters) {
-        monsters = new ArrayList<>();
-        for (int i = 0; i < numMonsters; i++) {
-            monsters.add(new Monster());
         }
     }
 

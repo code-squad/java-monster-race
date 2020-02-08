@@ -1,10 +1,12 @@
 import movestrategy.MoveStrategy;
 
 public class Monster {
-    private String positionString;
+    private String name;
     private MoveStrategy moveStrategy;
+    private String positionString;
 
-    public Monster(MoveStrategy moveStrategy) {
+    public Monster(String name, MoveStrategy moveStrategy) {
+        this.name = name;
         this.moveStrategy = moveStrategy;
         positionString = "";
     }
