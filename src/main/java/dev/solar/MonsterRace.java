@@ -39,6 +39,8 @@ public class MonsterRace {
     }
 
     private void addMonsters() {
+        String promptMessage = "경주할 몬스터 이름과 종류를 입력하세요.(쉼표(,)를 기준으로 구분)";
+        System.out.println(promptMessage);
         for (int i = 0; i < monsterCount; i++) {
             Monster monster = createMonster();
             monsters.add(monster);
@@ -46,12 +48,17 @@ public class MonsterRace {
     }
 
     private Monster createMonster() {
-        String promptMessage = "경주할 몬스터 이름과 종류를 입력하세요.(쉼표(,)를 기준으로 구분)";
-        System.out.println(promptMessage);
-        String[] monsterInfo = inputHandler.inputMonsterInfo();
-        String monsterName = monsterInfo[0];
-        String monsterType = monsterInfo[1];
-        return new Monster(monsterName, monsterType);
+        try {
+            String[] monsterInfo = inputHandler.inputMonsterInfo();
+            String monsterName = monsterInfo[0];
+            String monsterType = monsterInfo[1];
+            return new Monster(monsterName, monsterType);
+        } catch (ArrayIndexOutOfBoundsException e) { //구분자 에러 처리
+            System.out.println("형식에 맞게 입력해주세요.");
+            return createMonster();
+        } catch (IllegalArgumentException e) {
+            return createMonster();
+        }
     }
 
     private void move() {

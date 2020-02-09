@@ -28,7 +28,7 @@ public class InputHandler {
     public String[] inputMonsterInfo() {
         try {
             String line = scanner.nextLine();
-            String[] monsterInfo = line.split(",");
+            String[] monsterInfo = line.replace(" ","").split(",");
             return monsterInfo;
         } catch (Exception e) {
             System.out.println(e.getMessage());
