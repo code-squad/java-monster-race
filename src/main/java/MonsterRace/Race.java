@@ -21,15 +21,23 @@ public class Race {
       int monsterNum, roundCount;
 
       System.out.println(Text.P_START_RACE);
-      monsterNum = inputHandler.getMonsterNum();
+
+      System.out.println(Text.Q_MONSTER_COUNT);
+      monsterNum = inputHandler.getInteger();
+
+      System.out.println(Text.Q_MONSTER_INFO);
       setMonsters(monsterNum);
-      roundCount = inputHandler.getRoundCount();
+
+      System.out.println(Text.Q_ROUND_COUNT);
+      roundCount = inputHandler.getInteger();
+
       moveMonsters(roundCount);
+
       outputHandler.printRaceResult(monsters);
       outputHandler.printWinner(getWinner());
 
       inputHandler.close();
-      outputHandler.close();
+//      outputHandler.close();
     } catch (Exception e) {
       System.out.println(Text.E_INPUT);
     }

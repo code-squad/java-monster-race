@@ -27,7 +27,7 @@ class RaceTest {
     System.setIn(in);
 
     race = new Race();
-    race.startRace();
+    race.doRace();
     //        race.resultsOfMatch();
   }
 
@@ -42,7 +42,7 @@ class RaceTest {
     System.setIn(in);
 
     race = new Race();
-    race.startRace();
+    race.doRace();
     //        race.resultsOfMatch();
   }
 }
