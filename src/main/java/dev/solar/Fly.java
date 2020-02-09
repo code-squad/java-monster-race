@@ -7,7 +7,7 @@ public class Fly extends Monster {
     }
 
     @Override
-    void setForwardCount() {
+    public void setForwardCount() {
         forwardCount = 3;
     }
 }

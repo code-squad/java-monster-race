@@ -8,7 +8,7 @@ public class Run extends Monster {
     }
 
     @Override
-    void setForwardCount() {
+    public void setForwardCount() {
         forwardCount = 1;
     }
 }
