@@ -142,11 +142,9 @@ public void inputInfo() {
 - [x] 사용 완료한 Scanner 닫아주는 구문 추가
 - [x] 사용자 입력 받는 메서드 입력 정보에 따라 분리
 
-
-
 ---
 
-### Refactoring
+# Refactoring
 
 - [x] 코멘트 내용으로 코드 수정
 
@@ -171,4 +169,57 @@ public void inputInfo() {
 - [x] public 접근자인 main 메서드안에서 순서를 가진 메서드 호출문을 가지는 것이 안좋으므로 main 에서 순서대로 호출했던 프로그램의 흐름을 private void play(){} 과 같이 새로운 메서드로 구현하여, main에서는 play()을 호출만 하도록 해준다.
 
 ---
+
+# step3
+
+**[설계도]**
+
+* Monster 를 추상클래스로 변경하여 Runner, Flight, Espurr 가 상속받는다.
+* 몬스터는 MonsterType(Enum)에 존재하는 type이여야 생성 가능하다.
+
+- setForwardCount메서드 오버라이딩 - 각 자식클래스는 타입별로 한번에 전진 가능한 칸 수를 셋팅한다.
+  
+
+![image-20200210031601905](https://tva1.sinaimg.cn/large/0082zybpgy1gbqpaj8sytj31jn0u0n37.jpg)
+
+##### Monster 클래스
+
+* monsterType : Monster 클래스가 가질 수 있는 종류 
+* minCriteria : 전진가능한 최소 랜던값 기준
+* fowardCount : 한 번에 전진 가능한 칸 수
+* forwardPosition : 전진 위치 상태
+* setForwardCount() : (abstract) 각 몬스터마다 fowardCount를 설정해준다. (Espurr는 move()할때마다 바뀜)
+
+* move() : fowardCount만큼 앞으로 전진
+* isAboveMinCriteria() : 랜덤값이 minCriteria(전진가능한 최소 랜던값 기준)이상 인지 체크
+* toString() : 자신의 정보를 문자열로 반환 
+  * 형식 : **"이름(monsterName) [타입(monsterType)] :  전진위치(forwardPosition)"**
+  * ex) `하니 [달리기] : ----`
+
+
+
+##### MonsterType Enum
+
+* Monster 클래스가 가질 수 있는 타입에 대한 Enum
+  * monsterType : Monster 클래스가 가질 수 있는 종류 
+  * minCriteria : 전진가능한 최소 랜던값 기준
+* valueOfType() : 입력한 monsterType이 MonsterType의 type과 같으면 MonsterType을 넘겨주고, 없다면 에러를 던져줌
+
+
+
+##### InputHandler 클래스
+
+* inputMonsterInfo() : 경주할 몬스터 이름과 종류를 입력받는 기능 구현
+  * 입력 문자열의 공백을 제거 후, (콤마)를 delimiter(구분자)로하여 문자열배열로 반환
+  * 형식에 맞지 않을 시 에러처리
+
+
+
+**MonsterRace 클래스**
+
+* createMonster() : 몬스터 정보를 입력받아 해당하는 타입의 Monster 생성
+  * 몬스터 정보를 잘못 입력 시 재입력 받도록 에러 처리
+
+* printWinner() : 우승자 이름 출력
+* pickWinner() : 우승자 선정
 
