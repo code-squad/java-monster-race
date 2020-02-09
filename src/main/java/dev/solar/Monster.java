@@ -1,6 +1,6 @@
 package dev.solar;
 
-import java.util.Arrays;
+import java.util.Random;
 import java.util.stream.IntStream;
 
 public class Monster {
@@ -10,9 +10,10 @@ public class Monster {
     private int forwardCount;
 
     public void move() {
-        int random = (int) (Math.random() * 10);
-        if (random >= 4) {
-            forwardCount += random;
+        int randomValue = new Random().nextInt(10) + 1;
+        System.out.println("randomVale : " + randomValue);
+        if (randomValue >= minCriteria) {
+            forwardCount += randomValue;
         }
     }
 
@@ -20,6 +21,7 @@ public class Monster {
         try {
             this.monsterName = monsterName;
             this.monsterType = MonsterType.valueOfType(monsterType);
+            this.minCriteria = this.monsterType.getMinCriteria();
         } catch(IllegalArgumentException e) {
             System.out.println("몬스터 타입은 달리기, 비행, 에스퍼 중에서 골라주세요");
             throw e;
