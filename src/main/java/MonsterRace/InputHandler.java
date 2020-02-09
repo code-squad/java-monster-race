@@ -10,19 +10,13 @@ public class InputHandler {
     this.br = new BufferedReader(new InputStreamReader(System.in));
   }
 
-  public int getMonsterNum() throws Exception {
-    System.out.println(Text.Q_MONSTER_COUNT);
+  public int getInteger() throws Exception {
     return Integer.parseInt(br.readLine());
   }
 
   public String[] getMonsterInfo() throws Exception {
     String[] monsterInfo = br.readLine().split(",");
     return monsterInfo;
-  }
-
-  public int getRoundCount() throws Exception {
-    System.out.println(Text.Q_ROUND_COUNT);
-    return Integer.parseInt(br.readLine());
   }
 
   public void close() throws Exception {
