@@ -1,14 +1,13 @@
 package dev.solar;
 
-public class Runner extends Monster {
-
-    public Runner(String monsterName, String monsterType) {
+public class Fly extends Monster {
+    public Fly(String monsterName, String monsterType) {
         super(monsterName, monsterType);
         setForwardCount();
     }
 
     @Override
     void setForwardCount() {
-        forwardCount = 1;
+        forwardCount = 3;
     }
 }

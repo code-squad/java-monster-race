@@ -50,14 +50,21 @@ public class MonsterRace {
     private Monster createMonster() {
         try {
             String[] monsterInfo = inputHandler.inputMonsterInfo();
-            String monsterName = monsterInfo[0];
-            String monsterType = monsterInfo[1];
-            // TODO : 각 타입별로 몬스터 생성
-            return new Espurr(monsterName, monsterType);
+            String inputMonsterName = monsterInfo[0];
+            String inputMonsterType = monsterInfo[1];
+            MonsterType monsterType = MonsterType.valueOfType(inputMonsterType);
+
+            switch (monsterType.type) {
+                case "달리기": return new Run(inputMonsterName, inputMonsterType);
+                case "비행": return new Fly(inputMonsterName, inputMonsterType);
+                case "에스퍼": return new Espurr(inputMonsterName, inputMonsterType);
+            }
+            throw new IllegalArgumentException("다시 입력해주세요.");
         } catch (ArrayIndexOutOfBoundsException e) { //구분자 에러 처리
-            System.out.println("형식에 맞게 입력해주세요.");
+            System.out.println("형식에 맞게 입력해주세요. [이름, 타입]");
             return createMonster();
         } catch (IllegalArgumentException e) {
+            System.out.println("몬스터 타입은 달리기, 비행, 에스퍼 중에서 골라주세요");
             return createMonster();
         }
     }
