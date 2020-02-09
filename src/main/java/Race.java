@@ -1,13 +1,9 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class Race {
-    private int currRound;
     private List<Monster> monsters;
     private int totalRounds;
-
-    public Race() {
-        currRound = 0;
-    }
 
     public void setMonsters(List<Monster> monsters) {
         this.monsters = monsters;
@@ -18,17 +14,34 @@ public class Race {
     }
 
     public void start() {
-        while (currRound < totalRounds) {
-            playRound();
-            currRound++;
+        for (int i = 0; i < totalRounds; i++) {
+            monsters.forEach(Monster::moveIfConditionSatisfied);
         }
     }
 
-    private void playRound() {
-        System.out.println(String.format("Round %d", currRound));
+    public void displayResult() {
+        List<Monster> winners = new ArrayList<>();
         for (Monster monster : monsters) {
-            monster.moveIfConditionSatisfied();
-            System.out.println(monster.getPositionString());
+            System.out.println(monster.resultString());
+            updateWinners(winners, monster);
         }
+        System.out.println(buildResultStringOf(winners));
+    }
+
+    private void updateWinners(List<Monster> winners, Monster monster) {
+        int curr = monster.position();
+        int max = winners.isEmpty() ? 0 : winners.get(0).position();
+        if (curr > max) { winners.clear(); }
+        if (curr >= max) { winners.add(monster); }
+    }
+
+    private String buildResultStringOf(List<Monster> winners) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Winner(s): ");
+        for (Monster winner : winners) {
+            sb.append(winner.name());
+            sb.append(" ");
+        }
+        return sb.toString();
     }
 }

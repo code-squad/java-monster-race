@@ -3,19 +3,30 @@ import movestrategy.MoveStrategy;
 public class Monster {
     private String name;
     private MoveStrategy moveStrategy;
-    private String positionString;
+    private int position;
 
     public Monster(String name, MoveStrategy moveStrategy) {
         this.name = name;
         this.moveStrategy = moveStrategy;
-        positionString = "";
+        position = 0;
     }
 
     public void moveIfConditionSatisfied() {
-        positionString += "-".repeat(moveStrategy.tilesMoved());
+        position += moveStrategy.tilesMoved();
     }
 
-    public String getPositionString() {
-        return positionString;
+    public String name() {
+        return name;
+    }
+
+    public int position() {
+        return position;
+    }
+
+    public String resultString() {
+        return String.format("%s [%s] : %s",
+                name,
+                moveStrategy.name(),
+                "-".repeat(position));
     }
 }

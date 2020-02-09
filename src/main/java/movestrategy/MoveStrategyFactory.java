@@ -5,11 +5,11 @@ public enum MoveStrategyFactory {
 
     public MoveStrategy produceStrategy(String strategyName) throws IllegalArgumentException {
         switch (strategyName) {
-            case "RUN":
+            case "run":
                 return new Run();
-            case "FLY":
+            case "fly":
                 return new Fly();
-            case "ESPURR":
+            case "espurr":
                 return new Espurr();
             default:
                 throw new IllegalArgumentException();

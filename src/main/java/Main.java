@@ -5,5 +5,6 @@ public class Main {
 
         raceInitializer.initializeRace(race);
         race.start();
+        race.displayResult();
     }
 }
