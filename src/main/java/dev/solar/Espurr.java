@@ -16,7 +16,7 @@ public class Espurr extends Monster {
     @Override
     public void move() {
         if (isAboveMinCriteria()) {
-            System.out.println("i'm move!!!");
+//            System.out.println("i'm move!!!");
             setForwardCount();
             forwardPosition += forwardCount;
         }

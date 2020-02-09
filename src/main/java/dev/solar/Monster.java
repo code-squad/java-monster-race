@@ -8,7 +8,7 @@ abstract class Monster {
     private MonsterType monsterType;
     private int minCriteria;
     protected int forwardCount;
-    public int forwardPosition;
+    protected int forwardPosition;
 
     public Monster(String monsterName, String monsterType) {
             this.monsterName = monsterName;
@@ -19,16 +19,24 @@ abstract class Monster {
 
     abstract void setForwardCount();
 
+    public int getForwardPosition() {
+        return forwardPosition;
+    }
+
+    public String getMonsterName() {
+        return monsterName;
+    }
+
     public void move() {
         if (isAboveMinCriteria()) {
-            System.out.println("i'm move!!!");
+//            System.out.println("i'm move!!!");
             forwardPosition += forwardCount;
         }
     }
 
     public boolean isAboveMinCriteria() {
         int randomValue = new Random().nextInt(10) + 1;
-        System.out.println("randomVale : " + randomValue);
+//        System.out.println("randomVale : " + randomValue);
         return randomValue >= minCriteria;
     }
 

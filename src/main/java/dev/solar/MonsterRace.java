@@ -1,6 +1,7 @@
 package dev.solar;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Stream;
@@ -28,6 +29,7 @@ public class MonsterRace {
         monsterRace.addMonsters();
         monsterRace.move();
         monsterRace.printResult();
+        monsterRace.printWinner();
         monsterRace.terminate();
     }
 
@@ -78,6 +80,18 @@ public class MonsterRace {
     private void printResult() {
         Stream<Monster> monsterStream = monsters.stream();
         monsterStream.forEach(System.out::println);
+    }
+
+    private void printWinner() {
+        Monster winner = pickWinner();
+
+        System.out.printf("축하합니다! %s가 몬스터 레이스에서 우승했습니다.", winner.getMonsterName());
+    }
+
+    private Monster pickWinner() {
+        Comparator<Monster> comparator = Comparator.comparing(Monster::getForwardPosition);
+        Monster winner = monsters.stream().max(comparator).get();
+        return winner;
     }
 
     private void terminate() {
