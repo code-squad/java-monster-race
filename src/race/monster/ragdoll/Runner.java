@@ -6,7 +6,7 @@ public class Runner extends Monster {
     private final int RUNNER_RANGE = 1;
     private final int CRITERION = 4;
 
-    public Runner(String name, String type) {
+    public Runner(String name, Types type) {
         super(name, type);
         rangeAbility = RUNNER_RANGE;
     }

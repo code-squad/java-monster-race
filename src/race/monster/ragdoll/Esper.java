@@ -6,7 +6,7 @@ public class Esper extends Monster {
     private int esperRange;
     private final int CRITERION = 9;
 
-    public Esper(String name, String type) {
+    public Esper(String name, Types type) {
         super(name, type);
     }
 
