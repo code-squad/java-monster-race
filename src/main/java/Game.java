@@ -5,9 +5,8 @@ public class Game {
         prep.getNumberOfMonsters();
         prep.getNameAndTypeOfMonsters();
         prep.getNumberOfTries();
-//        prep.makePlayerList();
 
-        Movement movement = new Movement(prep.numOfMonster, prep.numOfTries, prep.getPlayerList());
+        Movement movement = new Movement(prep.getNumOfMonster(), prep.getNumOfTries(), prep.getPlayerList());
         movement.moveAllMonstersFullTime(prep.getPlayerList());
 
         Result result = new Result();

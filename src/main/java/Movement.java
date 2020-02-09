@@ -13,8 +13,7 @@ public class Movement {
        this.monsters = monsters;
     }
 
-    public void oneStepForward(Monster monster) {
-        monster.moves += 1;
+    public void oneStepForward(Monster monster) { monster.addMoves();
     }
 
     public void moveOneMonsterOneTme(Monster monster) {

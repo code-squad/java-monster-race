@@ -1,7 +1,7 @@
 public class Monster {
     private String name;
     private String type;
-    public int moves;
+    private int moves;
 
     public Monster(String name, String type) {
         this.name = name;
@@ -15,4 +15,8 @@ public class Monster {
     public String getType() {
         return this.type;
     }
+
+    public int getMoves() { return this.moves; }
+
+    public void addMoves() { this.moves++; }
 }

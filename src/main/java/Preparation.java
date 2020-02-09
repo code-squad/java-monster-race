@@ -4,9 +4,18 @@ import java.util.Scanner;
 
 public class Preparation {
     Scanner scanner;
-    int numOfMonster;
-    int numOfTries;
+    private int numOfMonster;
+    private int numOfTries;
     List<Monster> monsters = new ArrayList<Monster>();
+
+    public int getNumOfMonster() {
+        return this.numOfMonster;
+    }
+
+    public int getNumOfTries() {
+        return this.numOfTries;
+    }
+
 
     public Preparation() {
         this.scanner = new Scanner(System.in);
@@ -28,7 +37,6 @@ public class Preparation {
         System.out.println("Enter each monster's name and type");
         Scanner scanner = new Scanner(System.in);
         String[] slicedInput = scanner.nextLine().split(",");
-        System.out.println(slicedInput.length);
         String monsterName = slicedInput[0];
         String monsterType = slicedInput[1];
         System.out.println(monsterName + " : " + monsterType);
@@ -43,11 +51,6 @@ public class Preparation {
         }
     }
 
-//    public void makePlayerList() {
-//        for (int i = 0; i < numOfMonster; i++) {
-//            monsters.add(new Monster());
-//        }
-//    }
 
     public List<Monster> getPlayerList() {
         return monsters;

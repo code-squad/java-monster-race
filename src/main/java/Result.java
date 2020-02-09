@@ -4,9 +4,9 @@ public class Result {
 
     public void printOneMonsterLocation(Monster monster) {
         StringBuilder sb = new StringBuilder();
-        for( int i = 0 ; i < monster.moves; i++) {
+        for( int i = 0 ; i < monster.getMoves(); i++) {
             sb.append("-");
-        }  System.out.println(monster.getName() + "[" + monster.getType() + "]" +  sb);
+        }  System.out.println(monster.getName() + " [" + monster.getType() + "]" +  sb);
     }
 
     public void printAllMonsterLocation(List<Monster> monsters) {
