@@ -52,7 +52,8 @@ public class MonsterRace {
             String[] monsterInfo = inputHandler.inputMonsterInfo();
             String monsterName = monsterInfo[0];
             String monsterType = monsterInfo[1];
-            return new Monster(monsterName, monsterType);
+            // TODO : 각 타입별로 몬스터 생성
+            return new Espurr(monsterName, monsterType);
         } catch (ArrayIndexOutOfBoundsException e) { //구분자 에러 처리
             System.out.println("형식에 맞게 입력해주세요.");
             return createMonster();

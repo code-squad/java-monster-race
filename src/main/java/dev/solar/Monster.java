@@ -3,19 +3,12 @@ package dev.solar;
 import java.util.Random;
 import java.util.stream.IntStream;
 
-public class Monster {
+abstract class Monster {
     private String monsterName;
     private MonsterType monsterType;
     private int minCriteria;
-    private int forwardCount;
-
-    public void move() {
-        int randomValue = new Random().nextInt(10) + 1;
-        System.out.println("randomVale : " + randomValue);
-        if (randomValue >= minCriteria) {
-            forwardCount += randomValue;
-        }
-    }
+    protected int forwardCount;
+    public int forwardPosition;
 
     public Monster(String monsterName, String monsterType) {
         try {
@@ -28,9 +21,19 @@ public class Monster {
         }
     }
 
-//    public boolean isAboveMinCriteria() {
-//        return true;
-//    }
+    abstract void setForwardCount();
+
+    public void move() {
+        if (isAboveMinCriteria()) {
+            forwardPosition += forwardCount;
+        }
+    }
+
+    public boolean isAboveMinCriteria() {
+        int randomValue = new Random().nextInt(10) + 1;
+        System.out.println("randomVale : " + randomValue);
+        return randomValue >= minCriteria;
+    }
 
     @Override
     public String toString() {
