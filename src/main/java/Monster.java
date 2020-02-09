@@ -1,30 +1,18 @@
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-
 public class Monster {
     private String name;
-    private String vehicle;
+    private String type;
     public int moves;
 
-    public Monster() {
+    public Monster(String name, String type) {
+        this.name = name;
+        this.type = type;
     }
 
-    public void oneStepForward() {
-        this.moves += 1;
+    public String getName() {
+        return this.name;
     }
 
-    public void printOneMonsterLocation(Monster monster) {
-        StringBuilder sb = new StringBuilder();
-        for( int i = 0 ; i < monster.moves; i++) {
-            sb.append("-");
-        }
-        System.out.println(sb);
-    }
-
-    public void printAllMonsterLocation(Race race) {
-        for (Monster m : race.monsters) {
-            printOneMonsterLocation(m);
-        }
+    public String getType() {
+        return this.type;
     }
 }
