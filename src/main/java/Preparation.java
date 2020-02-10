@@ -8,14 +8,13 @@ public class Preparation {
     private int numOfTries;
     List<Monster> monsters = new ArrayList<Monster>();
 
-    public int getNumOfMonster() {
+    public int numberOfMonster() {
         return this.numOfMonster;
     }
 
-    public int getNumOfTries() {
+    public int numberOfTries() {
         return this.numOfTries;
     }
-
 
     public Preparation() {
         this.scanner = new Scanner(System.in);
@@ -52,8 +51,7 @@ public class Preparation {
         }
     }
 
-
-    public List<Monster> getPlayerList() {
+    public List<Monster> monsterList() {
         return monsters;
     }
 }

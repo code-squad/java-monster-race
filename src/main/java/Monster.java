@@ -8,15 +8,15 @@ public class Monster {
         this.type = type;
     }
 
-    public String getName() {
+    public String Name() {
         return this.name;
     }
 
-    public String getType() {
+    public String Type() {
         return this.type;
     }
 
-    public int getMoves() { return this.moves; }
+    public int Moves() { return this.moves; }
 
     public void addMoves(int number) {
         this.moves += number;

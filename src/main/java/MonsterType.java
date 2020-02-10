@@ -15,18 +15,15 @@ public class MonsterType {
     }
 
     public void matchType(Monster monster) {
-            String type = monster.getType();
+            String type = monster.Type();
             switch(type) {
                 case "달리기":
-                    System.out.println(monster.getName() + "의 타입은 달리기");
                     running(monster);
                     break;
                 case "비행":
-                    System.out.println(monster.getName() + "의 타입은 비행");
                     flying(monster);
                     break;
                 case "에스퍼":
-                    System.out.println(monster.getName() + "의 타입은 에스퍼");
                     esper(monster);
                     break;
             }

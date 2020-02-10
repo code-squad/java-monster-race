@@ -6,22 +6,17 @@ public class Game {
         prep.getNameAndTypeOfMonsters();
         prep.getNumberOfTries();
 
-        MonsterType mt = new MonsterType(prep.getNumOfTries());
-        mt.matchAllType(prep.getPlayerList());
+        MonsterType mt = new MonsterType(prep.numberOfTries());
+        mt.matchAllType(prep.monsterList());
 
-
-//        Movement movement = new Movement(prep.getNumOfMonster(), prep.getNumOfTries(), prep.getPlayerList());
-//        movement.moveAllMonstersFullTime(prep.getPlayerList());
 
         Result result = new Result();
-        result.printAllMonsterLocation(prep.getPlayerList());
+        result.printAllMonsterLocation(prep.monsterList());
         end();
-        for(Monster m : prep.getPlayerList()) {
-            System.out.println(m.getName() + " : " + m.getMoves() + " : " + m.getType());
-        }
+        result.printWinner(prep.monsterList());
     }
 
     public void end() {
-        System.out.println("- Game Over - ");
+        System.out.println("- Race Over - ");
     }
 }
