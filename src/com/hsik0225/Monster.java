@@ -2,15 +2,16 @@ package com.hsik0225;
 
 import java.util.Random;
 import java.util.stream.IntStream;
-public abstract class Monster {
+
+public class Monster {
     private String name;
-    private String type;
+    private MonsterType monsterType;
     private String moveLength;
     protected Random random;
 
-    public Monster(String name, String type) {
+    public Monster(String name, MonsterType monsterType) {
         this.name = name;
-        this.type = type;
+        this.monsterType = monsterType;
         random = new Random();
     }
 
@@ -23,18 +24,20 @@ public abstract class Monster {
     }
 
     public String getType() {
-        return this.type;
+        return monsterType.name();
     }
 
     public String getMoveLength() {
         return this.moveLength;
     }
 
-    public IntStream makeRandomValues(int ATTEMPT_COUNT, int bound, int moveCondition){
-        return IntStream.range(0, ATTEMPT_COUNT)
+    public IntStream makeRandomValues(int attemptCount, int bound, int moveCondition){
+        return IntStream.range(0, attemptCount)
                 .map(index -> random.nextInt(bound))
                 .filter(randomValue -> randomValue >= moveCondition);
     }
 
-    public abstract void move(int ATTEMPT_COUNT);
+    public void move(int attemptCount){
+        this.moveLength = "-".repeat(monsterType.move(this, attemptCount));
+    }
 }

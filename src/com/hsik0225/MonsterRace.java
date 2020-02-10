@@ -35,7 +35,7 @@ public class MonsterRace {
     private void makeMonsters() {
         for (int index = 0; index < monsterCount; index++) {
             String[] monsterInfo = input.inputMonstersInfo().replaceAll("\\s*", "").split(",");
-            MonsterType monsterType = MonsterType.valueOf(monsterInfo[0]);
+            MonsterType monsterType = MonsterType;
             Monster monster = new Monster(monsterInfo[0], monsterType);
             monsters.add(monster);
         }
@@ -45,7 +45,9 @@ public class MonsterRace {
         System.out.println(OutputStrings.RACE_RESULT);
         for (int i = 0; i < monsterCount; i++) {
             monsters.get(i).move(attemptCount);
-            System.out.printf("%s [%s] : %s\n", monsters.get(i).getName(), monsters.get(i).getType(), monsters.get(i).getMoveLength());
+            System.out.printf("%s [%s] : %s\n", monsters.get(i).getName()
+                    , monsters.get(i).getType()
+                    , monsters.get(i).getMoveLength());
         }
         System.out.println(OutputStrings.GAME_EXIT);
     }
