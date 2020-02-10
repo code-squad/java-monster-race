@@ -9,12 +9,12 @@ public class InputHandler {
     }
 
     public int getMonsterNumber() {
-        System.out.println("몬스터는 모두 몇 마리인가요?");
+        System.out.println(Message.monsterNumber.getMessage());
         return checkException();
     }
 
     public int getTrials() {
-        System.out.println("시도할 회수는 몇 회 인가요?");
+        System.out.println(Message.trialNumber.getMessage());
         return checkException();
     }
 
