@@ -9,21 +9,25 @@ public class Input {
         scanner = new Scanner(System.in);
     }
 
-    public int inputDigit() {
+    private String inputLine(String regex, OutputStrings outputString){
         String inputLine = scanner.nextLine();
-        while (!inputLine.matches("[1-9][0-9]*")) {
-            System.out.println(OutputStrings.INPUT_DIGIT);
-            inputLine = scanner.nextLine();
-        }
-        return Integer.parseInt(inputLine);
-    }
-
-    public String inputMonstersInfo(){
-        String inputLine = scanner.nextLine();
-        while(!inputLine.matches(".*[,]\\s*(비행|에스퍼|달리기)\\s*")) {
-            System.out.println(OutputStrings.INPUT_TYPE);
+        while (!inputLine.matches(regex)) {
+            System.out.println(outputString);
             inputLine = scanner.nextLine();
         }
         return inputLine;
+    }
+
+    public int inputDigit() {
+        String regex = "[1-9][0-9]*";
+        OutputStrings outputString = OutputStrings.INPUT_DIGIT;
+        String digit = inputLine(regex, outputString);
+        return Integer.parseInt(digit);
+    }
+
+    public String inputMonstersInfo(){
+        String regex = ".*[,]\\s*(비행|에스퍼|달리기)\\s*";
+        OutputStrings outputString = OutputStrings.INPUT_TYPE;
+        return inputLine(regex, outputString);
     }
 }

@@ -32,12 +32,12 @@ public class Flight implements Movable {
     public void move(int ATTEMPT_COUNT) {
         Random random = new Random();
         int bound = 10;
-        int moveCondition =6;
+        int moveCondition = 6;
         int moveLength = (int) IntStream.range(0, ATTEMPT_COUNT)
                 .map(index -> random.nextInt(bound))
                 .filter(randomValue -> randomValue >= moveCondition)
-                .count()*3;
+                .count() * 3;
 
-        this.moveLength =  "-".repeat(moveLength);
+        this.moveLength = "-".repeat(moveLength);
     }
 }

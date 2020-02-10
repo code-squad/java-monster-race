@@ -5,6 +5,4 @@ public interface Movable {
     public String type();
     public String moveLength();
     public void move(int ATTEMPT_COUNT);
-
-
 }
