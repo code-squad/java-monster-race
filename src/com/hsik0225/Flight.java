@@ -8,7 +8,7 @@ public class Flight implements movable {
     private String type;
     private String moveLength;
 
-    public Monster(String name, String type){
+    public Flight(String name, String type){
         this.name = name;
         this.type = type;
     }
@@ -18,15 +18,14 @@ public class Flight implements movable {
     }
 
     @Override
-    public String move(int randomValue) {
-        return null;
-    }
-
-    private int setNumOfMove(int bound, int moveCondition) {
+    public int move(int ATTEMPT_COUNT) {
         Random random = new Random();
+        int bound = 10;
+        int moveCondition =6;
+
         return (int) IntStream.range(0, ATTEMPT_COUNT)
                 .map(index -> random.nextInt(bound))
                 .filter(randomValue -> randomValue >= moveCondition)
-                .count();
+                .count()*3;
     }
 }

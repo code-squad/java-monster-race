@@ -9,7 +9,7 @@ public class MonsterRace {
     private Input input;
     private int MONSTER_COUNT;
     private int ATTEMPT_COUNT;
-    private List<Monster> monsters;
+    private List<movable> monsters;
 
     public MonsterRace() {
         input = new Input();
@@ -37,7 +37,7 @@ public class MonsterRace {
         for (int index = 0; index < MONSTER_COUNT; index++) {
             System.out.println(OutputStrings.MONSTER_INFO_QUESTION);
             String[] monsterInfo = input.inputMonstersInfo().replace(" ", "\\s*").split(" ");
-            Monster monster = new Monster(monsterInfo[0], monsterInfo[1]);
+            movable monster = new Flight(monsterInfo[0], monsterInfo[1]);
             monsters.add(monster);
         }
     }
@@ -45,7 +45,6 @@ public class MonsterRace {
     private void startRace() {
         System.out.println(OutputStrings.RACE_RESULT);
         for (int i = 0; i < MONSTER_COUNT; i++) {
-            monsters.get(i).move(setNumOfMove(10, 4));
             String moveLength = monsters.get(i).getMoveLength();
             System.out.println(moveLength);
         }

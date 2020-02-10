@@ -8,7 +8,7 @@ public class Esper implements movable {
     private String type;
     private String moveLength;
 
-    public Monster(String name, String type){
+    public Esper(String name, String type){
         this.name = name;
         this.type = type;
     }
@@ -18,18 +18,15 @@ public class Esper implements movable {
     }
 
     @Override
-    public String move(int randomValue) {
-        if(type.equals("비행")){
-            return "ㅁㄴㅇ";
-        }
-        return null;
-    }
-
-    private int setNumOfMove(int bound, int moveCondition) {
+    public int move(int ATTEMPT_COUNT) {
         Random random = new Random();
+        int bound = 10;
+        int moveCondition = 9;
+
         return (int) IntStream.range(0, ATTEMPT_COUNT)
                 .map(index -> random.nextInt(bound))
                 .filter(randomValue -> randomValue >= moveCondition)
-                .count();
+                .map(randomValue -> random.nextInt(100)+1)
+                .reduce(0, 1, randomValue);
     }
 }

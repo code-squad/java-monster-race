@@ -1,5 +1,5 @@
 package com.hsik0225;
 
 public interface movable {
-    public String move(int randomValue);
+    public int move(int ATTEMPT_COUNT);
 }
