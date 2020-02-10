@@ -2,14 +2,12 @@ package com.hsik0225;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
-import java.util.stream.IntStream;
 
 public class MonsterRace {
     private Input input;
     private int MONSTER_COUNT;
     private int ATTEMPT_COUNT;
-    private List<movable> monsters;
+    private List<Movable> monsters;
 
     public MonsterRace() {
         input = new Input();
@@ -37,13 +35,13 @@ public class MonsterRace {
         for (int index = 0; index < MONSTER_COUNT; index++) {
             System.out.println(OutputStrings.MONSTER_INFO_QUESTION);
             String[] monsterInfo = input.inputMonstersInfo().replace(" ", "\\s*").split(" ");
-            movable monster;
+            Movable monster;
             if (monsterInfo.equals("달리기")) {
-                monster = new Runner(monsterInfo[0], monsterInfo[1], ATTEMPT_COUNT);
+                monster = new Runner(monsterInfo[0], monsterInfo[1]);
             } else if (monsterInfo.equals("비행")) {
-                monster = new Flight(monsterInfo[0], monsterInfo[1], ATTEMPT_COUNT);
+                monster = new Flight(monsterInfo[0], monsterInfo[1]);
             } else {
-                monster = new Esper(monsterInfo[0], monsterInfo[1], ATTEMPT_COUNT);
+                monster = new Esper(monsterInfo[0], monsterInfo[1]);
             }
             monsters.add(monster);
         }
@@ -52,8 +50,7 @@ public class MonsterRace {
     private void startRace() {
         System.out.println(OutputStrings.RACE_RESULT);
         for (int i = 0; i < MONSTER_COUNT; i++) {
-            String moveLength = monsters.get(i).();
-            System.out.println(moveLength);
+            System.out.printf("%s [%s] : %s", monsters.get(i).name(), monsters.get(i).type(), monsters.get(i).moveLength());
         }
         System.out.println(OutputStrings.GAME_EXIT);
     }
