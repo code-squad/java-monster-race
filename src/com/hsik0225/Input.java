@@ -21,7 +21,7 @@ public class Input {
     public String inputMonstersInfo(){
         String inputLine = scanner.nextLine();
         while(!inputLine.matches(".*[,]\\s*(비행|에스퍼|달리기)\\s*")) {
-            System.out.println("TRY AGAIN");
+            System.out.println(OutputStrings.INPUT_TYPE);
             inputLine = scanner.nextLine();
         }
         return inputLine;

@@ -3,7 +3,7 @@ package com.hsik0225;
 import java.util.Random;
 import java.util.stream.IntStream;
 
-public class Runner implements movable {
+public class Flight implements movable {
     private String name;
     private String type;
     private String moveLength;
@@ -19,9 +19,6 @@ public class Runner implements movable {
 
     @Override
     public String move(int randomValue) {
-        if(type.equals("비행")){
-            return "ㅁㄴㅇ";
-        }
         return null;
     }
 

@@ -51,12 +51,4 @@ public class MonsterRace {
         }
         System.out.println(OutputStrings.GAME_EXIT);
     }
-
-    private int setNumOfMove(int bound, int moveCondition) {
-        Random random = new Random();
-        return (int) IntStream.range(0, ATTEMPT_COUNT)
-                .map(index -> random.nextInt(bound))
-                .filter(randomValue -> randomValue >= 4)
-                .count();
-    }
 }
