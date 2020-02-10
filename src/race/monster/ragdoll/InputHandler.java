@@ -1,53 +1,70 @@
 package race.monster.ragdoll;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class InputHandler {
-    private int inputNumOfMonsters;
-    private int inputNumOfTries;
-    private String nameOfMonster;
-    private String typeOfMonster;
+    private String inputNameOfMonster;
+    private Types inputTypeOfMonster;
 
     Scanner scanner = new Scanner(System.in);
 
-    public InputHandler() {}
-
-    public void setNumOfMonsters() {
-        System.out.println("<스릴만점 건전한 몬스터 경주>");
-        System.out.println("몬스터는 모두 몇 마리인가요?");
-        inputNumOfMonsters = Integer.parseInt(scanner.nextLine());
+    public InputHandler() {
     }
 
-    public int getNumOfMonsters() {
+    int setNumOfMonsters() throws IOException {
+        System.out.println("<스릴만점 건전한 몬스터 경주>");
+        System.out.println("몬스터는 모두 몇 마리인가요?");
+        int inputNumOfMonsters = Integer.parseInt(scanner.nextLine());
+
+        if (inputNumOfMonsters < 0) {
+            throw new IOException("음수가 입력 되었습니다.");
+        }
+
         return inputNumOfMonsters;
     }
 
-    public void setMonsterProperties() {
-        System.out.println("경주할 몬스터 이름과 종류를 입력하세요. (종류 - '달리기', '비행', '에스퍼'");
+    private String[] splitProperty() {
         String inputText = scanner.nextLine();
-
         String blankDeletedText = inputText.replaceAll(" ", "");
-        String[] information = blankDeletedText.split(",");
 
-        nameOfMonster = information[0];
-        typeOfMonster = information[1];
+        return blankDeletedText.split(",");
+    }
+
+    void setMonsterProperties() {
+        final String RUNNER = "달리기", FLYING = "비행", ESPER = "에스퍼";
+        String[] properties = splitProperty();
+
+        inputNameOfMonster = properties[0];
+        String typeNameOfMonster = properties[1];
+
+        switch (typeNameOfMonster) {
+            case RUNNER:
+                inputTypeOfMonster = Types.RUNNER;
+                break;
+            case FLYING:
+                inputTypeOfMonster = Types.FLYING;
+                break;
+            case ESPER:
+                inputTypeOfMonster = Types.ESPER;
+                break;
+            default:
+                throw new IllegalArgumentException("잘못된 타입이 입력 되었습니다.");
+        }
     }
 
     public String getNameOfMonster() {
-        return nameOfMonster;
+        return inputNameOfMonster;
     }
 
-    public String getTypeOfMonster() {
-        return typeOfMonster;
+    public Types getTypeOfMonster() {
+        return inputTypeOfMonster;
     }
 
-    public void setNumOfTries() {
+    int setNumOfTries() {
         System.out.println("시도할 회수는 몇 회 인가요?");
-        inputNumOfTries = Integer.parseInt(scanner.nextLine());
-    }
+        int inputNumOfTries = Integer.parseInt(scanner.nextLine());
 
-    public int getNumOfTries() {
         return inputNumOfTries;
     }
-
 }
