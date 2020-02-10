@@ -10,13 +10,12 @@ public class Espurr extends Monster {
     @Override
     void setForwardCount() {
         Random random = new Random();
-        forwardCount = random.nextInt(98)+2;
+        forwardCount = random.nextInt(98) + 2;
     }
 
     @Override
     public void move() {
         if (isAboveMinCriteria()) {
-//            System.out.println("i'm move!!!");
             setForwardCount();
             forwardPosition += forwardCount;
         }

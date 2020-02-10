@@ -4,12 +4,16 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class MonsterRace {
     private Scanner scanner;
     private InputHandler inputHandler;
     private List<Monster> monsters;
+    private List<Monster> ranking;
+    private List<Monster> winners;
     private int monsterCount;
     private int attemptCount;
 
@@ -17,6 +21,7 @@ public class MonsterRace {
         scanner = new Scanner(System.in);
         inputHandler = new InputHandler(scanner);
         monsters = new ArrayList<>();
+        winners = new ArrayList<>();
     }
 
     public static void main(String[] args) {
@@ -28,6 +33,8 @@ public class MonsterRace {
         monsterRace.inputInfo();
         monsterRace.addMonsters();
         monsterRace.move();
+        monsterRace.rank();
+        monsterRace.pickWinner();
         monsterRace.printResult();
         monsterRace.printWinner();
         monsterRace.terminate();
@@ -56,13 +63,13 @@ public class MonsterRace {
             String inputMonsterType = monsterInfo[1];
             MonsterType monsterType = MonsterType.valueOfType(inputMonsterType);
 
-            switch (monsterType.type) {
+            switch (monsterType.getMonsterTypeName()) {
                 case "달리기": return new Run(inputMonsterName, inputMonsterType);
                 case "비행": return new Fly(inputMonsterName, inputMonsterType);
                 case "에스퍼": return new Espurr(inputMonsterName, inputMonsterType);
             }
             throw new IllegalArgumentException("다시 입력해주세요.");
-        } catch (ArrayIndexOutOfBoundsException e) { //구분자 에러 처리
+        } catch (ArrayIndexOutOfBoundsException e) {
             System.out.println("형식에 맞게 입력해주세요. [이름, 타입]");
             return createMonster();
         } catch (IllegalArgumentException e) {
@@ -72,8 +79,21 @@ public class MonsterRace {
     }
 
     private void move() {
-        for (int i = 0; i < attemptCount; i++) {
-            monsters.forEach(Monster::move);
+        IntStream.range(0, attemptCount).forEach(i -> monsters.forEach(Monster::move));
+    }
+
+    private void rank() {
+        Comparator<Monster> comparator = Comparator.comparing(Monster::getForwardPosition);
+        ranking = monsters.stream().sorted(comparator.reversed()).collect(Collectors.toList());
+    }
+
+    private void pickWinner() {
+        int highestScore = ranking.get(0).forwardPosition;
+        for (Monster currentMonster : ranking) {
+            if (currentMonster.getForwardPosition() != highestScore) {
+                break;
+            }
+            winners.add(currentMonster);
         }
     }
 
@@ -83,15 +103,7 @@ public class MonsterRace {
     }
 
     private void printWinner() {
-        Monster winner = pickWinner();
-
-        System.out.printf("축하합니다! %s가 몬스터 레이스에서 우승했습니다.", winner.getMonsterName());
-    }
-
-    private Monster pickWinner() {
-        Comparator<Monster> comparator = Comparator.comparing(Monster::getForwardPosition);
-        Monster winner = monsters.stream().max(comparator).get();
-        return winner;
+        winners.forEach(winner -> System.out.printf("축하합니다! %s(이)가 몬스터 레이스에서 우승했습니다.%n", winner.getMonsterName()));
     }
 
     private void terminate() {

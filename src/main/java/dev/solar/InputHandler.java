@@ -14,7 +14,7 @@ public class InputHandler {
             System.out.println(promptMessage);
             int inputValue = Integer.parseInt(scanner.nextLine());
 
-            if(inputValue < 0) {
+            if (inputValue < 0) {
                 System.out.println("음수는 입력하실 수 없습니다. 다시 입력해주세요.");
                 return inputProperType(promptMessage);
             }
