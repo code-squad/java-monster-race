@@ -7,6 +7,9 @@ import java.util.stream.IntStream;
 
 public class MonsterRace {
     private Input input;
+    private int MONSTER_COUNT;
+    private int ATTEMPT_COUNT;
+    private ArrayList<String> MONSTERS_INFO;
     private List<Monster> monsters;
 
     public MonsterRace() {
@@ -23,13 +26,15 @@ public class MonsterRace {
     private void setGame() {
         System.out.println(OutputStrings.GAME_START);
         System.out.println(OutputStrings.MONSTER_COUNT_QUESTION);
-        input.setMONSTER_COUNT();
+        MONSTER_COUNT = input.inputDigit();
+        System.out.println(OutputStrings.MONSTER_INFO_QUESTION);
+        input.inputMonstersInfo();
         System.out.println(OutputStrings.ATTEMPT_COUNT_QUESTION);
-        input.setCHALLENGE_COUNT();
+        ATTEMPT_COUNT = input.inputDigit();
     }
 
     private void makeMonsters() {
-        for (int index = 0; index < input.getMONSTER_COUNT(); index++) {
+        for (int index = 0; index < MONSTER_COUNT; index++) {
             Monster monster = new Monster();
             monsters.add(monster);
         }
@@ -37,7 +42,7 @@ public class MonsterRace {
 
     private void startRace() {
         System.out.println(OutputStrings.RACE_RESULT);
-        for (int i = 0; i < input.getMONSTER_COUNT(); i++) {
+        for (int i = 0; i < MONSTER_COUNT; i++) {
             monsters.get(i).move(setNumOfMove(10, 4));
             String moveLength = monsters.get(i).getMoveLength();
             System.out.println(moveLength);
@@ -47,7 +52,7 @@ public class MonsterRace {
 
     private int setNumOfMove(int bound, int moveCondition) {
         Random random = new Random();
-        return (int) IntStream.range(0, input.getCHALLENGE_COUNT())
+        return (int) IntStream.range(0, ATTEMPT_COUNT)
                 .map(index -> random.nextInt(bound))
                 .filter(randomValue -> randomValue >= 4)
                 .count();
