@@ -1,43 +1,35 @@
 package race.monster.ragdoll;
 
-import java.util.Random;
 import java.lang.StringBuilder;
 
-public abstract class Monster {
-    enum Types {
-        RUNNER("달리기"), FLYING("비행"), ESPER("에스퍼");
+enum Types {
+    RUNNER("달리기"), FLYING("비행"), ESPER("에스퍼");
 
-        private final String typeName;
+    private final String typeName;
 
-        Types(String typeName) {
-            this.typeName = typeName;
-        }
-
-        public String getTypeName() {
-            return typeName;
-        }
+    Types(String typeName) {
+        this.typeName = typeName;
     }
 
+    public String getTypeName() {
+        return typeName;
+    }
+}
+
+public abstract class Monster {
     private String name;
     private Types type;
     int moveCount;
     int rangeAbility;
 
-    public Monster(String name, String typeName) {
+    public Monster(String name, Types type) {
         this.name = name;
-        this.type = setType(typeName);
-    this.moveCount = 0;
+        this.type = type;
     }
 
     abstract boolean decideMoveOrStop();
 
     abstract void move(boolean decision);
-
-    private Types setType(String typeName) {
-        Types type = Types.valueOf(typeName);
-
-        return type;
-    }
 
     void run(int numOfTries) {
         for (int i = 0; i < numOfTries; i++) {
@@ -47,7 +39,8 @@ public abstract class Monster {
     }
 
     public String toString() {
-        StringBuilder strBuilder = new StringBuilder(" ");
+        String monsterProperties = name + " [" + type.getTypeName() + "] : ";
+        StringBuilder strBuilder = new StringBuilder(monsterProperties);
 
         for (int i = 0; i < moveCount; i++) {
             strBuilder.append("-");
