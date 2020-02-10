@@ -10,11 +10,12 @@ public class MonsterRace {
     private int monsterCount;
     private int attemptCount;
 
-    public MonsterRace() {
+    public MonsterRace() throws IOException {
         showTitle();
         askMonsterQuantity();
         askAttemptCount();
         racePrint();
+        br.close();
     }
 
     private void showTitle(){
@@ -25,7 +26,10 @@ public class MonsterRace {
         System.out.println("몬스터는 모두 몇 마리인가요?");
         try {
             monsterCount = Integer.parseInt(br.readLine());
-        } catch (IOException e) {
+            if (monsterCount < 0) {
+                throw new IllegalAccessException("음수입력했습니다. 다시 입력해 주세요.");
+            }
+        } catch (IOException | IllegalAccessException e) {
             e.printStackTrace();
         }
         return monsterCount;
@@ -35,7 +39,10 @@ public class MonsterRace {
         System.out.println("시도할 회수는 몇 회 인가요?");
         try {
             attemptCount = Integer.parseInt(br.readLine());
-        } catch (IOException e) {
+            if (attemptCount < 0) {
+                throw new IllegalAccessException("음수입력했습니다. 다시 입력해 주세요.");
+            }
+        } catch (IOException | IllegalAccessException e) {
             e.printStackTrace();
         }
         return attemptCount;
