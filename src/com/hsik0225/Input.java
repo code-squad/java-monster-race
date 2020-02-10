@@ -18,11 +18,12 @@ public class Input {
         return Integer.parseInt(inputLine);
     }
 
-    public void inputMonstersInfo(){
+    public String inputMonstersInfo(){
         String inputLine = scanner.nextLine();
-        while(!inputLine.matches(".*[비행|에스퍼|달리기].*")) {
+        while(!inputLine.matches(".*[,]\\s*(비행|에스퍼|달리기)\\s*")) {
             System.out.println("TRY AGAIN");
             inputLine = scanner.nextLine();
         }
+        return inputLine;
     }
 }

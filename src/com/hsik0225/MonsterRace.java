@@ -27,14 +27,17 @@ public class MonsterRace {
         System.out.println(OutputStrings.GAME_START);
         System.out.println(OutputStrings.MONSTER_COUNT_QUESTION);
         MONSTER_COUNT = input.inputDigit();
-        System.out.println(OutputStrings.MONSTER_INFO_QUESTION);
-        input.inputMonstersInfo();
+
+        makeMonsters();
+
         System.out.println(OutputStrings.ATTEMPT_COUNT_QUESTION);
         ATTEMPT_COUNT = input.inputDigit();
     }
 
     private void makeMonsters() {
         for (int index = 0; index < MONSTER_COUNT; index++) {
+            System.out.println(OutputStrings.MONSTER_INFO_QUESTION);
+            MONSTERS_INFO.add(input.inputMonstersInfo());
             Monster monster = new Monster();
             monsters.add(monster);
         }
