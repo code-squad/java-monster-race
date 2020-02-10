@@ -1,31 +1,60 @@
 package race.monster.ragdoll;
 
+import java.io.IOException;
+import java.util.Scanner;
+
 public class RacingGame {
     private int numOfMonsters;
     private int numOfTries;
-    Monster[] monsters;
+    private Monster[] monsters;
+    Scanner scanner = new Scanner(System.in);
 
-    RacingGame(int numOfMonsters, int numOfTries) {
-        this.numOfMonsters = numOfMonsters;
-        this.numOfTries = numOfTries;
-        this.monsters = new Monster[numOfMonsters];
-    }
+    public RacingGame() {}
 
-    void createMonsters() {
+    private void createMonster() {
         for (int i = 0; i < numOfMonsters; i++) {
             monsters[i] = new Monster();
         }
     }
 
-    void runMonsters() {
-        for (int i = 0; i < numOfMonsters; i++) {
-            monsters[i].countMove(numOfTries);
+    void startGame() {
+        try {
+            getUserInput();
+
+            monsters = new Monster[numOfMonsters];
+            createMonster();
+
+            for(Monster monster : monsters) {
+                monster.run(numOfTries);
+            }
+
+            printResult();
+        } catch(NumberFormatException e) {
+            System.out.println("숫자만 입력 해주세요.");
+            startGame();
+        } catch(IOException e) {
+            System.out.println("자연수를 입력 해주세요.");
+            startGame();
         }
     }
 
-    void printResult() {
-        for (int i = 0; i < numOfMonsters; i++) {
-            System.out.println(monsters[i].toString());
+    private void getUserInput() throws IOException{
+        System.out.println("<스릴만점 건전한 몬스터 경주>");
+        System.out.println("몬스터는 모두 몇 마리인가요?");
+        numOfMonsters = Integer.parseInt(scanner.nextLine());
+
+        System.out.println("시도할 회수는 몇 회 인가요?");
+        numOfTries = Integer.parseInt(scanner.nextLine());
+
+        if (numOfMonsters < 0 || numOfTries < 0) {
+            throw new IOException("음수가 입력 되었습니다.");
+        }
+    }
+
+    private void printResult() {
+        System.out.println("<실행 결과>");
+        for (Monster monster : monsters) {
+            System.out.println(monster.toString());
         }
     }
 }
