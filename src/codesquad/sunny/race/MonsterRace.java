@@ -6,20 +6,39 @@ import java.io.InputStreamReader;
 import java.util.Random;
 
 public class MonsterRace {
-    private static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-    private static int monsterCount;
-    private static int tryCount;
-    public MonsterRace() throws IOException {
-        System.out.println("<스릴만점 건전한 몬스터 경주>");
+    private BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    private int monsterCount;
+    private int attemptCount;
 
-        System.out.println("몬스터는 모두 몇 마리인가요?");
-        monsterCount = Integer.parseInt(br.readLine());
-
-        System.out.println("시도할 회수는 몇 회 인가요?");
-        tryCount = Integer.parseInt(br.readLine());
-
-        System.out.println("실행결과");
+    public MonsterRace() {
+        showTitle();
+        askMonsterQuantity();
+        askAttemptCount();
         racePrint();
+    }
+
+    private void showTitle(){
+        System.out.println("<스릴만점 건전한 몬스터 경주>");
+    }
+
+    private int askMonsterQuantity() {
+        System.out.println("몬스터는 모두 몇 마리인가요?");
+        try {
+            monsterCount = Integer.parseInt(br.readLine());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return monsterCount;
+    }
+
+    private int askAttemptCount() {
+        System.out.println("시도할 회수는 몇 회 인가요?");
+        try {
+            attemptCount = Integer.parseInt(br.readLine());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return attemptCount;
     }
 
     private int makeRandomCount() {
@@ -28,11 +47,16 @@ public class MonsterRace {
     }
 
     private void racePrint() {
+        System.out.println("실행결과");
         for (int monster = 0; monster < monsterCount ; monster++) {
-            for (int chance = 0; chance < tryCount ; chance++) {
-                System.out.print(conditionalForward());
-            }
+            attemptForward();
             System.out.println();
+        }
+    }
+
+    private void attemptForward(){
+        for (int chance = 0; chance < attemptCount ; chance++) {
+            System.out.print(conditionalForward());
         }
     }
 
@@ -43,4 +67,5 @@ public class MonsterRace {
         }
         return sb.toString();
     }
+
 }
