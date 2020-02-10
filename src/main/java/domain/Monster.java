@@ -1,5 +1,6 @@
 package domain;
 
+import java.util.Random;
 import java.util.Stack;
 
 public abstract class Monster implements Move {
@@ -39,6 +40,13 @@ public abstract class Monster implements Move {
         steps.add(random.nextInt(FORWARD_RANGE));
         attempt(tryCount - FORWARD);
     }
+
+    public void attempt(Random random, int tryCount) {
+        if (tryCount == 0) return;
+        steps.add(random.nextInt(FORWARD_RANGE));
+        attempt(random, tryCount - FORWARD);
+    }
+
 
     @Override
     public void start() {
