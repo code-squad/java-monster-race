@@ -7,14 +7,21 @@ public class Flight implements movable {
     private String name;
     private String type;
     private String moveLength;
+    private int ATTEMPT_COUNT;
 
-    public Flight(String name, String type){
+    public Flight(String name, String type, int ATTEMPT_COUNT){
         this.name = name;
         this.type = type;
+        this.ATTEMPT_COUNT = ATTEMPT_COUNT;
+        setMoveLength();
     }
 
     public String getMoveLength() {
         return moveLength;
+    }
+
+    public void setMoveLength() {
+        this.moveLength = "-".repeat(move(ATTEMPT_COUNT));
     }
 
     @Override

@@ -7,14 +7,21 @@ public class Esper implements movable {
     private String name;
     private String type;
     private String moveLength;
+    private int ATTEMPT_COUNT;
 
-    public Esper(String name, String type){
+    public Esper(String name, String type, int ATTEMPT_COUNT){
         this.name = name;
         this.type = type;
+        this.ATTEMPT_COUNT = ATTEMPT_COUNT;
+        setMoveLength();
     }
 
     public String getMoveLength() {
         return moveLength;
+    }
+
+    public void setMoveLength() {
+        this.moveLength = "-".repeat(move(ATTEMPT_COUNT));
     }
 
     @Override
@@ -26,7 +33,7 @@ public class Esper implements movable {
         return (int) IntStream.range(0, ATTEMPT_COUNT)
                 .map(index -> random.nextInt(bound))
                 .filter(randomValue -> randomValue >= moveCondition)
-                .map(randomValue -> random.nextInt(100)+1)
-                .reduce(0, 1, randomValue);
+                .map(randomValue -> random.nextInt(100) + 1)
+                .reduce(0, Integer::sum);
     }
 }
