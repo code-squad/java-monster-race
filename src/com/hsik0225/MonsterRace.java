@@ -9,7 +9,6 @@ public class MonsterRace {
     private Input input;
     private int MONSTER_COUNT;
     private int ATTEMPT_COUNT;
-    private ArrayList<String> MONSTERS_INFO;
     private List<Monster> monsters;
 
     public MonsterRace() {
@@ -37,8 +36,8 @@ public class MonsterRace {
     private void makeMonsters() {
         for (int index = 0; index < MONSTER_COUNT; index++) {
             System.out.println(OutputStrings.MONSTER_INFO_QUESTION);
-            MONSTERS_INFO.add(input.inputMonstersInfo());
-            Monster monster = new Monster();
+            String[] monsterInfo = input.inputMonstersInfo().replace(" ", "\\s*").split(" ");
+            Monster monster = new Monster(monsterInfo[0], monsterInfo[1]);
             monsters.add(monster);
         }
     }
