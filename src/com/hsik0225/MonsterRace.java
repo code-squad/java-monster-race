@@ -33,7 +33,7 @@ public class MonsterRace {
 
     private void makeMonsters() {
         for (int index = 0; index < MONSTER_COUNT; index++) {
-            String[] monsterInfo = input.inputMonstersInfo().replace(" ", "[\\s]*").split(",");
+            String[] monsterInfo = input.inputMonstersInfo().replaceAll("\\s*", "").split(",");
             Movable monster;
             if (monsterInfo.equals("달리기")) {
                 monster = new Runner(monsterInfo[0], monsterInfo[1]);
