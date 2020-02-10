@@ -1,0 +1,114 @@
+package com.han95210.codesquad.monsterRace.step3;
+
+import java.util.Scanner;
+
+public class MonsterRace {
+    private Scanner scanner;
+    MonsterRace monsterRace;
+
+
+    // 몬스터 수 정하기
+    private int getNumberOfMonster() {
+        scanner = new Scanner(System.in);
+
+        System.out.println("몇 마리의 몬스터가 경주하나요?");
+        return scanner.nextInt();
+    }
+
+    private String[] getMonstersName(int numberOfMonster, String[] monstersInfo) {
+        String[] monstersName = new String[numberOfMonster];
+
+        for (int i = 0; i < numberOfMonster; i++) {
+            String[] monsterInfo = monstersInfo[i].split(",");
+            monstersName[i] = monsterInfo[0];
+        }
+        return monstersName;
+    }
+
+    private String[] getMonstersSpecies(int numberOfMonster, String[] monstersInfo) {
+        String[] monstersSpecies = new String[numberOfMonster];
+
+        for (int i = 0; i < numberOfMonster; i++) {
+            String[] monsterInfo = monstersInfo[i].split(",");
+            monstersSpecies[i] = monsterInfo[1];
+        }
+        return monstersSpecies;
+    }
+
+    // 경주할 몬스터 이름과 종류를 입력받기
+    private String[] getMonsterNameAndSpecies(int numberOfMonster) {
+        scanner = new Scanner(System.in);
+        String[] monstersInfo = new String[numberOfMonster];
+
+        System.out.println("경주할 몬스터 이름과 종류를 입력하세요(쉼표(,)를 기준으로 구분).");
+        for (int i = 0; i < numberOfMonster; i++) {
+            monstersInfo[i] = scanner.nextLine();
+        }
+        return monstersInfo;
+    }
+
+    // 시도할 횟수 정하기
+    private int getNumberAttempts() {
+        scanner = new Scanner(System.in);
+
+        System.out.println("시도할 횟수는 몇 회 인가요?");
+        return scanner.nextInt();
+    }
+
+    private static String getRandomDash() {
+        String dashStr = "";
+        int randomNum = (int) (Math.random() * 10);
+        if (randomNum >= 4) {
+            dashStr = "-";
+        }
+        return dashStr;
+    }
+
+    // 횟수가 주어졌을 때 랜덤으로 문자열에 -(dash)로 채워넣기
+    private static String getDashStr(int numberAttempts) {
+        StringBuilder dashStr = new StringBuilder();
+
+        for (int i = 0; i < numberAttempts; i++) {
+            dashStr.append(getRandomDash());
+        }
+        return dashStr.toString();
+    }
+
+    // 몬스터가 진행한 만큼 출력
+    private void getForwardCount(String[] monstersInfo, String[] monstersName, String[] monstersSpecies,
+                                 int numberOfMonster, int numberAttempts) {
+        monstersName = getMonstersName(numberOfMonster,monstersInfo);
+        monstersSpecies = getMonstersSpecies(numberOfMonster,monstersInfo);
+
+        for (int i = 0; i < numberOfMonster; i++) {
+            System.out.println(monstersName[i] + " ["+monstersSpecies[i]+"] : " + getDashStr(numberAttempts));
+        }
+    }
+
+    private void start() {
+        monsterRace= new MonsterRace();
+        String[] monstersName;
+        String[] monstersSpecies;
+
+        System.out.println("<신나는 몬스터 레이스>");
+        // 몬스터 수 입력받기
+        int numberOfMonster = monsterRace.getNumberOfMonster();
+        System.out.println(numberOfMonster);
+
+        String[] monstersInfo = getMonsterNameAndSpecies(numberOfMonster);
+
+        // 몬스터 이름과 종류 입력받기
+        monstersName = monsterRace.getMonstersName(numberOfMonster, monstersInfo);
+        monstersSpecies = monsterRace.getMonstersSpecies(numberOfMonster, monstersInfo);
+
+        // 시도할 횟수 입력받기
+        int numberAttempts = monsterRace.getNumberAttempts();
+        System.out.println(numberAttempts);
+        monsterRace.getForwardCount(monstersInfo,monstersName,monstersSpecies,numberOfMonster, numberAttempts);
+    }
+
+    public static void main(String[] args) {
+        MonsterRace monsterRace = new MonsterRace();
+        monsterRace.start();
+    }
+}
