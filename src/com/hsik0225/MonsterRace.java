@@ -16,7 +16,6 @@ public class MonsterRace {
 
     public void startGame() {
         setGame();
-        makeMonsters();
         startRace();
     }
 
@@ -25,6 +24,7 @@ public class MonsterRace {
         System.out.println(OutputStrings.MONSTER_COUNT_QUESTION);
         MONSTER_COUNT = input.inputDigit();
 
+        System.out.println(OutputStrings.MONSTER_INFO_QUESTION);
         makeMonsters();
 
         System.out.println(OutputStrings.ATTEMPT_COUNT_QUESTION);
@@ -33,8 +33,7 @@ public class MonsterRace {
 
     private void makeMonsters() {
         for (int index = 0; index < MONSTER_COUNT; index++) {
-            System.out.println(OutputStrings.MONSTER_INFO_QUESTION);
-            String[] monsterInfo = input.inputMonstersInfo().replace(" ", "\\s*").split(" ");
+            String[] monsterInfo = input.inputMonstersInfo().replace(" ", "[\\s]*").split(",");
             Movable monster;
             if (monsterInfo.equals("달리기")) {
                 monster = new Runner(monsterInfo[0], monsterInfo[1]);
@@ -50,7 +49,7 @@ public class MonsterRace {
     private void startRace() {
         System.out.println(OutputStrings.RACE_RESULT);
         for (int i = 0; i < MONSTER_COUNT; i++) {
-            System.out.printf("%s [%s] : %s", monsters.get(i).name(), monsters.get(i).type(), monsters.get(i).moveLength());
+            System.out.printf("%s [%s] : %s\n", monsters.get(i).name(), monsters.get(i).type(), monsters.get(i).moveLength());
         }
         System.out.println(OutputStrings.GAME_EXIT);
     }
