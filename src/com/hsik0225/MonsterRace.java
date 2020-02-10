@@ -7,28 +7,24 @@ import java.util.stream.IntStream;
 
 public class MonsterRace {
     private Input input;
-    private Output output;
     private List<Monster> monsters;
 
     public MonsterRace() {
         input = new Input();
-        output = new Output();
         monsters = new ArrayList<>();
     }
 
     public void startGame() {
         setGame();
-        makeMonsters();
-        startRace();
+//        makeMonsters();
+//        startRace();
     }
 
     private void setGame() {
-        output.startMonsterRace();
-
-        output.askMONSTERS_COUNT();
+        System.out.println(OutputStrings.START_MONSTER_RACING);
+        System.out.println(OutputStrings.ASK_MONSTER_COUNT);
         input.setMONSTER_COUNT();
-
-        output.askCHALLENGE_COUNT();
+        System.out.println(OutputStrings.ASK_ATTEMPT_COUNT);
         input.setCHALLENGE_COUNT();
     }
 
@@ -40,11 +36,11 @@ public class MonsterRace {
     }
 
     private void startRace() {
-        output.raceResult();
+//        output.raceResult();
         for (int i = 0; i < input.getMONSTER_COUNT(); i++) {
             monsters.get(i).move(setNumOfMove(10, 4));
             String moveLength = monsters.get(i).getMoveLength();
-            output.moveLength(moveLength);
+//            output.moveLength(moveLength);
         }
     }
 
