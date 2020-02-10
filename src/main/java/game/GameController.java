@@ -1,20 +1,25 @@
 package game;
 
-// 게임의 흐름을 컨트롤 한다.
+import java.util.List;
+
+// 게임 전체 로직을 진행하는 역할
 public class GameController {
+    private Input input;
+    private Output output;
+    private List<Monster> monsters;
 
-    // 게임을 시작하기 위한 기본값(몬스터의 수, 라운드 횟수) 설정
-    public void init() {
-
-    }
-
-    // 게임 컨트롤러에 지정된 라운드 수 만큼 라운드를 반복 진행한다.
-    public void racingStart() {
+    // 게임을 시작하기 위해 필요한 정보를 사용자로부터 초기화한다.
+    public void initialize() {
 
     }
 
-    // 라운드 결과를 응답 한다.
-    public void printResult() {
+    // 게임을 시작한다.
+    public void race() {
+
+    }
+
+    // 시합결과를 출력한다.
+    public void displayResult() {
 
     }
 }
