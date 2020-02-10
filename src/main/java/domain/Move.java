@@ -8,7 +8,7 @@ public interface Move {
 
     void attempt(int tryCount);
 
-    void isForward();
+    void forward();
 
     void start();
 }

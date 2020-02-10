@@ -10,14 +10,14 @@ public class Flying extends Monster {
 
 
     @Override
-    public void isForward() {
+    public void forward() {
         if (steps.isEmpty()) return;
         if (steps.pop() >= FORWARD_CONDITION) step += (FORWARD * FLYING_BONUS);
-        isForward();
+        forward();
     }
 
     @Override
     public String toString() {
-        return this.name + " " + "[비행]" + " : " + makeStep(step, new StringBuilder());
+        return this.name + " " + "[비행]" + " : " + makeStep(step);
     }
 }

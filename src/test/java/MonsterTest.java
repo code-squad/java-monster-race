@@ -1,44 +1,48 @@
 import domain.Flying;
 import domain.Psychic;
 import domain.Running;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.*;
+
 
 public class MonsterTest {
 
     String crong = "크롱";
     String jk = "JK";
     String honux = "호눅스";
-    int attemptCount = 10;
+    int tryCount = 10;
 
     Running running;
     Flying flier;
     Psychic psychic;
 
-    @Before
-    public void createObject() {
+    @BeforeEach
+    public void 몬스터객체생성() {
         running = new Running(crong);
         flier = new Flying(jk);
         psychic = new Psychic(honux);
     }
 
     @Test
-    public void countAttempt() {
-        running.attempt(attemptCount);
-        assertEquals(attemptCount, running.getSteps().size());
+    public void 게임시도횟수() {
+        running.attempt(tryCount);
+        assertThat(running.getSteps().size()).isEqualTo(tryCount);
 
-        flier.attempt(attemptCount);
-        assertEquals(attemptCount, flier.getSteps().size());
-
-        psychic.attempt(attemptCount);
-        assertEquals(attemptCount, psychic.getSteps().size());
+//        assertEquals(tryCount, running.getSteps().size());
+//
+//        flier.attempt(tryCount);
+//        assertEquals(tryCount, flier.getSteps().size());
+//
+//        psychic.attempt(tryCount);
+//        assertEquals(tryCount, psychic.getSteps().size());
 
     }
 
     @Test
-    public void getName(){
+    public void getName() {
         assertEquals(crong, running.getName());
         assertEquals(jk, flier.getName());
         assertEquals(honux, psychic.getName());

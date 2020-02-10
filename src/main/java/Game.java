@@ -1,17 +1,15 @@
-import domain.Flying;
-import domain.Psychic;
-import domain.Running;
+import domain.*;
 import util.Message;
-import domain.Monster;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 public class Game {
 
-    private Scanner scanner;
     private BufferedReader bufferedReader;
     private List<Monster> monsters;
     private int monsterCount, tryCount;
@@ -30,17 +28,17 @@ public class Game {
     }
 
     private void readyGame() throws IOException {
-        message.startMessage();
+        message.printStartMessage();
 
-        createScanner();
+        createBufferedReader();
 
-        message.monsterCountMessage();
+        message.printMonsterCountMessage();
         inputMonsterCount();
 
-        message.nameAndTypeMessage();
+        message.printNameAndTypeMessage();
         inputNameAndType(this.monsterCount);
 
-        message.attemptCountMessage();
+        message.printTryCountMessage();
         inputTryCount();
     }
 
@@ -48,27 +46,26 @@ public class Game {
         int index = 0;
         int maxStep = 0;
 
-        message.resultMessage();
+        message.printResultMessage();
 
         printMonsterForward(index);
         findWinner(maxStep, index);
     }
 
-    private void closeGame() {
+    private void closeGame() throws IOException {
         printWinner();
-        message.closeMessage();
-        scanner.close();
+        message.printCloseMessage();
+        bufferedReader.close();
     }
 
 
-    public void createScanner() {
-        this.scanner = new Scanner(System.in);
+    public void createBufferedReader() {
         this.bufferedReader = new BufferedReader(new InputStreamReader(System.in));
     }
 
     private void inputMonsterCount() throws IOException {
         monsterCount = Optional.ofNullable(Integer.parseInt(bufferedReader.readLine())).orElse(0);
-        if (monsterCount == 0 || monsterCount < 0) throw new IllegalArgumentException("올바르지 않은 몬스터 갯수 입력입니다");
+        if (monsterCount == 0 || monsterCount < 0) throw new IllegalArgumentException("몬스터 숫자는 음수 혹은 0이 될 수 없습니다.");
     }
 
     private void inputNameAndType(int monsterCount) throws IOException {
@@ -79,15 +76,15 @@ public class Game {
         String name = input[0];
         String type = input[1].trim();
         if (!type.equals("running") && !type.equals("flying") && !type.equals("psychic"))
-            throw new IllegalArgumentException("올바르지 않은 종류 입력입니다");
+            throw new IllegalArgumentException("올바르지 않은 type 입력입니다. (예시 : running, flying, psychic)");
 
-        createMonsters(name, type);
+        createMonster(name, type);
         inputNameAndType(monsterCount - 1);
     }
 
     private void inputTryCount() throws IOException {
         tryCount = Optional.ofNullable(Integer.parseInt(bufferedReader.readLine())).orElse(0);
-        if (tryCount == 0 || tryCount < 0) throw new IllegalArgumentException("올바르지 않은 시도 횟수 입력입니다");
+        if (tryCount == 0 || tryCount < 0) throw new IllegalArgumentException("시도 횟수는 음수 혹은 0이 될 수 없습니다.");
         int index = 0;
         addTryCount(index);
     }
@@ -98,10 +95,10 @@ public class Game {
         addTryCount(index + 1);
     }
 
-    private void createMonsters(String name, String type) {
-        if (type.equals("running")) monsters.add(new Running(name));
-        else if (type.equals("flying")) monsters.add(new Flying(name));
-        else if (type.equals("psychic")) monsters.add(new Psychic(name));
+    private void createMonster(String name, String type) {
+        if (type.equals(MonsterType.RUNNING.getName())) monsters.add(new Running(name));
+        if (type.equals(MonsterType.FLYING.getName())) monsters.add(new Flying(name));
+        if (type.equals(MonsterType.PSYCHIC.getName())) monsters.add(new Psychic(name));
     }
 
     private void printMonsterForward(int index) {
@@ -120,6 +117,6 @@ public class Game {
     }
 
     private void printWinner() {
-        message.winnerMessage(winner.getName());
+        message.printCelebrationMessage(winner.getName());
     }
 }

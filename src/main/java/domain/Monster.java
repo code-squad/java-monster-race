@@ -6,16 +6,17 @@ public abstract class Monster implements Move {
     final int FORWARD_RANGE = 10;
     final int FORWARD = 1;
 
-    String name;
-    Stack<Integer> steps;
-    int step;
+    protected String name;
+    protected Stack<Integer> steps;
+    protected int step;
 
     public Monster(String name) {
         this.name = name;
         this.steps = new Stack<>();
     }
 
-    String makeStep(int step, StringBuilder stringBuilder) {
+    protected String makeStep(int step) {
+        StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < step; i++) stringBuilder.append('-');
         return stringBuilder.toString();
     }
@@ -41,7 +42,7 @@ public abstract class Monster implements Move {
 
     @Override
     public void start() {
-        isForward();
+        forward();
         print();
     }
 

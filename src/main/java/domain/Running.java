@@ -8,14 +8,14 @@ public class Running extends Monster {
     }
 
     @Override
-    public void isForward() {
+    public void forward() {
         if (steps.isEmpty()) return;
         if (steps.pop() >= FORWARD_CONDITION) step += FORWARD;
-        isForward();
+        forward();
     }
 
     @Override
     public String toString() {
-        return this.name + " " + "[달리기]" + " : " + makeStep(step, new StringBuilder());
+        return this.name + " " + "[달리기]" + " : " + makeStep(step);
     }
 }

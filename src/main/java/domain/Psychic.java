@@ -13,14 +13,14 @@ public class Psychic extends Monster {
     }
 
     @Override
-    public void isForward() {
+    public void forward() {
         if (steps.isEmpty()) return;
         if (steps.pop() == FORWARD_CONDITION) step += randomForward();
-        isForward();
+        forward();
     }
 
     @Override
     public String toString() {
-        return this.name + " " + "[에스퍼]" + " : " + makeStep(step, new StringBuilder());
+        return this.name + " " + "[에스퍼]" + " : " + makeStep(step);
     }
 }

@@ -1,9 +1,10 @@
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.Random;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 
 class RandomNumber {
     private Random random;
@@ -33,7 +34,7 @@ class DeterministicRandom extends Random {
 public class RandomTest {
     RandomNumber randomNumber;
 
-    @Before
+    @BeforeEach
     public void 랜덤숫자생성() {
         DeterministicRandom deterministicRandom = new DeterministicRandom();
         randomNumber = new RandomNumber(deterministicRandom);
