@@ -8,7 +8,7 @@ enum OutputStrings {
     RACE_RESULT("<실행 결과>"),
     GAME_EXIT("게임을 종료합니다."),
 
-    INPUT_DIGIT("1~9 사이의 숫자를 입력해주세요"),
+    INPUT_DIGIT("1이상의 정수를 입력해주세요"),
     INPUT_TYPE("[이름, 타입] 의 형식으로 입력해주세요");
 
     private final String message;
