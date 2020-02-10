@@ -1,43 +1,48 @@
+import domain.Flying;
+import domain.Psychic;
+import domain.Running;
 import org.junit.Before;
 import org.junit.Test;
-
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
-
 
 import static org.junit.Assert.*;
 
 public class MonsterTest {
 
-    int monsterCount = 3;
-    int attemptCount = 5;
-    Game game = new Game();
+    String crong = "크롱";
+    String jk = "JK";
+    String honux = "호눅스";
+    int attemptCount = 10;
+
+    Running running;
+    Flying flier;
+    Psychic psychic;
 
     @Before
-    public void monsterCount() {
-        InputStream in = new ByteArrayInputStream(String.valueOf(monsterCount).getBytes());
-        System.setIn(in);
-        game.createScanner();
-        game.inputMonsterCount();
-
-        assertEquals(game.monsterCount, this.monsterCount);
-
+    public void createObject() {
+        running = new Running(crong);
+        flier = new Flying(jk);
+        psychic = new Psychic(honux);
     }
 
-    @Before
-    public void attemptCount() {
-        InputStream in = new ByteArrayInputStream(String.valueOf(attemptCount).getBytes());
-        System.setIn(in);
-        game.createScanner();
-        game.inputAttemptCount();
+    @Test
+    public void countAttempt() {
+        running.attempt(attemptCount);
+        assertEquals(attemptCount, running.getSteps().size());
 
-        assertEquals(game.attemptCount, this.attemptCount);
+        flier.attempt(attemptCount);
+        assertEquals(attemptCount, flier.getSteps().size());
+
+        psychic.attempt(attemptCount);
+        assertEquals(attemptCount, psychic.getSteps().size());
 
     }
 
     @Test
-    public void createMonster() {
-        game.startGame();
+    public void getName(){
+        assertEquals(crong, running.getName());
+        assertEquals(jk, flier.getName());
+        assertEquals(honux, psychic.getName());
     }
+
 
 }
