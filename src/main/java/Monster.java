@@ -18,5 +18,7 @@ public class Monster {
 
     public int getMoves() { return this.moves; }
 
-    public void addMoves() { this.moves++; }
+    public void addMoves(int number) {
+        this.moves += number;
+    }
 }

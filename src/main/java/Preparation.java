@@ -34,13 +34,14 @@ public class Preparation {
     }
 
     public void getNameAndTypeOfMonsters() {
-        System.out.println("Enter each monster's name and type");
-        Scanner scanner = new Scanner(System.in);
-        String[] slicedInput = scanner.nextLine().split(",");
-        String monsterName = slicedInput[0];
-        String monsterType = slicedInput[1];
-        System.out.println(monsterName + " : " + monsterType);
-        monsters.add(new Monster(monsterName, monsterType));
+        System.out.println("Enter each monster's name and type (type : 달리기, 비행, 에스퍼)");
+        for(int i = 0; i < numOfMonster; i++) {
+            Scanner scanner = new Scanner(System.in);
+            String[] slicedInput = scanner.nextLine().split(",");
+            String monsterName = slicedInput[0].trim();
+            String monsterType = slicedInput[1].trim();
+            monsters.add(new Monster(monsterName, monsterType));
+        }
     }
 
     public void getNumberOfTries() {

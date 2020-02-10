@@ -6,12 +6,19 @@ public class Game {
         prep.getNameAndTypeOfMonsters();
         prep.getNumberOfTries();
 
-        Movement movement = new Movement(prep.getNumOfMonster(), prep.getNumOfTries(), prep.getPlayerList());
-        movement.moveAllMonstersFullTime(prep.getPlayerList());
+        MonsterType mt = new MonsterType(prep.getNumOfTries());
+        mt.matchAllType(prep.getPlayerList());
+
+
+//        Movement movement = new Movement(prep.getNumOfMonster(), prep.getNumOfTries(), prep.getPlayerList());
+//        movement.moveAllMonstersFullTime(prep.getPlayerList());
 
         Result result = new Result();
         result.printAllMonsterLocation(prep.getPlayerList());
         end();
+        for(Monster m : prep.getPlayerList()) {
+            System.out.println(m.getName() + " : " + m.getMoves() + " : " + m.getType());
+        }
     }
 
     public void end() {
