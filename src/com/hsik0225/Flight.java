@@ -6,10 +6,11 @@ public class Flight extends Monster {
     }
 
     @Override
-    public void move(int ATTEMPT_COUNT) {
+    public void move(int attemptCount) {
         int bound = 10;
-        int moveCondition = 4;
-        int numOfMoves = (int)makeRandomValues(ATTEMPT_COUNT, bound, moveCondition).count()*3;
+        int moveCondition = 6;
+        int numOfMoves = (int)makeRandomValues(attemptCount, bound, moveCondition).count()*3;
+
         setMoveLength("-".repeat(numOfMoves));
     }
 }

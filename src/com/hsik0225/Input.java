@@ -13,13 +13,13 @@ public class Input {
         scanner = new Scanner(System.in);
     }
 
-    private String inputLine(Pattern pattern, OutputStrings outputString){
+    private String inputLine(Pattern pattern, OutputStrings outputString) {
         String inputLine = scanner.nextLine();
-        Matcher matcher =  pattern.matcher(inputLine);
+        Matcher matcher = pattern.matcher(inputLine);
         while (!matcher.matches()) {
             System.out.println(outputString);
             inputLine = scanner.nextLine();
-            matcher =  pattern.matcher(inputLine);
+            matcher = pattern.matcher(inputLine);
         }
         return inputLine;
     }
@@ -30,7 +30,7 @@ public class Input {
         return Integer.parseInt(digit);
     }
 
-    public String inputMonstersInfo(){
+    public String inputMonstersInfo() {
         OutputStrings outputString = OutputStrings.INPUT_TYPE;
         return inputLine(MONSTER_INFO_PATTERN, outputString);
     }

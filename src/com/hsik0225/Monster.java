@@ -6,10 +6,12 @@ public abstract class Monster {
     private String name;
     private String type;
     private String moveLength;
+    protected Random random;
 
     public Monster(String name, String type) {
         this.name = name;
         this.type = type;
+        random = new Random();
     }
 
     public void setMoveLength(String moveLength) {
@@ -29,7 +31,6 @@ public abstract class Monster {
     }
 
     public IntStream makeRandomValues(int ATTEMPT_COUNT, int bound, int moveCondition){
-        Random random = new Random();
         return IntStream.range(0, ATTEMPT_COUNT)
                 .map(index -> random.nextInt(bound))
                 .filter(randomValue -> randomValue >= moveCondition);
