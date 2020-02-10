@@ -1,6 +1,7 @@
 package com.company;
 
 import java.util.ArrayList;
+import java.util.stream.IntStream;
 
 public class Racing {
     Monster[] monsters;
@@ -12,25 +13,27 @@ public class Racing {
         this.attemptCount = attemptCount;
     }
 
-    public void setMonsterCount(int monsterCount) {
-        this.monsterCount = monsterCount;
-    }
-
-    public void setAttemptCount(int attemptCount) {
-        this.attemptCount = attemptCount;
-    }
-
     public void createMonster(ArrayList<String> monsterinformation) {
         monsters = new Monster[this.monsterCount];
         for (int each = 0; each < this.monsterCount; each++) {
-            this.monsters[each] = new Monster(monsterinformation, each);
+            //속성 체크 해서 new Esper 같이 넣어 생성?
+            int monsterAttribute = each * 2 + 1;
+            switch (Attribute.valueOf(monsterinformation.get(monsterAttribute))){
+                case 달리기:
+                    this.monsters[each] = new Run(monsterinformation, each);
+                    break;
+                case 비행:
+                    this.monsters[each] = new Fly(monsterinformation, each);
+                    break;
+                case 에스퍼:
+                    this.monsters[each] = new Esper(monsterinformation, each);
+                    break;
+            }
         }
     }
 
     public void runRacing() {
-        for (int number = 0; number < monsters.length; number++) {
-            monsters[number].runMonster(this.attemptCount);
-        }
+        IntStream.range(0, monsters.length).forEach(each -> monsters[each].runMonster(this.attemptCount));
     }
 
     public Monster[] endRacing() {

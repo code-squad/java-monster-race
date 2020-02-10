@@ -17,5 +17,6 @@ public class Main {
         racing.createMonster(monsterInformation);
         racing.runRacing();
         menu.showResult(racing.endRacing());
+        menu.br.close();
     }
 }
