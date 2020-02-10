@@ -3,7 +3,7 @@ package com.company;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Fly extends Monster implements MoveInterface {
+public class Fly extends Monster implements MoveInterface{
     Fly(ArrayList monsterInformation, int each) {
         super(monsterInformation, each);
     }

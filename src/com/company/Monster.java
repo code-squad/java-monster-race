@@ -2,7 +2,7 @@ package com.company;
 
 import java.util.ArrayList;
 
-public abstract class Monster  {
+public abstract class Monster {
     String stepCount;
     String name;
     String attribute;
@@ -14,5 +14,9 @@ public abstract class Monster  {
         this.attribute = (String) monsterInformation.get(attribute);
     }
 
-    public abstract void runMonster(int attemptCount);
+    //public abstract void runMonster(int attemptCount);
+
+    public abstract boolean judgeRandomNumber(int randomNumber);
+
+    public abstract String countMonsterStep(boolean checkStep);
 }

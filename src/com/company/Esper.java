@@ -3,7 +3,7 @@ package com.company;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Esper extends Monster implements MoveInterface {
+public class Esper extends Monster implements MoveInterface{
     Esper(ArrayList monsterInformation, int each) {
         super(monsterInformation, each);
     }
@@ -26,11 +26,12 @@ public class Esper extends Monster implements MoveInterface {
     @Override
     public String countMonsterStep(boolean checkStep) {
         String step = "";
-        if(!checkStep)
+        if (!checkStep) {
             return step;
+        }
         Random random = new Random();
         int rand = random.nextInt(100) + 1;
-        for(int i=0; i<rand; i++){
+        for (int i = 0; i < rand; i++) {
             step += "-";
         }
         return step;

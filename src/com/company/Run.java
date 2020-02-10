@@ -3,7 +3,7 @@ package com.company;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Run extends Monster implements MoveInterface {
+public class Run extends Monster implements MoveInterface{
 
     Run(ArrayList monsterInformation, int each) {
         super(monsterInformation, each);
