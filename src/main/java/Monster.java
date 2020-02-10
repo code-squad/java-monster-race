@@ -1,21 +1,32 @@
-import java.util.Random;
+import movestrategy.MoveStrategy;
 
 public class Monster {
-    private String positionString;
-    private Random random;
+    private String name;
+    private MoveStrategy moveStrategy;
+    private int position;
 
-    public Monster() {
-        positionString = "";
-        random = new Random();
+    public Monster(String name, MoveStrategy moveStrategy) {
+        this.name = name;
+        this.moveStrategy = moveStrategy;
+        position = 0;
     }
 
     public void moveIfConditionSatisfied() {
-        if (random.nextInt(10) >= 4) { // exclusive bound
-            positionString += "-";
-        }
+        position += moveStrategy.tilesMoved();
     }
 
-    public String getPositionString() {
-        return positionString;
+    public String name() {
+        return name;
+    }
+
+    public int position() {
+        return position;
+    }
+
+    public String resultString() {
+        return String.format("%s [%s] : %s",
+                name,
+                moveStrategy.name(),
+                "-".repeat(position));
     }
 }

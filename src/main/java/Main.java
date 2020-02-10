@@ -1,10 +1,10 @@
 public class Main {
     public static void main(String[] args) {
-        InputHandler in = new InputHandler();
-        int numMonster = in.readNumMonster();
-        int numRound = in.readNumRound();
+        Race race = new Race();
+        RaceInitializer raceInitializer = new RaceInitializer();
 
-        Playground pg = new Playground(numMonster, numRound);
-        pg.playGame();
+        raceInitializer.initializeRace(race);
+        race.start();
+        race.displayResult();
     }
 }
