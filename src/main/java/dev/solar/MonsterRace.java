@@ -79,7 +79,9 @@ public class MonsterRace {
     }
 
     private void move() {
-        IntStream.range(0, attemptCount).forEach(i -> monsters.forEach(Monster::move));
+        for (int i = 0; i < attemptCount; i++) {
+            monsters.forEach(Monster::move);
+        }
     }
 
     private void rank() {
