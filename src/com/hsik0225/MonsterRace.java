@@ -7,7 +7,7 @@ public class MonsterRace {
     private Input input;
     private int MONSTER_COUNT;
     private int ATTEMPT_COUNT;
-    private List<Movable> monsters;
+    private List<Monster> monsters;
 
     public MonsterRace() {
         input = new Input();
@@ -35,7 +35,7 @@ public class MonsterRace {
     private void makeMonsters() {
         for (int index = 0; index < MONSTER_COUNT; index++) {
             String[] monsterInfo = input.inputMonstersInfo().replaceAll("\\s*", "").split(",");
-            Movable monster;
+            Monster monster;
             if (monsterInfo[1].equals("달리기")) {
                 monster = new Runner(monsterInfo[0], monsterInfo[1]);
             } else if (monsterInfo[1].equals("비행")) {
@@ -51,7 +51,7 @@ public class MonsterRace {
         System.out.println(OutputStrings.RACE_RESULT);
         for (int i = 0; i < MONSTER_COUNT; i++) {
             monsters.get(i).move(ATTEMPT_COUNT);
-            System.out.printf("%s [%s] : %s\n", monsters.get(i).name(), monsters.get(i).type(), monsters.get(i).moveLength());
+            System.out.printf("%s [%s] : %s\n", monsters.get(i).getName(), monsters.get(i).getType(), monsters.get(i).getMoveLength());
         }
         System.out.println(OutputStrings.GAME_EXIT);
     }
