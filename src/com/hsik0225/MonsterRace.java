@@ -16,15 +16,15 @@ public class MonsterRace {
 
     public void startGame() {
         setGame();
-//        makeMonsters();
-//        startRace();
+        makeMonsters();
+        startRace();
     }
 
     private void setGame() {
-        System.out.println(OutputStrings.START_MONSTER_RACING);
-        System.out.println(OutputStrings.ASK_MONSTER_COUNT);
+        System.out.println(OutputStrings.GAME_START);
+        System.out.println(OutputStrings.MONSTER_COUNT_QUESTION);
         input.setMONSTER_COUNT();
-        System.out.println(OutputStrings.ASK_ATTEMPT_COUNT);
+        System.out.println(OutputStrings.ATTEMPT_COUNT_QUESTION);
         input.setCHALLENGE_COUNT();
     }
 
@@ -36,12 +36,13 @@ public class MonsterRace {
     }
 
     private void startRace() {
-//        output.raceResult();
+        System.out.println(OutputStrings.RACE_RESULT);
         for (int i = 0; i < input.getMONSTER_COUNT(); i++) {
             monsters.get(i).move(setNumOfMove(10, 4));
             String moveLength = monsters.get(i).getMoveLength();
-//            output.moveLength(moveLength);
+            System.out.println(moveLength);
         }
+        System.out.println(OutputStrings.GAME_EXIT);
     }
 
     private int setNumOfMove(int bound, int moveCondition) {

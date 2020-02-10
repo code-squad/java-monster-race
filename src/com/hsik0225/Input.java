@@ -14,7 +14,7 @@ public class Input {
     private int inputDigit() {
         String inputLine = scanner.nextLine();
         while (!inputLine.matches("[1-9][0-9]*")) {
-            System.out.println("1~9 사이의 숫자를 입력해주세요");
+            System.out.println(OutputStrings.INPUT_DIGIT);
             inputLine = scanner.nextLine();
         }
         return Integer.parseInt(inputLine);
