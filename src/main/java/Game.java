@@ -1,16 +1,15 @@
 public class Game {
 
     public void play() {
-        Preparation prep = new Preparation();
+        RacePreparation prep = new RacePreparation();
         prep.getNumberOfMonsters();
         prep.getNameAndTypeOfMonsters();
         prep.getNumberOfTries();
 
-        MonsterType mt = new MonsterType(prep.numberOfTries());
-        mt.matchAllType(prep.monsterList());
+        RaceContest raceContest = new RaceContest(prep.numberOfTries());
+        raceContest.matchAllType(prep.monsterList());
 
-
-        Result result = new Result();
+        RaceResult result = new RaceResult();
         result.printAllMonsterLocation(prep.monsterList());
         end();
         result.printWinner(prep.monsterList());

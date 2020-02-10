@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class Preparation {
+public class RacePreparation {
     Scanner scanner;
     private int numOfMonster;
     private int numOfTries;
@@ -16,7 +16,7 @@ public class Preparation {
         return this.numOfTries;
     }
 
-    public Preparation() {
+    public RacePreparation() {
         this.scanner = new Scanner(System.in);
     }
 

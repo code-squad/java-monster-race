@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class Result {
+public class RaceResult {
 
     public void printOneMonsterLocation(Monster monster) {
         StringBuilder sb = new StringBuilder();

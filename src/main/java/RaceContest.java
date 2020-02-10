@@ -1,10 +1,10 @@
 import java.util.List;
 import java.util.Random;
 
-public class MonsterType {
+public class RaceContest {
     int numberOfRounds;
 
-    public MonsterType(int numberOfRounds) {
+    public RaceContest(int numberOfRounds) {
         this.numberOfRounds = numberOfRounds;
     }
 
