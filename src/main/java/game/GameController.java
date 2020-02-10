@@ -28,13 +28,20 @@ public class GameController {
 
     // 게임을 시작한다.
     public void race() {
-        for(Monster monster: monsters) {
-            monster.move();
+        while(nRound>=0) {
+            playRound();
         }
     }
 
     // 시합결과를 출력한다.
     public void displayResult() {
         output.displayResult(monsters);
+    }
+
+    private void playRound() {
+        for(Monster monster: monsters) {
+            monster.move();
+        }
+        nRound--;
     }
 }
