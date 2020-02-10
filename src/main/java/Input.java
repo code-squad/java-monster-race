@@ -4,6 +4,10 @@ public class Input {
 
     private Scanner scanner = new Scanner(System.in);
 
+    public void opening() {
+        System.out.println("<스릴 만점! 몬스터 경주>");
+    }
+
     public int getCountOfMonsters() {
         System.out.println("출전할 몬스터는 몇 마리?");
         return getPositiveInt();
