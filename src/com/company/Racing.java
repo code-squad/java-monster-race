@@ -21,23 +21,24 @@ public class Racing {
     }
 
     public void choiceMonsterAttribute(ArrayList<String> monsterinformation, int each) {
-        int monsterAttribute = each * 2 + 1;
-        MonsterAttribute monsterType = MonsterAttribute.valueOf(monsterinformation.get(monsterAttribute));
+        int monsterNameIndex = each * 2;
+        int monsterAttributeIndex = each * 2 + 1;
+
+        MonsterAttribute monsterType = MonsterAttribute.valueOf(monsterinformation.get(monsterAttributeIndex));
         switch (monsterType) {
             case 달리기:
-                this.monsters[each] = new Run(monsterinformation, each);
+                this.monsters[each] = new Run(monsterinformation.get(monsterNameIndex), monsterType);
                 break;
             case 비행:
-                this.monsters[each] = new Fly(monsterinformation, each);
+                this.monsters[each] = new Fly(monsterinformation.get(monsterNameIndex), monsterType);
                 break;
             case 에스퍼:
-                this.monsters[each] = new Esper(monsterinformation, each);
+                this.monsters[each] = new Esper(monsterinformation.get(monsterNameIndex), monsterType);
                 break;
             default:
-                throw new IllegalStateException("Unexpected value: " + MonsterAttribute.valueOf(monsterinformation.get(monsterAttribute)));
+                throw new IllegalStateException("Unexpected value: " + MonsterAttribute.valueOf(monsterinformation.get(monsterAttributeIndex)));
         }
     }
-
 
     public void runRacing() {
         IntStream.range(0, monsters.length).forEach(each -> monsters[each].runMonster(this.attemptCount));

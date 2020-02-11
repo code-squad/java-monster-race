@@ -1,22 +1,15 @@
 package com.company;
 
-import java.util.ArrayList;
-
-public abstract class Monster {
-    String stepCount;
+public class Monster implements MoveInterface{
+    int stepCount;
     String name;
-    String attribute;
+    MonsterAttribute attribute;
 
-    Monster(ArrayList monsterInformation, int each) {
-        int name = each * 2;
-        int attribute = each * 2 + 1;
-        this.name = (String) monsterInformation.get(name);
-        this.attribute = (String) monsterInformation.get(attribute);
+    Monster(String monsterName, MonsterAttribute monsterAttribute) {
+        this.name = monsterName;
+        this.attribute = monsterAttribute;
     }
 
-    //public abstract void runMonster(int attemptCount);
-
-    public abstract boolean judgeRandomNumber(int randomNumber);
-
-    public abstract String countMonsterStep(boolean checkStep);
+    @Override
+    public void runMonster(int attemptCount) { }
 }
