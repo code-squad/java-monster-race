@@ -64,7 +64,8 @@ public class MonsterGame {
     }
 
     private String formatGameResult() {
-        return gameResult.stream().map(monster -> formatMonsterLocation(monster.position())).collect(Collectors.joining("\n"));
+        return gameResult.stream().map(monster -> monster.name + "[" + monster.type + "] : " + formatMonsterLocation(monster.position()))
+                .collect(Collectors.joining("\n"));
     }
 
     private String formatMonsterLocation(int times) {
