@@ -2,13 +2,8 @@ package com.beemiel.monsterrace;
 
 public class Running extends Monster {
 
-    public Running(String name, String type) {
-        super(name, type);
-    }
-
-    @Override
-    public boolean isMove() {
-        return random.nextInt(10) > 3;
+    public Running(String type){
+        super(type,4);
     }
 
     @Override
