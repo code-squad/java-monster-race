@@ -6,11 +6,12 @@ public class MonsterRaceGame {
 
         InputHandler inputHandler = new InputHandler(new Scanner(System.in));
         System.out.println(Message.startLine.getMessage());
-        int trialNumber = inputHandler.getTrials();
-        int monsterNumber = inputHandler.getMonsterNumber();
+        int trials = inputHandler.getTrials();
+        int monsters = inputHandler.getMonsterNumber();
 
-        Status status = new Status();
+        Location location = new Location(trials, monsters);
+        location.showStatus();
+
         System.out.println(Message.endLine.getMessage());
-        System.out.println(status.showStatus(monsterNumber, trialNumber));
     }
 }
