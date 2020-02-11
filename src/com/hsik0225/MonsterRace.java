@@ -33,9 +33,11 @@ public class MonsterRace {
     }
 
     private void makeMonsters() {
+        String replaceRegex = "\\s*";
+        String splitRegex = ",";
         for (int index = 0; index < monsterCount; index++) {
-            String[] monsterInfo = input.inputMonstersInfo().replaceAll("\\s*", "").split(",");
-            MonsterType monsterType = MonsterType;
+            String[] monsterInfo = input.inputMonstersInfo().replaceAll(replaceRegex, "").split(splitRegex);
+            MonsterType monsterType = MonsterType.;
             Monster monster = new Monster(monsterInfo[0], monsterType);
             monsters.add(monster);
         }
