@@ -1,10 +1,13 @@
 import domain.Flying;
+import domain.Monster;
 import domain.Psychic;
 import domain.Running;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Random;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -23,6 +26,30 @@ class RandomRunner extends Random {
     }
 }
 
+class RandomFlying extends Random {
+
+    public RandomFlying() {
+        super();
+    }
+
+    @Override
+    public int nextInt(int bound) {
+        return 7;
+    }
+}
+
+class RandomPsychic extends Random {
+
+    public RandomPsychic() {
+        super();
+    }
+
+    @Override
+    public int nextInt(int bound) {
+        return 9;
+    }
+}
+
 
 public class MonsterTest {
 
@@ -34,13 +61,26 @@ public class MonsterTest {
     Running running;
     Flying flier;
     Psychic psychic;
-    RandomNumber randomNumber;
+
+    RandomRunner randomRunner;
+    RandomFlying randomFlying;
+    RandomPsychic randomPsychic;
+
+    Game game;
+    Queue<Monster> monsters;
 
     @BeforeEach
     public void 몬스터객체생성() {
         running = new Running(crong);
         flier = new Flying(jk);
         psychic = new Psychic(honux);
+
+        randomRunner = new RandomRunner();
+        randomFlying = new RandomFlying();
+        randomPsychic = new RandomPsychic();
+
+        game = new Game();
+        monsters = new LinkedList<>();
 
     }
 
@@ -66,10 +106,47 @@ public class MonsterTest {
 
     @Test
     public void 달리기랜덤전진() {
-        RandomRunner randomRunner = new RandomRunner();
         running.attempt(randomRunner, tryCount);
         running.forward();
+
+        //10회 * 1step == 10;
         assertThat(running.getStep()).isEqualTo(10);
+    }
+
+    @Test
+    public void 날기랜덤전진() {
+        flier.attempt(randomFlying, tryCount);
+        flier.forward();
+
+        //10 * 3 (FlyingBonus)
+        assertThat(flier.getStep()).isEqualTo(30);
+    }
+
+    @Test
+    public void 에스퍼랜덤전진() {
+        psychic.attempt(randomPsychic, tryCount);
+        psychic.forward(randomPsychic);
+
+        //10 * (9 + 1)
+        assertThat(psychic.getStep()).isEqualTo(100);
+    }
+
+    @Test
+    public void 가장큰위치값몬스터() {
+        running.attempt(randomRunner, tryCount);
+        running.forward();
+
+        flier.attempt(randomFlying, tryCount);
+        flier.forward();
+
+        psychic.attempt(randomPsychic, tryCount);
+        psychic.forward(randomPsychic);
+
+        monsters.add(running);
+        monsters.add(flier);
+        monsters.add(psychic);
+
+        assertEquals(psychic, game.findWinner(monsters,0));
     }
 
 

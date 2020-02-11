@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Queue;
 
 public class Game {
 
@@ -115,6 +116,17 @@ public class Game {
         }
         findWinner(maxStep, index + 1);
     }
+
+    public Monster findWinner(Queue<Monster> monsters, int maxStep) {
+        if (monsters.isEmpty()) return winner;
+        if (monsters.peek().getStep() > maxStep) {
+            winner = monsters.poll();
+            maxStep = winner.getStep();
+        }
+        findWinner(monsters, maxStep);
+        return winner;
+    }
+
 
     private void printWinner() {
         message.printCelebrationMessage(winner.getName());
