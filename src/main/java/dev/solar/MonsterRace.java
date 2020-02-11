@@ -61,12 +61,12 @@ public class MonsterRace {
             String inputMonsterType = monsterInfo[1];
             MonsterType monsterType = MonsterType.valueOfType(inputMonsterType);
 
-            switch (monsterType.getMonsterTypeName()) {
-                case "달리기":
+            switch (monsterType) {
+                case RUN:
                     return new Run(inputMonsterName, inputMonsterType);
-                case "비행":
+                case FLY:
                     return new Fly(inputMonsterName, inputMonsterType);
-                case "에스퍼":
+                case ESPURR:
                     return new Espurr(inputMonsterName, inputMonsterType);
             }
             throw new IllegalArgumentException("다시 입력해주세요.");
