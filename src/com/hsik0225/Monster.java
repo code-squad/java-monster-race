@@ -28,8 +28,8 @@ public abstract class Monster {
         return this.type;
     }
 
-    public int getAttemptCount(){
-        return this.attemptCount;
+    public int getMoveCount(){
+        return this.moveCount;
     }
 
     public abstract void calcMoveCount();

@@ -1,6 +1,7 @@
 package com.hsik0225;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class MonsterRace {
@@ -41,9 +42,9 @@ public class MonsterRace {
             if (monsterInfo[1].equals("달리기")) {
                 monster = new Runner(monsterInfo[0], monsterInfo[1]);
             } else if (monsterInfo[1].equals("비행")) {
-                monster = new Fly(monsterInfo[0], monsterInfo[1]);
+                monster = new Runner(monsterInfo[0], monsterInfo[1]);
             } else {
-                monster = new Esper(monsterInfo[0], monsterInfo[1]);
+                monster = new Runner(monsterInfo[0], monsterInfo[1]);
             }
             monsters.add(monster);
         }
@@ -57,7 +58,13 @@ public class MonsterRace {
             System.out.printf("%s [%s] : %s\n", monsters.get(i).getName()
                     , monsters.get(i).getType()
                     , monsters.get(i).move());
+            System.out.println("moveCount = " + monsters.get(i).getMoveCount());
         }
         System.out.println(OutputStrings.GAME_EXIT);
+        checkWinner();
+    }
+
+    private void checkWinner() {
+        System.out.println(monsters.stream().max(Comparator.comparingInt(Monster::getMoveCount)).get().getName());
     }
 }
