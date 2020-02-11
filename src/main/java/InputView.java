@@ -15,8 +15,12 @@ public class InputView {
         String input = bufferedReader.readLine();
 
         input = input.replaceAll("\\s+", "");
-
-        return input.split(",");
+        String[] splitInput = input.split(",");
+        if (!isValidMonsterInfo(splitInput)) {
+            System.out.println("올바른 형식이 아닙니다!");
+            return monsterInfo();
+        }
+        return splitInput;
     }
 
     public int monsterNumber() throws IOException {
@@ -31,5 +35,9 @@ public class InputView {
 
     public void close() throws IOException {
         bufferedReader.close();
+    }
+
+    private boolean isValidMonsterInfo(String[] info) {
+        return info.length == 2;
     }
 }
