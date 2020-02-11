@@ -87,6 +87,32 @@ public class Menu {
         return step;
     }
 
+    public void showWinner(Monster[] eachMonster) {
+        System.out.println();
+        int[] rank = new int[eachMonster.length];
+        initializeRank(rank);
+        calculateRank(rank, eachMonster);
+        for (int i = 0; i < rank.length; i++) {
+            if (rank[i] == 1) {
+                System.out.println("축하합니다! " + eachMonster[i].name + "가 몬스터 레이스에서 우승했습니다.");
+            }
+        }
+    }
+
+    public void initializeRank(int[] rank) {
+        Arrays.fill(rank, 1);
+    }
+
+    public void calculateRank(int[] rank, Monster[] eachMonster) {
+        for (int i = 0; i < eachMonster.length; i++) {
+            for (int j = 0; j < eachMonster.length; j++) {
+                if (eachMonster[i].stepCount < eachMonster[j].stepCount) {
+                    rank[i]++;
+                }
+            }
+        }
+    }
+
     class NegativeNumberException extends Exception {
     }
 }
