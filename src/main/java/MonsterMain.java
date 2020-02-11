@@ -11,15 +11,14 @@ public class MonsterMain {
 
     public void start() throws IOException {
         System.out.println("<재미있는 몬스터 레이스>");
-
         int monsterNumber = monsterNumber();
-        List<Monster> monsters = monsters(monsterNumber);
         int tryNumber = tryNumber();
 
+        MonsterGame monsterGame = new MonsterGame(monsterNumber, tryNumber);
+        List<Monster> monsters = monsters(monsterNumber);
+        monsterGame.initMonsters(monsters);
         inputView.close();
 
-        MonsterGame monsterGame = new MonsterGame(monsterNumber, tryNumber);
-        monsterGame.initMonsters(monsters);
         monsterGame.race();
 
         System.out.println("<실행 결과>");
@@ -37,25 +36,22 @@ public class MonsterMain {
 
     private List<Monster> monsters(int monsterNumber) throws IOException {
         List<Monster> monsters = new ArrayList<>();
-
         for (int i = 0; i < monsterNumber; i++) {
-            String[] monsterInfo = inputView.monsterInfo();
-            monsters.add(monster(monsterInfo[0], monsterInfo[1]));
+            monsters.add(monster());
         }
         return monsters;
     }
 
-    public Monster monster(String name, String type) {
-        Monster monster = null;
-        if (type.equals("달리기")) {
-            monster = new RunningMonster(name);
+    private Monster monster() throws IOException {
+        MonsterFactory monsterFactory = new MonsterFactory();
+        while (true) {
+            String[] monsterInfo = inputView.monsterInfo();
+            String monsterName = monsterInfo[0];
+            MonsterType monsterType = MonsterType.getByKey(monsterInfo[1]);
+            if (monsterType == null) {
+                continue;
+            }
+            return monsterFactory.createMonster(monsterName, monsterType);
         }
-        if (type.equals("비행")) {
-            monster = new FlyingMonster(name);
-        }
-        if (type.equals("에스퍼")) {
-            monster = new EsperMonster(name);
-        }
-        return monster;
     }
 }
