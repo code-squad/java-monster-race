@@ -2,9 +2,9 @@ package game;
 
 import java.util.List;
 
-// 게임 결과를 확인할 수 있는 정보를 출력한다.
-public class Output {
-    public void displayResult(List<Monster> monsters) {
+// 경기 정보를 표준 출력을 통해 출력하는 책임이 있다.
+public class Dashboard {
+    public static void displayResult(List<Monster> monsters) {
         System.out.println();
         for(Monster monster: monsters){
             System.out.println(monster.getDistance());
