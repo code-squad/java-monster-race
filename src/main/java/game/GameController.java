@@ -1,62 +1,47 @@
 package game;
 
-import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.List;
 
-/**
- * 사용자 입력 인터페이스
- * 사용자 입력과 model 함수를 매핑한다.
- * 연산 후 적절하게 응답한다.
- */
+// 게임 전체 로직을 진행하는 역할
 public class GameController {
-    private static final int ERROR_INPUT = 0;
-    private static final Scanner sc = new Scanner(System.in);
-
-    private MonsterModel monsterModel;
+    private Input input;
+    private Output output;
+    private List<Monster> monsters;
     private int nRound;
 
-    GameController(MonsterModel monsterModel) {
-        this.monsterModel = monsterModel;
+    GameController() {
+        input = new Input();
+        output = new Output();
+        monsters = new ArrayList<>();
+        nRound = 0;
     }
 
-    // 몬스터 수를 입력 받는다.
-    public void getMonsterCount() {
-        System.out.println("몬스터는 모두 몇 마리인가요?");
-
-        int nMonster = getInt();
-        for (int i=0; i<nMonster; i++) monsterModel.add();
+    // 게임을 시작하기 위해 필요한 정보를 사용자로부터 초기화한다.
+    public void initialize() {
+        int nMonster = input.getMonsterCount();
+        for(int i=0; i<nMonster; i++) {
+            monsters.add(new Monster());
+        }
+        nRound = input.getRoundCount();
     }
 
-    // 라운드 반복 횟수를 입력 받는다.
-    public void getRoundCount() {
-        System.out.println("시도할 횟수는 몇 회인가요?");
-
-        nRound = getInt();
+    // 게임을 시작한다.
+    public void race() {
+        while(nRound>=0) {
+            playRound();
+        }
     }
 
-    // 경기를 시작한다.
-    public void startRacing() {
-        for(int i=0; i<nRound; i++)
-            monsterModel.updateMonsterDistance();
+    // 시합결과를 출력한다.
+    public void displayResult() {
+        output.displayResult(monsters);
     }
 
-    // 결과를 출력한다.
-    public void printResult() {
-        System.out.println("<실행 결과>");
-        MonsterView.printResult(monsterModel.getMonsterList());
-    }
-
-    private int getInt() {
-        int rValue;
-
-        do {
-            try {
-                rValue = Integer.parseInt(sc.nextLine());
-            } catch (NumberFormatException e) {
-                rValue = ERROR_INPUT;
-                System.out.println("입력값을 확인해주세요.");
-            }
-        }while(rValue == ERROR_INPUT);
-
-        return rValue;
+    private void playRound() {
+        for(Monster monster: monsters) {
+            monster.move();
+        }
+        nRound--;
     }
 }
