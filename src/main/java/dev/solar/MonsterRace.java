@@ -16,10 +16,10 @@ public class MonsterRace {
     private int attemptCount;
 
     public MonsterRace() {
-        scanner = new Scanner(System.in);
-        inputHandler = new InputHandler(scanner);
-        monsters = new ArrayList<>();
-        winners = new ArrayList<>();
+        this.scanner = new Scanner(System.in);
+        this.inputHandler = new InputHandler(scanner);
+        this.monsters = new ArrayList<>();
+        this.winners = new ArrayList<>();
     }
 
     public static void main(String[] args) {

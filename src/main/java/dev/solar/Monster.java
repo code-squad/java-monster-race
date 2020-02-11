@@ -41,7 +41,7 @@ abstract class Monster {
 
     @Override
     public String toString() {
-        String prefix = String.format("%s [%s]", monsterName, monsterType.getMonsterTypeName());
+        String prefix = String.format("%s [%s] ", monsterName, monsterType.getMonsterTypeName());
         StringJoiner strJoiner = new StringJoiner("-", prefix, "*");
         IntStream.rangeClosed(0, forwardPosition).forEach(i -> strJoiner.add(""));
         return strJoiner.toString();
