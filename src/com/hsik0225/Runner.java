@@ -8,7 +8,7 @@ public class Runner extends Monster {
     @Override
     public void calcMoveCount() {
         int bound = 10;
-        int moveCondition = 10;
+        int moveCondition = 4;
         moveCount = (int) makeRandomValues(bound, moveCondition).count();
     }
 }

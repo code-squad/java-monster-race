@@ -7,6 +7,7 @@ public class MonsterRace {
     private Input input;
     private int monsterCount;
     private int attemptCount;
+    private List<String[]> monstersInfo;
     private List<Monster> monsters;
 
     public MonsterRace() {
@@ -26,47 +27,66 @@ public class MonsterRace {
         monsterCount = input.inputDigit();
 
         System.out.println(OutputStrings.MONSTER_INFO_QUESTION);
-        makeMonsters();
+        addMonstersInfo();
 
         System.out.println(OutputStrings.ATTEMPT_COUNT_QUESTION);
         attemptCount = input.inputDigit();
     }
 
-    private void makeMonsters() {
-        String replaceRegex = "\\s*";
-        String splitRegex = ",";
+    private void addMonstersInfo() {
         for (int index = 0; index < monsterCount; index++) {
-            String[] monsterInfo = input.inputMonstersInfo().replaceAll(replaceRegex, "").split(splitRegex);
-            Monster monster;
-            if (monsterInfo[1].equals("달리기")) {
-                monster = new Runner(monsterInfo[0], monsterInfo[1]);
-            } else if (monsterInfo[1].equals("비행")) {
-                monster = new Runner(monsterInfo[0], monsterInfo[1]);
-            } else {
-                monster = new Runner(monsterInfo[0], monsterInfo[1]);
-            }
+            String[] monsterInfo = input.inputMonstersInfo().replaceAll("\\s*", "").split(",");
+            monstersInfo.add(monsterInfo);
+        }
+    }
+
+    private void setMonsters() {
+        for (int index = 0; index < monsterCount; index++) {
+            Monster monster = null;
+            String name = monstersInfo.get(index)[0];
+            String type = monstersInfo.get(index)[1];
+            monster = makeMonster(monster, name, type);
+            monster.setAttemptCount(attemptCount);
             monsters.add(monster);
         }
     }
 
+    private Monster makeMonster(Monster monster, String name, String type){
+        if (type.equals("달리기")) {
+            monster = new Runner(name, type);
+        } else if (type.equals("비행")) {
+            monster = new Fly(name, type);
+        }
+        monster = new Esper(name, type);
+        return monster;
+    }
+
     private void startRace() {
         System.out.println(OutputStrings.RACE_RESULT);
-        for (int i = 0; i < monsterCount; i++) {
-            monsters.get(i).setAttemptCount(attemptCount);
-            monsters.get(i).calcMoveCount();
-            System.out.printf("%s [%s] : %s\n", monsters.get(i).getName()
-                    , monsters.get(i).getType()
-                    , monsters.get(i).move());
-            System.out.println("moveCount = " + monsters.get(i).getMoveCount());
+        for (int index = 0; index < monsterCount; index++) {
+            monsters.get(index).calcMoveCount();
+            System.out.printf("%s [%s] : %s\n", monsters.get(index).getName()
+                    , monsters.get(index).getType()
+                    , monsters.get(index).move());
         }
+        System.out.println(OutputStrings.CONGRATULATE + checkWinner().toString() + OutputStrings.VICTORY_MONSTER_RACE);
         System.out.println(OutputStrings.GAME_EXIT);
-        System.out.println(checkWinner().toString());
+    }
+
+    private int findMaxMoveCount() {
+        return monsters.stream()
+                .map(Monster::getMoveCount)
+                .max(Integer::compareTo)
+                .get();
     }
 
     private List<String> checkWinner() {
         List<String> winners = new ArrayList<>();
-        int maxMoveCount = monsters.stream().map(Monster::getMoveCount).max(Integer::compareTo).get();
-        monsters.stream().filter(monster -> monster.getMoveCount()==maxMoveCount).forEach(monster -> winners.add(monster.getName()));
+        int maxMoveCount = findMaxMoveCount();
+        monsters.stream()
+                .filter(monster -> monster.getMoveCount() == maxMoveCount)
+                .forEach(monster -> winners.add(monster.getName()));
+
         return winners;
     }
 }

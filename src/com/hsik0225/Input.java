@@ -25,13 +25,11 @@ public class Input {
     }
 
     public int inputDigit() {
-        OutputStrings outputString = OutputStrings.INPUT_DIGIT;
-        String digit = inputLine(DIGIT_PATTERN, outputString);
+        String digit = inputLine(DIGIT_PATTERN, OutputStrings.INPUT_DIGIT);
         return Integer.parseInt(digit);
     }
 
     public String inputMonstersInfo() {
-        OutputStrings outputString = OutputStrings.INPUT_TYPE;
-        return inputLine(MONSTER_INFO_PATTERN, outputString);
+        return inputLine(MONSTER_INFO_PATTERN, OutputStrings.INPUT_TYPE);
     }
 }
