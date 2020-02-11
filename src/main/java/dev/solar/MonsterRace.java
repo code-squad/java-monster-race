@@ -5,8 +5,6 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 public class MonsterRace {
     private Scanner scanner;
@@ -64,9 +62,12 @@ public class MonsterRace {
             MonsterType monsterType = MonsterType.valueOfType(inputMonsterType);
 
             switch (monsterType.getMonsterTypeName()) {
-                case "달리기": return new Run(inputMonsterName, inputMonsterType);
-                case "비행": return new Fly(inputMonsterName, inputMonsterType);
-                case "에스퍼": return new Espurr(inputMonsterName, inputMonsterType);
+                case "달리기":
+                    return new Run(inputMonsterName, inputMonsterType);
+                case "비행":
+                    return new Fly(inputMonsterName, inputMonsterType);
+                case "에스퍼":
+                    return new Espurr(inputMonsterName, inputMonsterType);
             }
             throw new IllegalArgumentException("다시 입력해주세요.");
         } catch (ArrayIndexOutOfBoundsException e) {
@@ -100,8 +101,7 @@ public class MonsterRace {
     }
 
     private void printResult() {
-        Stream<Monster> monsterStream = monsters.stream();
-        monsterStream.forEach(System.out::println);
+        monsters.forEach(System.out::println);
     }
 
     private void printWinner() {

@@ -23,6 +23,6 @@ public enum MonsterType {
         return Arrays.stream(MonsterType.values())
                 .filter(monsterType -> inputMonsterType.equals(monsterType.monsterTypeName))
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException(String.format("%s는 타입에 맞지않습니다.",inputMonsterType)));
+                .orElseThrow(() -> new IllegalArgumentException(String.format("%s는 타입에 맞지않습니다.", inputMonsterType)));
     }
 }
