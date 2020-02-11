@@ -6,5 +6,6 @@ public class GameMachine {
 
         newGame.configureGameSettings();
         newGame.startGame();
+        newGame.finishGame();
     }
 }

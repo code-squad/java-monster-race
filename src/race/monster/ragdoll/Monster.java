@@ -32,6 +32,10 @@ public abstract class Monster {
 
     abstract void move(boolean decision);
 
+    public String getName() {
+        return name;
+    }
+
     int generateRandomNumber(int bound) {
         Random random = new Random();
 

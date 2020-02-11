@@ -8,6 +8,7 @@ public class RacingGame {
     private int numOfMonsters;
     private int numOfTries;
     private List<Monster> monsters = new ArrayList<>();
+    private List<Monster> winners = new ArrayList<>();
 
     private void createMonster(String name, Types type) {
         switch (type) {
@@ -45,13 +46,41 @@ public class RacingGame {
             monster.run(numOfTries);
         }
 
-        printResult();
+        int maxMoveCount = findMaxValue();
+        determineWinners(maxMoveCount);
     }
 
-    private void printResult() {
+    private int findMaxValue() {
+        int maxValue = 0;
+
+        for (Monster monster : monsters) {
+            if (maxValue <= monster.moveCount) {
+                maxValue = monster.moveCount;
+            }
+        }
+        return maxValue;
+    }
+
+    private void determineWinners(int maxValue) {
+        for (Monster monster : monsters) {
+            if (monster.moveCount == maxValue) {
+                winners.add(monster);
+            }
+        }
+    }
+
+    void finishGame() {
         System.out.println("<실행 결과>");
         for (Monster monster : monsters) {
             System.out.println(monster);
         }
+
+        StringBuilder stringBuilder = new StringBuilder("우승자는 ");
+        for (Monster monster : winners) {
+            stringBuilder.append(monster.getName()).append(" ");
+        }
+
+        String printWinners = stringBuilder.append("입니다. 축하 합니다!").toString();
+        System.out.println(printWinners);
     }
 }
