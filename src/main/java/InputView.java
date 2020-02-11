@@ -10,8 +10,20 @@ public class InputView {
                 InputStreamReader(System.in));
     }
 
+    public String[] monsterInfo() throws IOException {
+        String[] result = new String[2];
+
+        System.out.println("경주할 몬스터 이름과 종류를 입력하세요 (쉼표(,)를 기준으로 구분).");
+        String input = bufferedReader.readLine();
+
+        input = input.replaceAll("\\s+", "");
+        result[0] = input.split(",")[0];
+        result[1] = input.split(",")[1];
+        return result;
+    }
+
     public int monsterNumber() throws IOException {
-        System.out.println("몬스터는 모두 몇 마리인가요?");
+        System.out.println("몇 명의 몬스터가 경주하나요?");
         return Integer.parseInt(bufferedReader.readLine());
     }
 

@@ -1,12 +1,8 @@
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import java.util.stream.Collectors;
 
 public class MonsterGame {
-    private static final int MAX_RANDOM_NUMBER = 9;
-    private static final int MIN_RANDOM_NUMBER = 0;
-
     private int monsterNumber;
     private int tryNumber;
     private List<Monster> gameResult;
@@ -18,9 +14,16 @@ public class MonsterGame {
         this.gameResult = new ArrayList<>();
     }
 
+    public void initMonsters(List<Monster> monsters) {
+        System.out.println(monsters);
+        this.gameResult = monsters;
+    }
+
     public List<Monster> race() {
-        for (int i = 0; i < monsterNumber; i++) {
-            singleMonsterRace(i);
+        for (int i = 0; i < tryNumber; i++) {
+            for (Monster monster : gameResult) {
+                monster.move();
+            }
         }
 
         return gameResult;
@@ -31,27 +34,12 @@ public class MonsterGame {
         System.out.println(gameResult);
     }
 
+    public void addMonster(Monster monster) {
+        this.gameResult.add(monster);
+    }
+
     public List<Monster> gameResult() {
         return this.gameResult;
-    }
-
-    private Monster singleMonsterRace(int monsterIndex) {
-        Monster monster = new Monster();
-
-        for (int i = 0; i < tryNumber; i++) {
-            monster.move(forwardNumber(randomNumber()));
-        }
-
-        this.gameResult.add(monsterIndex, monster);
-        return this.gameResult.get(monsterIndex);
-    }
-
-    private int randomNumber() {
-        return new Random().nextInt(MAX_RANDOM_NUMBER + 1 - MIN_RANDOM_NUMBER) + MIN_RANDOM_NUMBER;
-    }
-
-    private int forwardNumber(int randomResult) {
-        return randomResult >= 4 ? 1 : 0;
     }
 
     private String formatGameResult() {
