@@ -1,7 +1,6 @@
 package com.hsik0225;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 public class MonsterRace {
@@ -61,10 +60,13 @@ public class MonsterRace {
             System.out.println("moveCount = " + monsters.get(i).getMoveCount());
         }
         System.out.println(OutputStrings.GAME_EXIT);
-        checkWinner();
+        System.out.println(checkWinner().toString());
     }
 
-    private void checkWinner() {
-        System.out.println(monsters.stream().max(Comparator.comparingInt(Monster::getMoveCount)).get().getName());
+    private List<String> checkWinner() {
+        List<String> winners = new ArrayList<>();
+        int maxMoveCount = monsters.stream().map(Monster::getMoveCount).max(Integer::compareTo).get();
+        monsters.stream().filter(monster -> monster.getMoveCount()==maxMoveCount).forEach(monster -> winners.add(monster.getName()));
+        return winners;
     }
 }
