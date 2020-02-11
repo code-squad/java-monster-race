@@ -16,6 +16,6 @@ public class Running extends Monster {
 
     @Override
     public String toString() {
-        return this.name + " " + "[달리기]" + " : " + makeStep(step);
+        return this.name + " " + "[달리기]";
     }
 }

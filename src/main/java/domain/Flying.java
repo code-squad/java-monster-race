@@ -18,6 +18,6 @@ public class Flying extends Monster {
 
     @Override
     public String toString() {
-        return this.name + " " + "[비행]" + " : " + makeStep(step);
+        return this.name + " " + "[비행]";
     }
 }

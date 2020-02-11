@@ -36,6 +36,6 @@ public class Psychic extends Monster {
 
     @Override
     public String toString() {
-        return this.name + " " + "[에스퍼]" + " : " + makeStep(step);
+        return this.name + " " + "[에스퍼]";
     }
 }

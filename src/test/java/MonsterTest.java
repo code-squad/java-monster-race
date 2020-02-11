@@ -1,4 +1,5 @@
 import domain.*;
+import org.assertj.core.api.FileAssert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -140,6 +141,4 @@ public class MonsterTest {
 
         assertEquals(monsters.getWinner(), psychic);
     }
-
-
 }

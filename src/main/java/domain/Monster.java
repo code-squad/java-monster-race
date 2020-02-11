@@ -55,6 +55,6 @@ public abstract class Monster implements Move {
     }
 
     public void print() {
-        System.out.println(this.toString());
+        System.out.println(this.toString()+" : "+makeStep(step));
     }
 }

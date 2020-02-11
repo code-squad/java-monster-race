@@ -3,35 +3,33 @@ package util;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 
 public class Log {
-    private static Log log = new Log();
+    private static Log log = null;
     private static BufferedWriter bw;
-    private static SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    private Time time;
 
     private Log() {
         try {
-            bw = new BufferedWriter(new FileWriter("monsterInfo : " + getCurrentTime() + ".txt"));
+            time = new Time();
+            bw = new BufferedWriter(new FileWriter("monstersInfo : " + time.getCurrentTime() + ".txt"));
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     public static Log getInstance() {
+        if (log == null) log = new Log();
         return log;
     }
 
-    public synchronized void write(String input) {
+    public void write(String input) {
         try {
             bw.write(input + "\n");
             bw.flush();
         } catch (IOException e) {
+            e.printStackTrace();
         }
-    }
-
-    private String getCurrentTime() {
-        return format.format(System.currentTimeMillis());
     }
 
     @Override
@@ -40,6 +38,7 @@ public class Log {
             super.finalize();
             bw.close();
         } catch (Throwable throwable) {
+            throwable.printStackTrace();
         }
 
     }
