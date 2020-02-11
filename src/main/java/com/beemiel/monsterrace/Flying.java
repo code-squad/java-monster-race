@@ -2,13 +2,8 @@ package com.beemiel.monsterrace;
 
 public class Flying extends Monster {
 
-    public Flying(String name, String type) {
-        super(name, type);
-    }
-
-    @Override
-    public boolean isMove() {
-        return random.nextInt(10) > 5;
+    public Flying(String type){
+        super(type,6);
     }
 
     @Override
