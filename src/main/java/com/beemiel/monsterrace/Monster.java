@@ -5,13 +5,14 @@ import java.util.Random;
 public abstract class Monster {
     private String name;
     private String type;
+    protected int isRunNumber;
     protected String totalMove;
     protected Random random;
     protected StringBuffer stringBuffer;
 
-    public Monster(String name, String type) {
-        this.name = name;
+    public Monster(String type, int isRunNumber){
         this.type = type;
+        this.isRunNumber = isRunNumber;
         this.random = new Random();
         this.totalMove = "";
     }
@@ -20,8 +21,13 @@ public abstract class Monster {
         return name;
     }
 
-    /* 랜덤값을 받아서 각자의 조건에 맞는 값이면 true를 반환 */
-    abstract public boolean isMove();
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public boolean isMove(){
+        return random.nextInt(10) >= this.isRunNumber;
+    }
 
     /* isMove()가 true이면 원하는 타입마다 이동 */
     abstract public void moveOrStop();
