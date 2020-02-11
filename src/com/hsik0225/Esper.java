@@ -1,13 +1,16 @@
 package com.hsik0225;
 
-public class Esper {
+public class Esper extends Monster {
+    public Esper(String name, String type) {
+        super(name, type);
+    }
+
     @Override
-    public int move(Monster monster, int attemptCount) {
+    public void calcMoveCount() {
         int bound = 10;
         int moveCondition = 9;
-        int numOfMoves = (int) monster.makeRandomValues(attemptCount, bound, moveCondition)
-                .map(randomValue -> monster.random.nextInt(100) + 1)
+        moveCount = (int) makeRandomValues(bound, moveCondition)
+                .map(randomValue -> random.nextInt(100) + 1)
                 .reduce(0, Integer::sum);
-        return numOfMoves;
     }
 }

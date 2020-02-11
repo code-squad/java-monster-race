@@ -1,11 +1,14 @@
 package com.hsik0225;
 
-public class Runner {
+public class Runner extends Monster {
+    public Runner(String name, String type) {
+        super(name, type);
+    }
+
     @Override
-    public int move(Monster monster, int attemptCount) {
+    public void calcMoveCount() {
         int bound = 10;
         int moveCondition = 4;
-        int numOfMoves = (int) monster.makeRandomValues(attemptCount, bound, moveCondition).count();
-        return numOfMoves;
+        moveCount = (int) makeRandomValues(bound, moveCondition).count();
     }
 }

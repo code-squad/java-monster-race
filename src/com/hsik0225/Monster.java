@@ -3,20 +3,21 @@ package com.hsik0225;
 import java.util.Random;
 import java.util.stream.IntStream;
 
-public class Monster {
+public abstract class Monster {
     private String name;
-    private MonsterType monsterType;
-    private String moveLength;
+    private String type;
+    private int attemptCount;
+    protected int moveCount;
     protected Random random;
 
-    public Monster(String name, MonsterType monsterType) {
+    public Monster(String name, String type) {
         this.name = name;
-        this.monsterType = monsterType;
+        this.type = type;
         random = new Random();
     }
 
-    public void setMoveLength(String moveLength) {
-        this.moveLength = moveLength;
+    public void setAttemptCount(int attemptCount) {
+        this.attemptCount = attemptCount;
     }
 
     public String getName() {
@@ -24,20 +25,22 @@ public class Monster {
     }
 
     public String getType() {
-        return monsterType.name();
+        return this.type;
     }
 
-    public String getMoveLength() {
-        return this.moveLength;
+    public int getAttemptCount(){
+        return this.attemptCount;
     }
 
-    public IntStream makeRandomValues(int attemptCount, int bound, int moveCondition){
+    public abstract void calcMoveCount();
+
+    public IntStream makeRandomValues(int bound, int moveCondition) {
         return IntStream.range(0, attemptCount)
                 .map(index -> random.nextInt(bound))
                 .filter(randomValue -> randomValue >= moveCondition);
     }
 
-    public void move(int attemptCount){
-        this.moveLength = "-".repeat(monsterType.move(this, attemptCount));
+    public String move(){
+        return "-".repeat(moveCount);
     }
 }

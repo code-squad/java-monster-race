@@ -37,8 +37,14 @@ public class MonsterRace {
         String splitRegex = ",";
         for (int index = 0; index < monsterCount; index++) {
             String[] monsterInfo = input.inputMonstersInfo().replaceAll(replaceRegex, "").split(splitRegex);
-            MonsterType monsterType = MonsterType.;
-            Monster monster = new Monster(monsterInfo[0], monsterType);
+            Monster monster;
+            if (monsterInfo[1].equals("달리기")) {
+                monster = new Runner(monsterInfo[0], monsterInfo[1]);
+            } else if (monsterInfo[1].equals("비행")) {
+                monster = new Fly(monsterInfo[0], monsterInfo[1]);
+            } else {
+                monster = new Esper(monsterInfo[0], monsterInfo[1]);
+            }
             monsters.add(monster);
         }
     }
@@ -46,10 +52,11 @@ public class MonsterRace {
     private void startRace() {
         System.out.println(OutputStrings.RACE_RESULT);
         for (int i = 0; i < monsterCount; i++) {
-            monsters.get(i).move(attemptCount);
+            monsters.get(i).setAttemptCount(attemptCount);
+            monsters.get(i).calcMoveCount();
             System.out.printf("%s [%s] : %s\n", monsters.get(i).getName()
                     , monsters.get(i).getType()
-                    , monsters.get(i).getMoveLength());
+                    , monsters.get(i).move());
         }
         System.out.println(OutputStrings.GAME_EXIT);
     }
