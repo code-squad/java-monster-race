@@ -2,13 +2,8 @@ package com.beemiel.monsterrace;
 
 public class Psychic extends Monster {
 
-    public Psychic(String name, String type) {
-        super(name, type);
-    }
-
-    @Override
-    public boolean isMove() {
-        return random.nextInt(10) > 8;
+    public Psychic(String type){
+        super(type,9);
     }
 
     @Override
