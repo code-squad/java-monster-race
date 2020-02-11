@@ -1,6 +1,7 @@
 package com.hsik0225;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class MonsterRace {
@@ -9,6 +10,7 @@ public class MonsterRace {
     private int attemptCount;
     private List<String[]> monstersInfo;
     private List<Monster> monsters;
+    private HashMap<String, String> monsterTypeMap;
 
     public MonsterRace() {
         input = new Input();
@@ -40,18 +42,23 @@ public class MonsterRace {
         }
     }
 
+    private void makeMonsterTypeMap(){
+        monsterTypeMap.put("달리기", "RUNNER");
+        monsterTypeMap.put("비행", "FLY");
+        monsterTypeMap.put("에스퍼", "ESPER");
+    }
+
     private void setMonsters() {
         for (int index = 0; index < monsterCount; index++) {
-            Monster monster = null;
             String name = monstersInfo.get(index)[0];
             String type = monstersInfo.get(index)[1];
-            monster = makeMonster(monster, name, type);
+            MonsterType monsterType = MonsterType.valueOf(monsterTypeMap.get(type));
             monster.setAttemptCount(attemptCount);
             monsters.add(monster);
         }
     }
 
-    private Monster makeMonster(Monster monster, String name, String type){
+    private Monster makeMonster(Monster monster, String name, String type) {
         if (type.equals("달리기")) {
             monster = new Runner(name, type);
         } else if (type.equals("비행")) {
