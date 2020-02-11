@@ -15,10 +15,14 @@ public class MonsterRace {
     public MonsterRace() {
         input = new Input();
         monsters = new ArrayList<>();
+        monstersInfo = new ArrayList<>();
+        monsterTypeMap = new HashMap<>();
     }
 
     public void startGame() {
         setGame();
+        makeMonsterTypeMap();
+        makeMonsters();
         startRace();
     }
 
@@ -48,24 +52,16 @@ public class MonsterRace {
         monsterTypeMap.put("에스퍼", "ESPER");
     }
 
-    private void setMonsters() {
+    private void makeMonsters() {
         for (int index = 0; index < monsterCount; index++) {
             String name = monstersInfo.get(index)[0];
             String type = monstersInfo.get(index)[1];
             MonsterType monsterType = MonsterType.valueOf(monsterTypeMap.get(type));
+            Monster monster = null;
+            monster = monsterType.makeMonsterAsType(monster, name, type);
             monster.setAttemptCount(attemptCount);
             monsters.add(monster);
         }
-    }
-
-    private Monster makeMonster(Monster monster, String name, String type) {
-        if (type.equals("달리기")) {
-            monster = new Runner(name, type);
-        } else if (type.equals("비행")) {
-            monster = new Fly(name, type);
-        }
-        monster = new Esper(name, type);
-        return monster;
     }
 
     private void startRace() {

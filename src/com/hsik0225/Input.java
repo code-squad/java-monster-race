@@ -5,7 +5,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Input {
-    private static final Pattern DIGIT_PATTERN = Pattern.compile("^[1-9][0-9]*$", Pattern.DOTALL);
+    private static final Pattern DIGIT_PATTERN = Pattern.compile("^[1-9][0-9]*$");
     private static final Pattern MONSTER_INFO_PATTERN = Pattern.compile(".*([,])\\s*(비행|에스퍼|달리기)\\s*");
     private Scanner scanner;
 
