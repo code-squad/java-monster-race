@@ -1,5 +1,6 @@
 package domain;
 
+import domain.monster.Monster;
 import util.Log;
 
 import java.util.*;

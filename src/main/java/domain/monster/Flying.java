@@ -1,4 +1,4 @@
-package domain;
+package domain.monster;
 
 public class Flying extends Monster {
     private final int FORWARD_CONDITION = 6;

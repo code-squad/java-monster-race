@@ -1,5 +1,7 @@
 import domain.*;
-import org.assertj.core.api.FileAssert;
+import domain.monster.Flying;
+import domain.monster.Psychic;
+import domain.monster.Running;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -64,7 +66,7 @@ public class MonsterTest {
     Monsters monsters;
 
     @BeforeEach
-    public void 몬스터객체생성() {
+    public void 몬스터_객체_생성() {
         running = new Running(crong);
         flier = new Flying(jk);
         psychic = new Psychic(honux);
@@ -78,7 +80,7 @@ public class MonsterTest {
     }
 
     @Test
-    public void 몬스터이름체크() {
+    public void 몬스터_이름_체크() {
         assertEquals(crong, running.getName());
         assertEquals(jk, flier.getName());
         assertEquals(honux, psychic.getName());
@@ -86,7 +88,7 @@ public class MonsterTest {
 
 
     @Test
-    public void 게임시도횟수() {
+    public void 게임_시도_횟수() {
         running.attempt(tryCount);
         flier.attempt(tryCount);
         psychic.attempt(tryCount);
@@ -98,7 +100,7 @@ public class MonsterTest {
     }
 
     @Test
-    public void 달리기랜덤전진() {
+    public void 달리기_랜덤_전진() {
         running.attempt(randomRunner, tryCount);
         running.forward();
 
@@ -107,7 +109,7 @@ public class MonsterTest {
     }
 
     @Test
-    public void 날기랜덤전진() {
+    public void 비행_랜덤_전진() {
         flier.attempt(randomFlying, tryCount);
         flier.forward();
 
@@ -116,7 +118,7 @@ public class MonsterTest {
     }
 
     @Test
-    public void 에스퍼랜덤전진() {
+    public void 에스퍼_랜덤_전진() {
         psychic.attempt(randomPsychic, tryCount);
         psychic.forward(randomPsychic);
 
@@ -125,7 +127,7 @@ public class MonsterTest {
     }
 
     @Test
-    public void 가장큰위치값몬스터() {
+    public void 우승한_몬스터_이름() {
         running.attempt(randomRunner, tryCount);
         running.forward();
 
@@ -139,6 +141,6 @@ public class MonsterTest {
         monsters.getMonsters().put(jk, flier);
         monsters.getMonsters().put(honux, psychic);
 
-        assertEquals(monsters.getWinner(), psychic);
+        assertEquals(monsters.getWinner(), psychic.getName());
     }
 }

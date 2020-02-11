@@ -1,4 +1,6 @@
-package domain;
+package domain.monster;
+
+import domain.monster.Monster;
 
 public class Running extends Monster {
     private final int FORWARD_CONDITION = 4;

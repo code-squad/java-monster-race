@@ -1,4 +1,6 @@
-package domain;
+package domain.monster;
+
+import domain.monster.Monster;
 
 import java.util.Random;
 
