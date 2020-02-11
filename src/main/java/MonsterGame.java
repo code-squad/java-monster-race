@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -32,6 +33,26 @@ public class MonsterGame {
     public void consoleFormatGameResult() {
         String gameResult = formatGameResult();
         System.out.println(gameResult);
+    }
+
+    public void consoleWinner() {
+        List<Monster> winner = winner();
+        System.out.printf("축하합니다! %s가 몬스터 레이스에서 우승하였습니다.", winner.stream().map(monster -> monster.name()).collect(Collectors.joining(",")));
+    }
+
+    public List<Monster> winner() {
+        List<Monster> winner = new ArrayList<>();
+
+        Collections.sort(gameResult, (o1, o2) -> Integer.compare(o2.position(), o1.position()));
+        int winnerPosition = gameResult.get(0).position();
+        for (Monster monster : gameResult) {
+            if (monster.position() == winnerPosition) {
+                winner.add(monster);
+                continue;
+            }
+            break;
+        }
+        return winner;
     }
 
     public void addMonster(Monster monster) {

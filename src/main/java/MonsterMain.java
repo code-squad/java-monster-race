@@ -24,6 +24,7 @@ public class MonsterMain {
 
         System.out.println("<실행 결과>");
         monsterGame.consoleFormatGameResult();
+        monsterGame.consoleWinner();
     }
 
     private int monsterNumber() throws IOException {
