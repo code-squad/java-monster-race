@@ -1,6 +1,7 @@
 package dev.solar;
 
 import java.util.Random;
+import java.util.StringJoiner;
 import java.util.stream.IntStream;
 
 abstract class Monster {
@@ -40,9 +41,9 @@ abstract class Monster {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(monsterName).append(" [").append(monsterType.getMonsterTypeName()).append("] : ");
-        IntStream.range(0, forwardPosition).forEach(i -> sb.append("-"));
-        return sb.toString();
+        String prefix = String.format("%s [%s]", monsterName, monsterType.getMonsterTypeName());
+        StringJoiner strJoiner = new StringJoiner("-", prefix, "*");
+        IntStream.rangeClosed(0, forwardPosition).forEach(i -> strJoiner.add(""));
+        return strJoiner.toString();
     }
 }
