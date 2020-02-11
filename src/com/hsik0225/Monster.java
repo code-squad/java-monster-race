@@ -7,13 +7,13 @@ public class Monster {
     private String name;
     private String type;
     private int attemptCount;
-    protected int moveCount;
-    protected Random random;
+    private int moveCount;
+    private Movable movable;
 
     public Monster(String name, String type) {
         this.name = name;
         this.type = type;
-        random = new Random();
+        this.movable = MonsterFactory.valueOf(type).getMovable();
     }
 
     public void setAttemptCount(int attemptCount) {
@@ -33,6 +33,7 @@ public class Monster {
     }
 
     protected IntStream makeRandomValues(int bound, int moveCondition) {
+        Random random = new Random();
         return IntStream.range(0, attemptCount)
                 .map(index -> random.nextInt(bound))
                 .filter(randomValue -> randomValue >= moveCondition);
@@ -40,5 +41,9 @@ public class Monster {
 
     public String move(){
         return "-".repeat(moveCount);
+    }
+
+    public void setMoveCount(){
+        this.moveCount = movable.calcMoveCount(makeRandomValues(b));
     }
 }
