@@ -28,7 +28,7 @@ public abstract class Monster {
         this.type = type;
     }
 
-    abstract boolean decideMoveOrStop();
+    abstract boolean isMove();
 
     abstract void move(boolean decision);
 
@@ -44,7 +44,7 @@ public abstract class Monster {
 
     void run(int numOfTries) {
         for (int i = 0; i < numOfTries; i++) {
-            boolean decision = decideMoveOrStop();
+            boolean decision = isMove();
             move(decision);
         }
     }

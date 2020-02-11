@@ -31,8 +31,8 @@
 - type : 몬스터의 타입 (열거형)
 - moveCount : 몬스터가 움직일 횟수
 - rangeAbility : 이동거리를 지정
-- decideMoveOrStop() : 생성한 랜덤수를 바탕으로 Move와 Stop 여부를 결정하는 메서드 (abstract)
-- move() : decideMoveOrStop()에서 받은 결과를 바탕으로 moveCount 변수를 증가 시킨다. (abstract)
+- isMove() : 생성한 랜덤수를 바탕으로 Move여부를 결정하는 메서드 (abstract)
+- move() : isMove()에서 받은 결과를 바탕으로 moveCount 변수를 증가 시킨다. (abstract)
 - run() : 인자로 전달 받은 시도 횟수만큼 순회하며 몬스터의 이동 횟수를 결정한다.
 - toString() : 몬스터의 움직임 횟수를 출력하는 메서드
 
@@ -40,22 +40,22 @@
 
 - RUNNER_RANGE : 달리기 타입의 이동거리
 - RUNNER_CRITERION : 달리기 타입의 move를 판정하는 기준치
-- decideMoveOrStop() : 생성한 랜덤수를 바탕으로 Move와 Stop 여부를 결정하는 메서드
-- move() : decideMoveOrStop()에서 받은 결과를 바탕으로 moveCount 변수를 증가 시킨다.
+- isMove() : 생성한 랜덤수를 바탕으로 Move여부를 결정하는 메서드
+- move() : isMove()에서 받은 결과를 바탕으로 moveCount 변수를 증가 시킨다.
 
 ### Fyling
 
 - FLYING_RANGE : 비행 타입의 이동거리
 - FLYING_CRITERION : 비행 타입의 move를 판정하는 기준치
-- decideMoveOrStop() : 생성한 랜덤수를 바탕으로 Move와 Stop 여부를 결정하는 메서드
-- move() : decideMoveOrStop()에서 받은 결과를 바탕으로 moveCount 변수를 증가 시킨다.
+- isMove() : 생성한 랜덤수를 바탕으로 Move여부를 결정하는 메서드
+- move() : isMove()에서 받은 결과를 바탕으로 moveCount 변수를 증가 시킨다.
 
 ### Esper
 
 - esperRange : 에스퍼 타입의 이동거리
 - ESPER_CRITERION : 에스퍼 타입의 move를 판정하는 기준치
-- decideMoveOrStop() : 생성한 랜덤수를 바탕으로 Move와 Stop 여부를 결정하는 메서드
-- move() : decideMoveOrStop()에서 받은 결과를 바탕으로 moveCount 변수를 증가 시킨다.
+- isMove() : 생성한 랜덤수를 바탕으로 Move여부를 결정하는 메서드
+- move() : isMove()에서 받은 결과를 바탕으로 moveCount 변수를 증가 시킨다.
 
 ### GameMachine
 
@@ -69,5 +69,5 @@
 3. RacingGame 객체에 저장 되어 있는 몬스터의 수를 바탕으로 몬스터를 생성하여 ArrayList에 담는다.
 4. 게임을 시작시킨다. 실행 순서는 다음과 같다.
    1. RacingGame 객체에 저장된 시도 횟수를 인자로 하여 각 monster객체의 run()을 호출한다.
-   2. 각 monster 객체마다 decideMoveOrStop() 메서드를 호출하고, 반환 결과를 바탕으로 move() 메서드를 실행한다.
+   2. 각 monster 객체마다 isMove() 메서드를 호출하고, 반환 결과를 바탕으로 move() 메서드를 실행한다.
    3. 저장된 이동 횟수를 바탕으로 결과를 출력한다.

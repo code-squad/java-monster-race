@@ -12,7 +12,7 @@ public class Esper extends Monster {
         return generateRandomNumber(99) + 1;
     }
 
-    protected boolean decideMoveOrStop() {
+    protected boolean isMove() {
         boolean decision = false;
         int randomNum = generateRandomNumber(10);
 

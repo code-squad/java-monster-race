@@ -9,7 +9,7 @@ public class Runner extends Monster {
         rangeAbility = RUNNER_RANGE;
     }
 
-    protected boolean decideMoveOrStop() {
+    protected boolean isMove() {
         boolean decision = false;
         int randomNum = generateRandomNumber(10);
 
