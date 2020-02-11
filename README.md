@@ -2,7 +2,7 @@
 
 - 클래스 구조
 
-![클래스 구조](C:\Users\beemi\Documents\monster\클래스구조.png)
+![클래스 구조](https://i.imgur.com/kQt0kpL.png)
 
 - 요구사항에 따른 추가 사항 및 변경 사항
 
