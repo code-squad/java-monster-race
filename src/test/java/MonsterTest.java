@@ -1,13 +1,7 @@
-import domain.Flying;
-import domain.Monster;
-import domain.Psychic;
-import domain.Running;
+import domain.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-
-import java.util.LinkedList;
-import java.util.Queue;
 import java.util.Random;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -66,8 +60,7 @@ public class MonsterTest {
     RandomFlying randomFlying;
     RandomPsychic randomPsychic;
 
-    Game game;
-    Queue<Monster> monsters;
+    Monsters monsters;
 
     @BeforeEach
     public void 몬스터객체생성() {
@@ -79,8 +72,7 @@ public class MonsterTest {
         randomFlying = new RandomFlying();
         randomPsychic = new RandomPsychic();
 
-        game = new Game();
-        monsters = new LinkedList<>();
+        monsters = new Monsters();
 
     }
 
@@ -142,11 +134,11 @@ public class MonsterTest {
         psychic.attempt(randomPsychic, tryCount);
         psychic.forward(randomPsychic);
 
-        monsters.add(running);
-        monsters.add(flier);
-        monsters.add(psychic);
+        monsters.getMonsters().put(crong, running);
+        monsters.getMonsters().put(jk, flier);
+        monsters.getMonsters().put(honux, psychic);
 
-        assertEquals(psychic, game.findWinner(monsters,0));
+        assertEquals(monsters.getWinner(), psychic);
     }
 
 
