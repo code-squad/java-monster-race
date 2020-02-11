@@ -1,60 +1,86 @@
 package race.monster.ragdoll;
 
-import java.io.IOException;
-import java.util.Scanner;
+import java.util.List;
+import java.util.ArrayList;
 
 public class RacingGame {
+    InputHandler inputHandler = new InputHandler();
     private int numOfMonsters;
     private int numOfTries;
-    private Monster[] monsters;
-    Scanner scanner = new Scanner(System.in);
+    private List<Monster> monsters = new ArrayList<>();
+    private List<Monster> winners = new ArrayList<>();
 
-    public RacingGame() {}
-
-    private void createMonster() {
-        for (int i = 0; i < numOfMonsters; i++) {
-            monsters[i] = new Monster();
+    private void createMonster(String name, Types type) {
+        switch (type) {
+            case RUNNER:
+                monsters.add(new Runner(name, type));
+                break;
+            case FLYING:
+                monsters.add(new Flying(name, type));
+                break;
+            case ESPER:
+                monsters.add(new Esper(name, type));
+                break;
+            default:
+                throw new IllegalArgumentException("잘못 된 타입을 입력 하였습니다.");
         }
+    }
+
+    void configureGameSettings() {
+        numOfMonsters = inputHandler.setNumOfMonsters();
+
+        System.out.println("경주할 몬스터 이름과 종류를 입력하세요. (종류 - '달리기', '비행', '에스퍼')");
+
+        for (int i = 0; i < numOfMonsters; i++) {
+            inputHandler.setMonsterProperties();
+            String name = inputHandler.getNameOfMonster();
+            Types type = inputHandler.getTypeOfMonster();
+            createMonster(name, type);
+        }
+
+        numOfTries = inputHandler.setNumOfTries();
     }
 
     void startGame() {
-        try {
-            getUserInput();
+        for (Monster monster : monsters) {
+            monster.run(numOfTries);
+        }
 
-            monsters = new Monster[numOfMonsters];
-            createMonster();
+        int maxMoveCount = findMaxValue();
+        determineWinners(maxMoveCount);
+    }
 
-            for(Monster monster : monsters) {
-                monster.run(numOfTries);
+    private int findMaxValue() {
+        int maxValue = 0;
+
+        for (Monster monster : monsters) {
+            if (maxValue <= monster.moveCount) {
+                maxValue = monster.moveCount;
             }
+        }
+        return maxValue;
+    }
 
-            printResult();
-        } catch(NumberFormatException e) {
-            System.out.println("숫자만 입력 해주세요.");
-            startGame();
-        } catch(IOException e) {
-            System.out.println("자연수를 입력 해주세요.");
-            startGame();
+    private void determineWinners(int maxValue) {
+        for (Monster monster : monsters) {
+            if (monster.moveCount == maxValue) {
+                winners.add(monster);
+            }
         }
     }
 
-    private void getUserInput() throws IOException{
-        System.out.println("<스릴만점 건전한 몬스터 경주>");
-        System.out.println("몬스터는 모두 몇 마리인가요?");
-        numOfMonsters = Integer.parseInt(scanner.nextLine());
-
-        System.out.println("시도할 회수는 몇 회 인가요?");
-        numOfTries = Integer.parseInt(scanner.nextLine());
-
-        if (numOfMonsters < 0 || numOfTries < 0) {
-            throw new IOException("음수가 입력 되었습니다.");
-        }
-    }
-
-    private void printResult() {
+    void finishGame() {
         System.out.println("<실행 결과>");
         for (Monster monster : monsters) {
-            System.out.println(monster.toString());
+            System.out.println(monster);
         }
+
+        StringBuilder stringBuilder = new StringBuilder("우승자는 ");
+        for (Monster monster : winners) {
+            stringBuilder.append(monster.getName()).append(" ");
+        }
+
+        String printWinners = stringBuilder.append("입니다. 축하 합니다!").toString();
+        System.out.println(printWinners);
     }
 }
