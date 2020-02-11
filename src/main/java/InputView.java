@@ -11,15 +11,12 @@ public class InputView {
     }
 
     public String[] monsterInfo() throws IOException {
-        String[] result = new String[2];
-
         System.out.println("경주할 몬스터 이름과 종류를 입력하세요 (쉼표(,)를 기준으로 구분).");
         String input = bufferedReader.readLine();
 
         input = input.replaceAll("\\s+", "");
-        result[0] = input.split(",")[0];
-        result[1] = input.split(",")[1];
-        return result;
+
+        return input.split(",");
     }
 
     public int monsterNumber() throws IOException {
