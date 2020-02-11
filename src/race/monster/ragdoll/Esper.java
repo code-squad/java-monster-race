@@ -1,29 +1,22 @@
 package race.monster.ragdoll;
 
-import java.util.Random;
-
 public class Esper extends Monster {
     private int esperRange;
-    private final int CRITERION = 9;
+    private final int ESPER_CRITERION = 9;
 
     public Esper(String name, Types type) {
         super(name, type);
     }
 
-    private int decideEsperRange() {
-        Random random = new Random();
-        int range = random.nextInt(99) + 1;
-
-        return range;
+    private int decideRange() {
+        return generateRandomNumber(99) + 1;
     }
 
     protected boolean decideMoveOrStop() {
         boolean decision = false;
+        int randomNum = generateRandomNumber(10);
 
-        Random random = new Random();
-        int randomNum = random.nextInt(10);
-
-        if (randomNum == CRITERION) {
+        if (randomNum == ESPER_CRITERION) {
             decision = true;
         }
 
@@ -32,7 +25,7 @@ public class Esper extends Monster {
 
     protected void move(boolean decision) {
         if (decision) {
-            esperRange = decideEsperRange();
+            esperRange = decideRange();
             moveCount += esperRange;
         }
     }

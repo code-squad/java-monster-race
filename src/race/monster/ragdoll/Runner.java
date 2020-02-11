@@ -1,10 +1,8 @@
 package race.monster.ragdoll;
 
-import java.util.Random;
-
 public class Runner extends Monster {
     private final int RUNNER_RANGE = 1;
-    private final int CRITERION = 4;
+    private final int RUNNER_CRITERION = 4;
 
     public Runner(String name, Types type) {
         super(name, type);
@@ -13,10 +11,9 @@ public class Runner extends Monster {
 
     protected boolean decideMoveOrStop() {
         boolean decision = false;
-        Random random = new Random();
-        int randomNum = random.nextInt(10);
+        int randomNum = generateRandomNumber(10);
 
-        if (randomNum >= CRITERION) {
+        if (randomNum >= RUNNER_CRITERION) {
             decision = true;
         }
 

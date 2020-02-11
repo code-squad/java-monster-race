@@ -1,10 +1,8 @@
 package race.monster.ragdoll;
 
-import java.util.Random;
-
 public class Flying extends Monster {
     private final int FLYING_RANGE = 3;
-    private final int CRITERION = 6;
+    private final int FLYING_CRITERION = 6;
 
     public Flying(String name, Types type) {
         super(name, type);
@@ -13,11 +11,9 @@ public class Flying extends Monster {
 
     protected boolean decideMoveOrStop() {
         boolean decision = false;
+        int randomNum = generateRandomNumber(10);
 
-        Random random = new Random();
-        int randomNum = random.nextInt(10);
-
-        if (randomNum >= CRITERION) {
+        if (randomNum >= FLYING_CRITERION) {
             decision = true;
         }
 

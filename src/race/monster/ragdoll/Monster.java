@@ -1,6 +1,7 @@
 package race.monster.ragdoll;
 
 import java.lang.StringBuilder;
+import java.util.Random;
 
 enum Types {
     RUNNER("달리기"), FLYING("비행"), ESPER("에스퍼");
@@ -31,6 +32,12 @@ public abstract class Monster {
 
     abstract void move(boolean decision);
 
+    int generateRandomNumber(int bound) {
+        Random random = new Random();
+
+        return random.nextInt(bound);
+    }
+
     void run(int numOfTries) {
         for (int i = 0; i < numOfTries; i++) {
             boolean decision = decideMoveOrStop();
@@ -38,6 +45,7 @@ public abstract class Monster {
         }
     }
 
+    @Override
     public String toString() {
         String monsterProperties = name + " [" + type.getTypeName() + "] : ";
         StringBuilder strBuilder = new StringBuilder(monsterProperties);
