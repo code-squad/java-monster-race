@@ -3,7 +3,7 @@ package com.hsik0225;
 import java.util.Random;
 import java.util.stream.IntStream;
 
-public abstract class Monster {
+public class Monster {
     private String name;
     private String type;
     private int attemptCount;
@@ -31,8 +31,6 @@ public abstract class Monster {
     public int getMoveCount(){
         return this.moveCount;
     }
-
-    public abstract void calcMoveCount();
 
     protected IntStream makeRandomValues(int bound, int moveCondition) {
         return IntStream.range(0, attemptCount)
