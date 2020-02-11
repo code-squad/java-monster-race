@@ -34,7 +34,7 @@ public abstract class Monster {
 
     public abstract void calcMoveCount();
 
-    public IntStream makeRandomValues(int bound, int moveCondition) {
+    protected IntStream makeRandomValues(int bound, int moveCondition) {
         return IntStream.range(0, attemptCount)
                 .map(index -> random.nextInt(bound))
                 .filter(randomValue -> randomValue >= moveCondition);

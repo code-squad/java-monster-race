@@ -1,6 +1,6 @@
 package com.hsik0225;
 
-public enum MonsterType {
+public enum MonsterFactory {
     RUNNER{
         @Override
         Monster makeMonsterAsType(Monster monster, String name, String type) {

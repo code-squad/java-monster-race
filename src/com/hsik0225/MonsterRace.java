@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import static com.hsik0225.OutputStrings.*;
+
 public class MonsterRace {
     private Input input;
     private int monsterCount;
@@ -27,15 +29,15 @@ public class MonsterRace {
     }
 
     private void setGame() {
-        System.out.println(OutputStrings.GAME_START);
+        System.out.println(GAME_START);
 
-        System.out.println(OutputStrings.MONSTER_COUNT_QUESTION);
+        System.out.println(MONSTER_COUNT_QUESTION);
         monsterCount = input.inputDigit();
 
-        System.out.println(OutputStrings.MONSTER_INFO_QUESTION);
+        System.out.println(MONSTER_INFO_QUESTION);
         addMonstersInfo();
 
-        System.out.println(OutputStrings.ATTEMPT_COUNT_QUESTION);
+        System.out.println(ATTEMPT_COUNT_QUESTION);
         attemptCount = input.inputDigit();
     }
 
@@ -56,24 +58,23 @@ public class MonsterRace {
         for (int index = 0; index < monsterCount; index++) {
             String name = monstersInfo.get(index)[0];
             String type = monstersInfo.get(index)[1];
-            MonsterType monsterType = MonsterType.valueOf(monsterTypeMap.get(type));
+            MonsterFactory monsterFactory = MonsterFactory.valueOf(monsterTypeMap.get(type));
             Monster monster = null;
-            monster = monsterType.makeMonsterAsType(monster, name, type);
+            monster = monsterFactory.makeMonsterAsType(monster, name, type);
             monster.setAttemptCount(attemptCount);
             monsters.add(monster);
         }
     }
 
     private void startRace() {
-        System.out.println(OutputStrings.RACE_RESULT);
+        System.out.println(RACE_RESULT);
         for (int index = 0; index < monsterCount; index++) {
-            monsters.get(index).calcMoveCount();
-            System.out.printf("%s [%s] : %s\n", monsters.get(index).getName()
-                    , monsters.get(index).getType()
-                    , monsters.get(index).move());
+            Monster monster = monsters.get(index);
+            monster.calcMoveCount();
+            System.out.printf("%s [%s] : %s\n", monster.getName(), monster.getType(), monster.move());
         }
-        System.out.println(OutputStrings.CONGRATULATE + checkWinner().toString() + OutputStrings.VICTORY_MONSTER_RACE);
-        System.out.println(OutputStrings.GAME_EXIT);
+        System.out.printf(WINNER.toString(), checkWinner().toString());
+        System.out.println(GAME_EXIT);
     }
 
     private int findMaxMoveCount() {
@@ -87,7 +88,7 @@ public class MonsterRace {
         List<String> winners = new ArrayList<>();
         int maxMoveCount = findMaxMoveCount();
         monsters.stream()
-                .filter(monster -> monster.getMoveCount() == maxMoveCount)
+                .filter(monster -> monster.getMoveCount()==maxMoveCount)
                 .forEach(monster -> winners.add(monster.getName()));
 
         return winners;
