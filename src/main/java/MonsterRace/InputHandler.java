@@ -28,8 +28,6 @@ public class InputHandler {
   }
 
   public String getFileDate() throws Exception {
-//    String pathName = Text.FILE_PAHT.toString();
-//    fileHandler.connectFile(pathName);
     return fileHandler.getFileData();
   }
 

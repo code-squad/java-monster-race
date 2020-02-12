@@ -8,13 +8,11 @@ import java.util.List;
 public class Manager {
   public InputHandler inputHandler;
   public OutputHandler outputHandler;
-  private FileHandler fileHandler;
   private List<Monster> monsters;
 
   public Manager() {
     this.inputHandler = InputHandler.getInstance();
     this.outputHandler = OutputHandler.getInstance();
-    this.fileHandler = FileHandler.getInstance();
     this.monsters = new ArrayList<Monster>();
   }
 
@@ -27,27 +25,27 @@ public class Manager {
         input = inputHandler.getInteger();
 
         switch (input) {
-          case 1:
+          case 1: // 1. 전체 몬스터 정보 보기
             printMonsterInfo();
             break;
 
-          case 2:
+          case 2: // 2. 몬스터 정보 , 구현되지 않음
             throw new Exception();
 //            break;
 
-          case 3:
+          case 3: // 3. 새로운 몬스터 정보 입력
             System.out.println(Text.Q_ADD_MONSTER_INFO);
             if (!addMonster()) throw new Exception();
-            System.out.println(Text.P_INPUT);
+            System.out.println(Text.P_INPUT + "\n");
             break;
 
-          case 4:
+          case 4: // 4. 몬스터 정보 삭제
             System.out.println(Text.Q_REMOVE_MONSTER_INFO);
             if (!removeMonster()) throw new Exception();
-            System.out.println(Text.P_INPUT);
+            System.out.println(Text.P_INPUT + "\n");
             break;
 
-          case 5:
+          case 5: // 5. 이전 메뉴로
             break;
 
           default:
@@ -65,21 +63,9 @@ public class Manager {
 //    }
   }
 
-  public void setMonsters() throws Exception {
-    String fileData = inputHandler.getFileDate();
-    String[] monsterInfoArray = fileData.split("\n");
-    Arrays.stream(monsterInfoArray)
-        .forEach(monsterInfoString -> addMonster(monsterInfoString));
-  }
-
-  public void printRaceResult() {
-    monsters.stream().forEach(monster -> {
-      System.out.println(monster + " : " + "-".repeat(monster.getDistance()));
-    });
-  }
-
-  public void moveMonsters(int roundCount) {
-    monsters.stream().forEach(monster -> monster.move(roundCount));
+  private void printMonsterInfo() {
+    monsters.stream().forEach(System.out::println);
+    System.out.println();
   }
 
   private boolean addMonster() throws Exception {
@@ -97,8 +83,21 @@ public class Manager {
     return monsters.remove(new Monster(monsterInfo[0], monsterInfo[1]));
   }
 
-  private void printMonsterInfo() {
-    monsters.stream().forEach(System.out::println);
+  public void setMonsters() throws Exception {
+    String fileData = inputHandler.getFileDate();
+    String[] monsterInfoArray = fileData.split("\n");
+    Arrays.stream(monsterInfoArray)
+        .forEach(monsterInfoString -> addMonster(monsterInfoString));
+  }
+
+  public void printRaceResult() {
+    monsters.stream().forEach(monster -> {
+      System.out.println(monster + " : " + "-".repeat(monster.getDistance()));
+    });
+  }
+
+  public void moveMonsters(int roundCount) {
+    monsters.stream().forEach(monster -> monster.move(roundCount));
   }
 
   public Monster getWinner() {

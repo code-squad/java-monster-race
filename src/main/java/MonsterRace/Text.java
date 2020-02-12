@@ -34,7 +34,7 @@ public enum Text {
   E_CLOSE("### Error : Close Failed"),
   E_FILE("### Error : File Open Failed"),
   E_FILE_WRITE("### Error : File Write Failed"),
-  E_MONSTER_INFO("### Error : Monster info Failed"),
+  E_MONSTER_INFO_LOAD("### Error : Monster info Load Failed"),
 
   P_RACE_RESULT1("축하합니다! "),
   P_RACE_RESULT2(" 이(가) 몬스터 레이스에서 우승했습니다."),

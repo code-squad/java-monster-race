@@ -9,7 +9,6 @@ public class OutputHandler {
   private BufferedWriter bw;
 
   private OutputHandler() {
-//    this.bw = new BufferedReader(new InputStreamReader(System.in));
     this.fileHandler = FileHandler.getInstance();
   }
 
