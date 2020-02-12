@@ -1,29 +1,56 @@
 package game;
 
-import java.util.Random;
+import game.strategy.move.EsperableStrategy;
+import game.strategy.move.FlyableStrategy;
+import game.strategy.move.MovableStrategy;
+import game.strategy.move.RunnableStrategy;
 
 // 몬스터 객체의 속성인 거리를 관리한다.
 public class Monster {
-    private static final Random random = new Random();
-    private int distance;
+    public static final String RUN = "달리기";
+    public static final String FLY = "비행";
+    public static final String ESPER = "에스퍼";
 
-    Monster() {
-        distance = 0;
+    private final String name;
+    private String type;
+    private int distance = 0;
+    private MovableStrategy movable = new RunnableStrategy();
+
+    public static Monster of(String[] infos) {
+        return new Monster(infos[0], infos[1]);
     }
+
 
     public void move() {
-        if(random.nextInt(10) >= 4) {
-            distance++;
-        }
+        distance += movable.move();
     }
 
-    String getDistance() {
+    public String getDistance() {
         StringBuilder buffer = new StringBuilder();
-
         for(int i=0; i<distance; i++) {
             buffer.append("-");
         }
-
         return buffer.toString();
+    }
+
+    @Override
+    public String toString() {
+        return name + "(" + type + ")";
+    }
+
+    private Monster(String name, String type) {
+        this.name = name;
+        this.type = type;
+        switch (type) {
+            case RUN:
+                movable = new RunnableStrategy();
+                break;
+            case FLY:
+                movable = new FlyableStrategy();
+                break;
+            case ESPER:
+                movable = new EsperableStrategy();
+                break;
+        }
     }
 }
