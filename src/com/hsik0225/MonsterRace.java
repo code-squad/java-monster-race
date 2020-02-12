@@ -2,6 +2,8 @@ package com.hsik0225;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
+import java.util.stream.IntStream;
 
 import static com.hsik0225.OutputStrings.ATTEMPT_COUNT_QUESTION;
 import static com.hsik0225.OutputStrings.GAME_EXIT;
@@ -56,9 +58,17 @@ public class MonsterRace {
         }
     }
 
+    private void giveRandomValues(Monster monster){
+        Random random = new Random();
+        int bound = 10;
+        IntStream.range(0,attemptCount)
+                .map(index -> random.nextInt(bound))
+                .forEach(monster::plusMovedDistance);
+    }
+
     private void race() {
         for (Monster monster : monsters) {
-            monster.giveRandomValues(attemptCount);
+            giveRandomValues(monster);
         }
     }
 

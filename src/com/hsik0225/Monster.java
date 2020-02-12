@@ -1,7 +1,5 @@
 package com.hsik0225;
 
-import java.util.Random;
-
 public class Monster {
     private String name;
     private String type;
@@ -38,18 +36,9 @@ public class Monster {
         return "-".repeat(distance);
     }
 
-    private void plusMovedDistance(int randomValue){
+    public void plusMovedDistance(int randomValue){
         if(randomValue>=conditionalValue){
             distance += movedDistance;
-        }
-    }
-
-    public void giveRandomValues(int attemptCount){
-        Random random = new Random();
-        int bound = 10;
-        for (int index = 0; index < attemptCount; index++) {
-            int randomValue = random.nextInt(bound);
-            plusMovedDistance(randomValue);
         }
     }
 }
