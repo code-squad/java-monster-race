@@ -1,28 +1,44 @@
-public class Monster {
+public abstract class Monster {
 
-    private int traces;
     private static final int RANDOM_MAX = 10;
-    private static final int FOWARD_PERCENTAGE = 4;
+    private String monsterName;
+    protected TYPE type;
+    protected int traces;
 
-    public void update() {
-        if(isForward())
-            traces++;
+    public Monster(String monsterName, TYPE type) {
+        this.monsterName = monsterName;
+        this.type = type;
     }
+
+    abstract public void update();
 
     public void render() {
-        System.out.println(getTraces());
+        System.out.println(this + " : " + getTraces2String());
     }
 
-    private boolean isForward() {
-        int randomNumber = (int)(Math.random() * RANDOM_MAX);
-        return (randomNumber >= FOWARD_PERCENTAGE);
+    public int getTraces() {
+        return traces;
     }
 
-    private StringBuilder getTraces() {
+    @Override
+    public String toString() {
+        return String.format("%s [%s]", this.monsterName, this.type.getTypeName());
+    }
+
+    protected boolean isForward() {
+        int diceNumber = castingDice();
+        return diceNumber >= type.getRandomLimit();
+    }
+
+    protected int castingDice() {
+        return (int)(Math.random() * RANDOM_MAX);
+    }
+
+    private String getTraces2String() {
         StringBuilder buffer = new StringBuilder();
-        for(int i = 0; i < this.traces; ++i){
+        for(int i = 0; i < this.traces; i++) {
             buffer.append("-");
         }
-        return buffer;
+        return buffer.toString();
     }
 }

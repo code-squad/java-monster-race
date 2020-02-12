@@ -82,3 +82,52 @@
 + GameMachine.java
   + main 함수만 실행하는 클래스
   + (before) MonsterRace.java에 main 함수와 게임 로직이 함께 존재함 => (after) MonsterRace.java에는 게임 로직만 존재
+  
+## step3
+  
+  + Monster 클래스 추상 클래스로 변경
+  
+    + 몬스터의 종류가 추가되었기 때문에 몬스터에게 공통적으로 필요한 요소를 정의하고 종류별로 update()의 구현 내용이 달라져야 함
+    + 모든 몬스터의 공통적 요소
+      + static final int RANDOM_MAX : 전진 확률 최대 범위
+      + String name : 몬스터의 이름
+      + TYPE : 몬스터 종류 (enum형)
+      + int traces : 전진 거리
+    + update() : 추상 메소드로 선언
+  
+    
+  
+    > 고민했던 것
+  
+    + Monster 클래스를 추상클래스로 구현 vs 인터페이스로 구현
+  
+      공통적으로 필요한 (멤버)변수가 몇가지 존재하므로 추상클래스를 선택함
+  
+      
+  
+  + 몬스터 종류별 자식 클래스
+  
+    + Normal.java
+    + Flying.java
+    + Psychic.java
+  
+    
+  
+  + Input 변경 사항
+  
+    + 입력받은 데이터를 몬스터 타입으로 파싱하는 기능 추가
+  
+  
+  
+  > 새롭게 추가된 것
+  
+  + TYPE.java
+  
+    + 몬스터의 종류를 정의한 enum 변수
+    + 종류별 상수값도 함께 묶음 (typeName, speed, randomLimit)
+    + 종류 : NORMAL(달리기), FLYING(비행), PSYCHIC(에스퍼)
+  
+    
+  
+  + MonsterFactory.java
+    + 인자로 전달받은 데이터를 이용하여 그에 해당하는 몬스터 자식 객체를 반환
