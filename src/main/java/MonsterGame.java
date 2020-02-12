@@ -31,11 +31,11 @@ public class MonsterGame {
     }
 
     public void consoleWinner() {
-        List<Monster> winner = winner();
+        List<Monster> winner = createWinner();
         System.out.printf("축하합니다! %s가 몬스터 레이스에서 우승하였습니다.", winner.stream().map(Monster::getName).collect(Collectors.joining(",")));
     }
 
-    public List<Monster> winner() {
+    public List<Monster> createWinner() {
         List<Monster> winner = new ArrayList<>();
 
         monsters.sort((o1, o2) -> Integer.compare(o2.getPosition(), o1.getPosition()));
@@ -50,7 +50,7 @@ public class MonsterGame {
         return winner;
     }
 
-    public List<Monster> monsters() {
+    public List<Monster> getMonsters() {
         return this.monsters;
     }
 

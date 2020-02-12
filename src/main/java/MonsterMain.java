@@ -15,7 +15,7 @@ public class MonsterMain {
         int tryNumber = tryNumber();
 
         MonsterGame monsterGame = new MonsterGame(monsterNumber, tryNumber);
-        List<Monster> monsters = monsters(monsterNumber);
+        List<Monster> monsters = createMonsters(monsterNumber);
         monsterGame.initMonsters(monsters);
         inputView.close();
 
@@ -34,15 +34,15 @@ public class MonsterMain {
         return inputView.tryNumber();
     }
 
-    private List<Monster> monsters(int monsterNumber) throws IOException {
+    private List<Monster> createMonsters(int monsterNumber) throws IOException {
         List<Monster> monsters = new ArrayList<>();
         for (int i = 0; i < monsterNumber; i++) {
-            monsters.add(monster());
+            monsters.add(createMonster());
         }
         return monsters;
     }
 
-    private Monster monster() throws IOException {
+    private Monster createMonster() throws IOException {
         MonsterFactory monsterFactory = new MonsterFactory();
         while (true) {
             String[] monsterInfo = inputView.monsterInfo();
