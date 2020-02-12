@@ -3,8 +3,13 @@ package com.han95210.codesquad.monsterRace.step2;
 import java.util.Scanner;
 
 public class MonsterRace {
+    private static final Integer FORWARD_NUMBER = 4;
 
     private Scanner scanner;
+
+    public MonsterRace() {
+        scanner = new Scanner(System.in);
+    }
 
     private int getNumberOfMonster() {
         scanner = new Scanner(System.in);
@@ -23,17 +28,19 @@ public class MonsterRace {
         return scanner.nextInt();
     }
 
-    private static String getRandomDash() {
-        String dashStr = "";
-        int randomNum = (int) (Math.random() * 10);
-        if (randomNum >= 4) {
-            dashStr = "-";
+    public Integer getRandomNumber(int range) {
+        return (int) (Math.random() * range);
+    }
+
+    private String getRandomDash() {
+        if (getRandomNumber(10) >= FORWARD_NUMBER) {
+            return "-";
         }
-        return dashStr;
+        return "";
     }
 
     // 횟수가 주어졌을 때 랜덤으로 문자열에 -(dash)로 채워넣기
-    private static String getDashStr(int numberAttempts) {
+    private String getDashStr(int numberAttempts) {
         StringBuilder dashStr = new StringBuilder();
 
         for (int i = 0; i < numberAttempts; i++) {
