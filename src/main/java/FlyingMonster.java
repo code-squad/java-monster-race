@@ -1,13 +1,12 @@
 public class FlyingMonster extends Monster {
 
     public FlyingMonster(String name) {
-        super(name);
-        this.type = "비행";
+        super(name, MonsterType.FLYING);
     }
 
     @Override
     public void move() {
-        this.move(forwardNumber());
+        move(forwardNumber());
     }
 
     @Override

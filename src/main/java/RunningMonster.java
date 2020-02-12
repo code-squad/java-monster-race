@@ -1,8 +1,7 @@
 public class RunningMonster extends Monster {
 
     public RunningMonster(String name) {
-        super(name);
-        this.type = "달리기";
+        super(name, MonsterType.RUNNING);
     }
 
     @Override
@@ -13,6 +12,6 @@ public class RunningMonster extends Monster {
 
     @Override
     public void move() {
-        this.move(forwardNumber());
+        move(forwardNumber());
     }
 }

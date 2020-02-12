@@ -5,12 +5,13 @@ public abstract class Monster {
     private static final int MIN_RANDOM_NUMBER = 0;
 
     private int position;
-    String name;
-    String type;
+    private String name;
+    private MonsterType type;
 
-    public Monster(String name) {
+    public Monster(String name, MonsterType type) {
         this.position = 0;
         this.name = name;
+        this.type = type;
     }
 
     public int randomNumber() {
@@ -31,6 +32,10 @@ public abstract class Monster {
 
     public String name() {
         return this.name;
+    }
+
+    public String type() {
+        return this.type.key();
     }
 
     abstract void move();

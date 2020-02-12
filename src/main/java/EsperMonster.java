@@ -1,8 +1,7 @@
 public class EsperMonster extends Monster {
 
     public EsperMonster(String name) {
-        super(name);
-        this.type = "초능력";
+        super(name, MonsterType.ESPER);
     }
 
     @Override
