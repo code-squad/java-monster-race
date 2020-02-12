@@ -25,7 +25,11 @@ public class Monster {
         distance += movable.move();
     }
 
-    public String getDistance() {
+    public int getDistance() {
+        return distance;
+    }
+
+    public String drawDistance() {
         StringBuilder buffer = new StringBuilder();
         for(int i=0; i<distance; i++) {
             buffer.append("-");
@@ -40,16 +44,21 @@ public class Monster {
 
     private Monster(String name, String type) {
         this.name = name;
-        this.type = type;
         switch (type) {
             case RUN:
                 movable = new RunnableStrategy();
+                this.type = RUN;
                 break;
             case FLY:
                 movable = new FlyableStrategy();
+                this.type = FLY;
                 break;
             case ESPER:
                 movable = new EsperableStrategy();
+                this.type = ESPER;
+                break;
+            default:
+                this.type = RUN;
                 break;
         }
     }
