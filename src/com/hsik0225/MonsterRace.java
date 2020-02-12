@@ -37,19 +37,17 @@ public class MonsterRace {
     private void makeMonsters() {
         for (int index = 0; index < monsterCount; index++) {
             String[] monsterInfo = input.inputMonstersInfo().replaceAll("\\s*", "").split(",");
-            String name = monsterInfo[0];
-            String type = monsterInfo[1];
-            MonsterFactory monsterFactory = MonsterFactory.valueOf(type);
+            MonsterFactory monsterFactory = MonsterFactory.valueOf(monsterInfo[1]);
+            monsterFactory.setName(monsterInfo[0]);
             Monster monster = null;
-            monster = monsterFactory.makeMonsterAsType(monster, name, type);
+            monster =
             monsters.add(monster);
         }
     }
 
     private void startRace() {
         System.out.println(RACE_RESULT);
-        for (int index = 0; index < monsterCount; index++) {
-            Monster monster = monsters.get(index);
+        for (Monster monster : monsters) {
             monster.setAttemptCount(attemptCount);
             monster.calcMoveCount();
             System.out.printf("%s [%s] : %s\n", monster.getName(), monster.getType(), monster.move());
@@ -58,20 +56,19 @@ public class MonsterRace {
         System.out.println(GAME_EXIT);
     }
 
-    private int findMaxMoveCount() {
-        return monsters.stream()
-                .map(Monster::getMoveCount)
-                .max(Integer::compareTo)
-                .get();
-    }
-
     private List<String> checkWinner() {
+        int maxMoveCount = 0;
         List<String> winners = new ArrayList<>();
-        int maxMoveCount = findMaxMoveCount();
-        monsters.stream()
-                .filter(monster -> monster.getMoveCount() == maxMoveCount)
-                .forEach(monster -> winners.add(monster.getName()));
-
+        for (Monster monster : monsters) {
+            int moveCount = monster.getMoveCount();
+            if (moveCount > maxMoveCount) {
+                maxMoveCount = moveCount;
+                winners.clear();
+            }
+            if (moveCount >= maxMoveCount) {
+                winners.add(monster.getName());
+            }
+        }
         return winners;
     }
 }

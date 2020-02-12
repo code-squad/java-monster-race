@@ -3,18 +3,11 @@ package com.hsik0225;
 import java.util.Random;
 import java.util.stream.IntStream;
 
-public class Monster {
+public abstract class Monster {
     private String name;
     private String type;
     private int attemptCount;
     private int moveCount;
-    private Movable movable;
-
-    public Monster(String name, String type) {
-        this.name = name;
-        this.type = type;
-        this.movable = MonsterFactory.valueOf(type).getMovable();
-    }
 
     public void setAttemptCount(int attemptCount) {
         this.attemptCount = attemptCount;
@@ -44,6 +37,8 @@ public class Monster {
     }
 
     public void setMoveCount(){
-        this.moveCount = movable.calcMoveCount(makeRandomValues(b));
+        this.moveCount = movable.calcMoveCount(makeRandomValues());
     }
+
+    public abstract void calcMoveCount();
 }
