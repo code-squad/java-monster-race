@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.example</groupId>
-    <artifactId>java-monster-race</artifactId>
+    <artifactId>java-monster-game</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
@@ -90,6 +90,10 @@
                         </goals>
                     </execution>
                 </executions>
+                <configuration>
+                    <source>7</source>
+                    <target>7</target>
+                </configuration>
             </plugin>
         </plugins>
     </build>
