@@ -1,71 +1,67 @@
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import java.util.stream.Collectors;
 
 public class MonsterGame {
-    private static final int MAX_RANDOM_NUMBER = 9;
-    private static final int MIN_RANDOM_NUMBER = 0;
-
     private int monsterNumber;
     private int tryNumber;
-    private List<Monster> gameResult;
-
+    private List<Monster> monsters;
 
     public MonsterGame(int monsterNumber, int tryNumber) {
         this.monsterNumber = monsterNumber;
         this.tryNumber = tryNumber;
-        this.gameResult = new ArrayList<>();
+        this.monsters = new ArrayList<>();
     }
 
-    public List<Monster> race() {
-        for (int i = 0; i < monsterNumber; i++) {
-            singleMonsterRace(i);
-        }
+    public void initMonsters(List<Monster> monsters) {
+        this.monsters = monsters;
+    }
 
-        return gameResult;
+    public void race() {
+        for (int i = 0; i < tryNumber; i++) {
+            for (Monster monster : monsters) {
+                monster.move();
+            }
+        }
     }
 
     public void consoleFormatGameResult() {
-        String gameResult = formatGameResult();
-        System.out.println(gameResult);
+        String monsters = formatGameResult();
+        System.out.println(monsters);
     }
 
-    public List<Monster> gameResult() {
-        return this.gameResult;
+    public void consoleWinner() {
+        List<Monster> winner = createWinner();
+        System.out.printf("축하합니다! %s가 몬스터 레이스에서 우승하였습니다.", winner.stream().map(Monster::getName).collect(Collectors.joining(",")));
     }
 
-    private Monster singleMonsterRace(int monsterIndex) {
-        Monster monster = new Monster();
-
-        for (int i = 0; i < tryNumber; i++) {
-            monster.move(forwardNumber(randomNumber()));
+    public List<Monster> createWinner() {
+        Integer maxPosition = null;
+        List<Monster> res = new ArrayList<>();
+        for (Monster monster : monsters) {
+            Integer position = monster.getPosition();
+            if (maxPosition == null || position.compareTo(maxPosition) > 0) {
+                res.clear();
+                maxPosition = position;
+                res.add(monster);
+            } else if (position.compareTo(maxPosition) == 0) {
+                res.add(monster);
+            }
         }
-
-        this.gameResult.add(monsterIndex, monster);
-        return this.gameResult.get(monsterIndex);
+        return res;
     }
 
-    private int randomNumber() {
-        return new Random().nextInt(MAX_RANDOM_NUMBER + 1 - MIN_RANDOM_NUMBER) + MIN_RANDOM_NUMBER;
-    }
-
-    private int forwardNumber(int randomResult) {
-        return randomResult >= 4 ? 1 : 0;
+    public List<Monster> getMonsters() {
+        return this.monsters;
     }
 
     private String formatGameResult() {
-        return gameResult.stream().map(monster -> formatMonsterLocation(monster.position())).collect(Collectors.joining("\n"));
+        return monsters.stream().map(monster -> monster.getName() + "[" + monster.getType().key() + "] : " + formatMonsterLocation(monster.getPosition()))
+                .collect(Collectors.joining("\n"));
     }
 
     private String formatMonsterLocation(int times) {
         char character = '-';
-        StringBuffer result = new StringBuffer();
-
-        for (int i = 0; i < times; i++) {
-            result.append(character);
-        }
-
-        return result.toString();
+        return String.valueOf(character).repeat(times);
     }
 }

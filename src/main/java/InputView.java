@@ -10,8 +10,21 @@ public class InputView {
                 InputStreamReader(System.in));
     }
 
+    public String[] monsterInfo() throws IOException {
+        System.out.println("경주할 몬스터 이름과 종류를 입력하세요 (쉼표(,)를 기준으로 구분).");
+        String input = bufferedReader.readLine();
+
+        input = input.replaceAll("\\s+", "");
+        String[] splitInput = input.split(",");
+        if (!isValidMonsterInfo(splitInput)) {
+            System.out.println("올바른 형식이 아닙니다!");
+            return monsterInfo();
+        }
+        return splitInput;
+    }
+
     public int monsterNumber() throws IOException {
-        System.out.println("몬스터는 모두 몇 마리인가요?");
+        System.out.println("몇 명의 몬스터가 경주하나요?");
         return Integer.parseInt(bufferedReader.readLine());
     }
 
@@ -22,5 +35,9 @@ public class InputView {
 
     public void close() throws IOException {
         bufferedReader.close();
+    }
+
+    private boolean isValidMonsterInfo(String[] info) {
+        return info.length == 2;
     }
 }
