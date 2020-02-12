@@ -40,8 +40,10 @@ public class MonsterRace {
             String name = monsterInfo[0];
             String type = monsterInfo[1];
             MonsterFactory monsterFactory = MonsterFactory.valueOf(type);
-            Monster monster = null;
-            monster = monsterFactory.
+            Monster monster = monsterFactory.makeMonster();
+            monster.setName(name);
+            monster.setType(type);
+            monster.setAttemptCount(attemptCount);
             monsters.add(monster);
         }
     }

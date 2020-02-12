@@ -7,7 +7,15 @@ public abstract class Monster {
     private String name;
     private String type;
     private int attemptCount;
-    private int moveCount;
+    protected int moveCount;
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
 
     public void setAttemptCount(int attemptCount) {
         this.attemptCount = attemptCount;
@@ -36,9 +44,5 @@ public abstract class Monster {
         return "-".repeat(moveCount);
     }
 
-    public void setMoveCount(){
-        this.moveCount = movable.calcMoveCount(makeRandomValues());
-    }
-
-    public abstract int calcMoveCount();
+    public abstract void calcMoveCount();
 }
