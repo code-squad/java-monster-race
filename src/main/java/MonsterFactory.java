@@ -1,5 +1,11 @@
 public class MonsterFactory {
-    public Monster createMonster(String name, MonsterType type) {
+
+    private MonsterFactory() {
+    }
+
+    ;
+
+    public static Monster createMonster(String name, MonsterType type) {
         switch (type) {
             case RUNNING:
                 return new RunningMonster(name);

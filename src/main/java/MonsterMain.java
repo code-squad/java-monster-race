@@ -43,7 +43,6 @@ public class MonsterMain {
     }
 
     private Monster createMonster() throws IOException {
-        MonsterFactory monsterFactory = new MonsterFactory();
         while (true) {
             String[] monsterInfo = inputView.monsterInfo();
             String monsterName = monsterInfo[0];
@@ -51,7 +50,7 @@ public class MonsterMain {
             if (monsterType == null) {
                 continue;
             }
-            return monsterFactory.createMonster(monsterName, monsterType);
+            return MonsterFactory.createMonster(monsterName, monsterType);
         }
     }
 }
