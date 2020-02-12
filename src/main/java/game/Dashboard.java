@@ -6,7 +6,7 @@ import java.util.Optional;
 
 // 경기 정보를 표준 출력을 통해 출력하는 책임이 있다.
 public class Dashboard {
-    private static final String ROUND_MESSAGE = "----%d round----\n";
+    private static final String ROUND_MESSAGE = "=====%d round=====\n";
     private static final String CURRENT_MESSAGE = "%s: %s\n";
     private static final String RESULT_MESSAGE = "축하합니다! %s가 몬스터 레이스에서 우승했습니다.\n";
     private static final String NOT_HOLD_MESSAGE = "이번 경기는 참가자가 없어 쉽니다.\n";

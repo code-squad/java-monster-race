@@ -17,9 +17,9 @@
 - [텍스트와 이미지로 살펴보는 코드스쿼드의 온라인 코드 리뷰 과정](https://github.com/code-squad/codesquad-docs/blob/master/codereview/README.md)
 - [동영상으로 살펴보는 코드스쿼드의 온라인 코드 리뷰 과정](https://youtu.be/a5c9ku-_fok)
 
-## Step 2
+## Step 3
 
-#### 설계
+### 설계
 
 - Race
 
@@ -47,3 +47,9 @@
 - Dashboard
 
 경기 정보를 출력하는 책임이 있다.
+
+### 고민사항
+
+- singleton vs static 클래스 (synchronized)
+- explicit initialization vs initialization block vs constructor
+- Race 객체의 결합도가 너무 높다.
