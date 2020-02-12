@@ -4,6 +4,10 @@ public class RunningMonster extends Monster {
         super(name, MonsterType.RUNNING);
     }
 
+    public RunningMonster() {
+        super();
+    }
+
     @Override
     public int forwardNumber() {
         int randomNumber = this.randomNumber();

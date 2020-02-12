@@ -4,13 +4,37 @@ public abstract class Monster {
     private static final int MAX_RANDOM_NUMBER = 9;
     private static final int MIN_RANDOM_NUMBER = 0;
 
-    private int position;
+    private int position = 0;
     private String name;
     private MonsterType type;
 
+    public Monster() {
+    }
+
+    ;
+
     public Monster(String name, MonsterType type) {
-        this.position = 0;
         this.name = name;
+        this.type = type;
+    }
+
+    public int getPosition() {
+        return position;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public MonsterType getType() {
+        return type;
+    }
+
+    public void setType(MonsterType type) {
         this.type = type;
     }
 
@@ -22,20 +46,8 @@ public abstract class Monster {
         return new Random().nextInt(max + 1 - min) + min;
     }
 
-    public int position() {
-        return this.position;
-    }
-
     public void move(int n) {
         this.position += n;
-    }
-
-    public String name() {
-        return this.name;
-    }
-
-    public String type() {
-        return this.type.key();
     }
 
     abstract void move();

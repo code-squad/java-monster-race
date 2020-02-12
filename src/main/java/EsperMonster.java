@@ -4,6 +4,10 @@ public class EsperMonster extends Monster {
         super(name, MonsterType.ESPER);
     }
 
+    public EsperMonster() {
+        super();
+    }
+
     @Override
     public void move() {
         move(forwardNumber());

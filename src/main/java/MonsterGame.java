@@ -32,16 +32,16 @@ public class MonsterGame {
 
     public void consoleWinner() {
         List<Monster> winner = winner();
-        System.out.printf("축하합니다! %s가 몬스터 레이스에서 우승하였습니다.", winner.stream().map(Monster::name).collect(Collectors.joining(",")));
+        System.out.printf("축하합니다! %s가 몬스터 레이스에서 우승하였습니다.", winner.stream().map(Monster::getName).collect(Collectors.joining(",")));
     }
 
     public List<Monster> winner() {
         List<Monster> winner = new ArrayList<>();
 
-        monsters.sort((o1, o2) -> Integer.compare(o2.position(), o1.position()));
-        int winnerPosition = monsters.get(0).position();
+        monsters.sort((o1, o2) -> Integer.compare(o2.getPosition(), o1.getPosition()));
+        int winnerPosition = monsters.get(0).getPosition();
         for (Monster monster : monsters) {
-            if (monster.position() == winnerPosition) {
+            if (monster.getPosition() == winnerPosition) {
                 winner.add(monster);
                 continue;
             }
@@ -55,7 +55,7 @@ public class MonsterGame {
     }
 
     private String formatGameResult() {
-        return monsters.stream().map(monster -> monster.name() + "[" + monster.type() + "] : " + formatMonsterLocation(monster.position()))
+        return monsters.stream().map(monster -> monster.getName() + "[" + monster.getType().key() + "] : " + formatMonsterLocation(monster.getPosition()))
                 .collect(Collectors.joining("\n"));
     }
 
