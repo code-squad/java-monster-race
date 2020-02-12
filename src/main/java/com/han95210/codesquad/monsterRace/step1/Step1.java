@@ -4,18 +4,17 @@ import java.util.Scanner;
 
 public class Step1 {
 
-    // 횟수가 주어졌을 때 랜덤으로 문자열에 -(dash)로 채워넣기
+     //횟수가 주어졌을 때 랜덤으로 문자열에 -(dash)로 채워넣기
     String getForwardCount(int numberAttempts) {
-
-        String dashStr = "";
+        StringBuilder dashStr = new StringBuilder();
 
         for (int i = 0; i < numberAttempts; i++) {
             int randomNum = (int) (Math.random() * 10);
             if (randomNum >= 4) {
-                dashStr += "-";
+                dashStr.append("-");
             }
         }
-        return dashStr;
+        return dashStr.toString();
     }
 
     public static void main(String[] args) {
