@@ -36,18 +36,19 @@ public class MonsterGame {
     }
 
     public List<Monster> createWinner() {
-        List<Monster> winner = new ArrayList<>();
-
-        monsters.sort((o1, o2) -> Integer.compare(o2.getPosition(), o1.getPosition()));
-        int winnerPosition = monsters.get(0).getPosition();
+        Integer maxPosition = null;
+        List<Monster> res = new ArrayList<>();
         for (Monster monster : monsters) {
-            if (monster.getPosition() == winnerPosition) {
-                winner.add(monster);
-                continue;
+            Integer position = monster.getPosition();
+            if (maxPosition == null || position.compareTo(maxPosition) > 0) {
+                res.clear();
+                maxPosition = position;
+                res.add(monster);
+            } else if (position.compareTo(maxPosition) == 0) {
+                res.add(monster);
             }
-            break;
         }
-        return winner;
+        return res;
     }
 
     public List<Monster> getMonsters() {

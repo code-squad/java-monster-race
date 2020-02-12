@@ -11,8 +11,6 @@ public abstract class Monster {
     public Monster() {
     }
 
-    ;
-
     public Monster(String name, MonsterType type) {
         this.name = name;
         this.type = type;
