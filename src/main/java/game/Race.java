@@ -6,40 +6,38 @@ import java.util.List;
 // 게임 전체 로직을 진행하는 역할
 public class Race {
     private Rule rule = new Rule();
-
-    // 게임을 시작하기 위해 필요한 정보를 사용자로부터 초기화한다.
-    public void setRule() {
-        rule.setRule();
-    }
+    private Reception reception = new Reception();
+    private List<Monster> participants = new ArrayList<>();
 
     // 게임을 시작한다.
     public void start() {
+        setRule();
+        enterParticipants();
+
         System.out.println("\n경기를 시작합니다.");
-        List<Monster> participants = getMonsters();
-
         for(int round = 0; round<rule.getTotalRound(); round++) {
-            playRound(participants);
-            displayInfo(round, participants);
+            playRound();
+            displayInfo(round);
         }
+        Dashboard.displayResult(participants);
     }
 
-    private List<Monster> getMonsters() {
-        List<Monster> monsters = new ArrayList<>();
-        for(int i=0; i<rule.getTotalParticipant(); i++) {
-            monsters.add(new Monster());
-        }
-
-        return monsters;
+    private void setRule() {
+        rule.setRule();
     }
 
-    private void playRound(List<Monster> participants) {
+    private void enterParticipants() {
+        participants.clear();
+        participants.addAll(reception.registerParticipants(rule.getTotalParticipant()));
+    }
+
+    private void playRound() {
         for(Monster participant: participants) {
             participant.move();
         }
     }
 
-    // 시합결과를 출력한다.
-    private void displayInfo(int round, List<Monster> participants) {
-        Dashboard.displayResult(round, participants);
+    private void displayInfo(int round) {
+        Dashboard.displayCurrent(round, participants);
     }
 }

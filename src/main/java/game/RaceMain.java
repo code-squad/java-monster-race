@@ -5,7 +5,6 @@ public class RaceMain {
         Race race = new Race();
 
         System.out.println("<신나는 몬스터 레이스>");
-        race.setRule();
         race.start();
     }
 }
