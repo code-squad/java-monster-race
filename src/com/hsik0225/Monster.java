@@ -1,13 +1,16 @@
 package com.hsik0225;
 
-import java.util.Random;
-import java.util.stream.IntStream;
-
-public abstract class Monster {
+public class Monster {
     private String name;
     private String type;
-    private int attemptCount;
-    protected int moveCount;
+    private int moveCount;
+    private int value_can_move;
+    private int plusValue;
+
+    public Monster(int value_can_move, int plusValue){
+        this.value_can_move = value_can_move;
+        this.plusValue = plusValue;
+    }
 
     public void setName(String name) {
         this.name = name;
@@ -15,10 +18,6 @@ public abstract class Monster {
 
     public void setType(String type) {
         this.type = type;
-    }
-
-    public void setAttemptCount(int attemptCount) {
-        this.attemptCount = attemptCount;
     }
 
     public String getName() {
@@ -33,16 +32,13 @@ public abstract class Monster {
         return this.moveCount;
     }
 
-    protected IntStream makeRandomValues(int bound, int moveCondition) {
-        Random random = new Random();
-        return IntStream.range(0, attemptCount)
-                .map(index -> random.nextInt(bound))
-                .filter(randomValue -> randomValue >= moveCondition);
-    }
-
     public String move(){
         return "-".repeat(moveCount);
     }
 
-    public abstract void calcMoveCount();
+    public void plusMoveCount(int randomValue){
+        if(randomValue>=value_can_move){
+            moveCount += plusValue;
+        }
+    }
 }
