@@ -37,10 +37,11 @@ public class MonsterRace {
     private void makeMonsters() {
         for (int index = 0; index < monsterCount; index++) {
             String[] monsterInfo = input.inputMonstersInfo().replaceAll("\\s*", "").split(",");
-            MonsterFactory monsterFactory = MonsterFactory.valueOf(monsterInfo[1]);
-            monsterFactory.setName(monsterInfo[0]);
+            String name = monsterInfo[0];
+            String type = monsterInfo[1];
+            MonsterFactory monsterFactory = MonsterFactory.valueOf(type);
             Monster monster = null;
-            monster =
+            monster = monsterFactory.
             monsters.add(monster);
         }
     }

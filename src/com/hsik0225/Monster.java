@@ -40,5 +40,5 @@ public abstract class Monster {
         this.moveCount = movable.calcMoveCount(makeRandomValues());
     }
 
-    public abstract void calcMoveCount();
+    public abstract int calcMoveCount();
 }
