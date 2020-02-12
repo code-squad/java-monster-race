@@ -25,7 +25,7 @@ public class MonsterRace {
 
     public void startGame() {
         setGame();
-        startRace();
+        race();
     }
 
     private void setGame() {
@@ -51,19 +51,19 @@ public class MonsterRace {
         }
     }
 
-    private void giveRandomValue(Monster monster){
+    private void giveRandomValues(Monster monster){
         Random random = new Random();
         int bound = 10;
         for (int index = 0; index < attemptCount; index++) {
             int randomValue = random.nextInt(bound);
-            monster.plusMoveCount(randomValue);
+            monster.plusDistance(randomValue);
         }
     }
 
-    private void startRace() {
+    private void race() {
         System.out.println(RACE_RESULT);
         for (Monster monster : monsters) {
-            giveRandomValue(monster);
+            giveRandomValues(monster);
             System.out.printf("%s [%s] : %s\n", monster.getName(), monster.getType(), monster.move());
         }
         System.out.printf(WINNER.toString(), checkWinner().toString());
@@ -71,15 +71,15 @@ public class MonsterRace {
     }
 
     private List<String> checkWinner() {
-        int maxMoveCount = 0;
+        int maxDistance = 0;
         List<String> winners = new ArrayList<>();
         for (Monster monster : monsters) {
-            int moveCount = monster.getMoveCount();
-            if (moveCount > maxMoveCount) {
-                maxMoveCount = moveCount;
+            int distance = monster.getDistance();
+            if (distance > maxDistance) {
+                maxDistance = distance;
                 winners.clear();
             }
-            if (moveCount >= maxMoveCount) {
+            if (distance >= maxDistance) {
                 winners.add(monster.getName());
             }
         }

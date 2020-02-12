@@ -3,13 +3,13 @@ package com.hsik0225;
 public class Monster {
     private String name;
     private String type;
-    private int moveCount;
-    private int value_can_move;
-    private int plusValue;
+    private int distance;
+    private int conditionalValue;
+    private int movedDistance;
 
-    public Monster(int value_can_move, int plusValue){
-        this.value_can_move = value_can_move;
-        this.plusValue = plusValue;
+    public Monster(int conditionalValue, int movedDistance){
+        this.conditionalValue = conditionalValue;
+        this.movedDistance = movedDistance;
     }
 
     public void setName(String name) {
@@ -28,17 +28,17 @@ public class Monster {
         return this.type;
     }
 
-    public int getMoveCount(){
-        return this.moveCount;
+    public int getDistance(){
+        return this.distance;
     }
 
     public String move(){
-        return "-".repeat(moveCount);
+        return "-".repeat(distance);
     }
 
-    public void plusMoveCount(int randomValue){
-        if(randomValue>=value_can_move){
-            moveCount += plusValue;
+    public void plusDistance(int randomValue){
+        if(randomValue>=conditionalValue){
+            distance += movedDistance;
         }
     }
 }
