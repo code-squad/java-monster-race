@@ -1,33 +1,36 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.security.InvalidParameterException;
+import java.util.Scanner;
 
 public class InputHandler {
-    BufferedReader input;
+    private final Scanner scanner;
 
-    public InputHandler() {
-        input = new BufferedReader(new InputStreamReader(System.in));
+    public InputHandler(Scanner scanner) {
+        this.scanner = scanner;
     }
 
     public int getMonsterNumber() {
-        System.out.println("몬스터는 모두 몇 마리인가요?");
-        int monsterNumber = 0;
-        try {
-            monsterNumber = Integer.parseInt(input.readLine());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return monsterNumber;
+        System.out.println(Message.monsterNumber.getMessage());
+        return checkException();
     }
 
-    public int getTrialNumber() {
-        System.out.println("시도할 회수는 몇 회 인가요?");
-        int tryNumber = 0;
+    public int getTrials() {
+        System.out.println(Message.trialNumber.getMessage());
+        return checkException();
+    }
+
+    private int checkException() {
         try {
-            tryNumber = Integer.parseInt(input.readLine());
-        } catch (IOException e) {
-            e.printStackTrace();
+            int inputValue = Integer.parseInt(scanner.nextLine());
+            if (inputValue < 1) {
+                throw new InvalidParameterException();
+            }
+            return inputValue;
+        } catch (NumberFormatException | InvalidParameterException e) {
+            System.out.println("1 이상의 값을 입력하세요");
+            return checkException();
         }
-        return tryNumber;
+    }
+    public void close() {
+        if (scanner != null) scanner.close();
     }
 }
