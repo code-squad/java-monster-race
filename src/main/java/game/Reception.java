@@ -8,9 +8,9 @@ public class Reception {
         List<Monster> participants = new ArrayList<>();
 
         showMenu();
-        CommandInterface commandInterface = CommandInterface.getInstance();
+        InputInterface inputInterface = InputInterface.getInstance();
         for(int i=0; i<totalParticipants; i++) {
-            String[] infos = commandInterface.getTokens(2);
+            String[] infos = inputInterface.getTokens(2);
             participants.add(Monster.of(infos));
         }
 

@@ -5,13 +5,13 @@ public class Rule {
     private int totalParticipant = 0;
 
     public void setRule() {
-        CommandInterface commandInterface = CommandInterface.getInstance();
+        InputInterface inputInterface = InputInterface.getInstance();
 
         System.out.println("몬스터는 모두 몇 마리인가요?");
-        setTotalParticipant(commandInterface.getInt());
+        setTotalParticipant(inputInterface.getInt());
 
         System.out.println("시도할 횟수는 몇 회 인가요");
-        setTotalRound(commandInterface.getInt());
+        setTotalRound(inputInterface.getInt());
     }
 
     public int getTotalRound() {

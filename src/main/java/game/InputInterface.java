@@ -3,21 +3,18 @@ package game;
 import java.util.Scanner;
 
 // 사용자로부터 입력을 얻는 책임이 있다.
-public class CommandInterface {
-    private static CommandInterface instance;
-
+public class InputInterface {
     private final static int ERROR_CODE = -1;
     private final static String ERROR_MESSAGE = "입력 형식을 확인해주세요.";
+
+    private static InputInterface instance = new InputInterface();
     private final Scanner sc;
 
-    public static CommandInterface getInstance() {
-        if(instance == null) {
-            instance = new CommandInterface();
-        }
+    public static InputInterface getInstance() {
         return instance;
     }
 
-    public int getInt() {
+    public synchronized int getInt() {
         int input = ERROR_CODE;
 
         while(input == ERROR_CODE) {
@@ -32,12 +29,12 @@ public class CommandInterface {
         return input;
     }
 
-    public String[] getTokens(int tokenCount) {
+    public synchronized String[] getTokens(int tokenCount) {
         String[] tokens = null;
 
         while(tokens == null) {
             try {
-                // greedy 공백,greedy 공백의 패턴으로 문자를 잘라라.
+                // (공백,공백) 패턴으로 문자를 잘라라.
                 tokens = sc.nextLine().trim().split("\\s*,\\s*");
                 if(tokens.length != tokenCount) {
                     throw new Exception(ERROR_MESSAGE);
@@ -47,11 +44,10 @@ public class CommandInterface {
                 tokens = null;
             }
         }
-
         return tokens;
     }
 
-    private CommandInterface() {
+    private InputInterface() {
         sc = new Scanner(System.in);
     }
 }
