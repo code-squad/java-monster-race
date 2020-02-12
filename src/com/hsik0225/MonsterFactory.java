@@ -19,6 +19,5 @@ public enum MonsterFactory {
             return new Monster(9, (int)(Math.random()*100)+1);
         }
     };
-
     abstract Monster makeMonster();
 }
