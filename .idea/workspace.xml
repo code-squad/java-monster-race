@@ -2,8 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="655cfdbe-2504-4abe-871a-1935fc578429" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/race/monster/ragdoll/Esper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/race/monster/ragdoll/Esper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/race/monster/ragdoll/Flying.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/race/monster/ragdoll/Flying.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/race/monster/ragdoll/InputHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/race/monster/ragdoll/InputHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/race/monster/ragdoll/Monster.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/race/monster/ragdoll/Monster.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/race/monster/ragdoll/Runner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/race/monster/ragdoll/Runner.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,10 +72,10 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="548" y="168" key="FileChooserDialogImpl" timestamp="1580800634973">
+    <state x="847" y="157" key="FileChooserDialogImpl" timestamp="1581427752432">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="548" y="168" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1580800634973" />
+    <state x="847" y="157" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1581427752432" />
     <state width="1493" height="189" key="GridCell.Tab.0.bottom" timestamp="1581411344148">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

@@ -7,7 +7,7 @@ public class InputHandler {
     private String inputNameOfMonster;
     private Types inputTypeOfMonster;
 
-    Scanner scanner = new Scanner(System.in);
+    private Scanner scanner = new Scanner(System.in);
 
     int setNumOfMonsters() {
         try {

@@ -28,6 +28,11 @@ public abstract class Monster {
         this.type = type;
     }
 
+    public Monster(String name, Types type, int rangeAbility) {
+        this(name, type);
+        this.rangeAbility = rangeAbility;
+    }
+
     abstract boolean isMove();
 
     abstract void move(boolean decision);

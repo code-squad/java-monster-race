@@ -1,12 +1,11 @@
 package race.monster.ragdoll;
 
 public class Flying extends Monster {
-    private final int FLYING_RANGE = 3;
-    private final int FLYING_CRITERION = 6;
+    private static final int FLYING_RANGE = 3;
+    private static final int FLYING_CRITERION = 6;
 
     public Flying(String name, Types type) {
-        super(name, type);
-        rangeAbility = FLYING_RANGE;
+        super(name, type, FLYING_RANGE);
     }
 
     protected boolean isMove() {

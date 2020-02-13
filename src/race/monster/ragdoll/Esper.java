@@ -2,7 +2,7 @@ package race.monster.ragdoll;
 
 public class Esper extends Monster {
     private int esperRange;
-    private final int ESPER_CRITERION = 9;
+    private static final int ESPER_CRITERION = 9;
 
     public Esper(String name, Types type) {
         super(name, type);
