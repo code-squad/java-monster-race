@@ -2,17 +2,17 @@ package domain;
 
 public enum MonsterType {
 
-    RUNNING("running"),
-    FLYING("flying"),
-    PSYCHIC("psychic");
+  RUNNING("running"),
+  FLYING("flying"),
+  PSYCHIC("psychic");
 
-    private final String name;
+  private final String name;
 
-    MonsterType(String name) {
-        this.name = name;
-    }
+  MonsterType(String name) {
+    this.name = name;
+  }
 
-    public String getName() {
-        return name;
-    }
+  public String getName() {
+    return name;
+  }
 }

@@ -4,11 +4,11 @@ import java.util.Random;
 
 public interface Move {
 
-    Random random = new Random();
+  Random random = new Random();
 
-    void attempt(int tryCount);
+  void attempt(int tryCount);
 
-    void forward();
+  void forward();
 
-    void start();
+  void start();
 }

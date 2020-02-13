@@ -1,23 +1,26 @@
 package domain.monster;
 
-import domain.monster.Monster;
-
 public class Running extends Monster {
-    private final int FORWARD_CONDITION = 4;
 
-    public Running(String name) {
-        super(name);
-    }
+  private final int FORWARD_CONDITION = 4;
 
-    @Override
-    public void forward() {
-        if (steps.isEmpty()) return;
-        if (steps.pop() >= FORWARD_CONDITION) step += FORWARD;
-        forward();
-    }
+  public Running(String name) {
+    super(name);
+  }
 
-    @Override
-    public String toString() {
-        return this.name + " " + "[달리기]";
+  @Override
+  public void forward() {
+    if (steps.isEmpty()) {
+      return;
     }
+    if (steps.pop() >= FORWARD_CONDITION) {
+      step += FORWARD;
+    }
+    forward();
+  }
+
+  @Override
+  public String toString() {
+    return this.name + " " + "[달리기]";
+  }
 }
