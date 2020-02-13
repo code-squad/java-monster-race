@@ -6,7 +6,7 @@ import game.strategy.move.MovableStrategy;
 import game.strategy.move.RunnableStrategy;
 
 // 몬스터 객체의 속성인 거리를 관리한다.
-public class Monster {
+public class Monster implements Comparable<Monster> {
     public static final String RUN = "달리기";
     public static final String FLY = "비행";
     public static final String ESPER = "에스퍼";
@@ -20,13 +20,8 @@ public class Monster {
         return new Monster(infos[0], infos[1]);
     }
 
-
     public void move() {
         distance += movable.move();
-    }
-
-    public int getDistance() {
-        return distance;
     }
 
     public String drawDistance() {
@@ -40,6 +35,11 @@ public class Monster {
     @Override
     public String toString() {
         return name + "(" + type + ")";
+    }
+
+    @Override
+    public int compareTo(Monster monster) {
+        return this.distance - monster.distance;
     }
 
     private Monster(String name, String type) {

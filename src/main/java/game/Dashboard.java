@@ -20,7 +20,7 @@ public class Dashboard {
     }
 
     public static void displayResult(List<Monster> monsters) {
-        Optional<Monster> optional = monsters.stream().max(Comparator.comparing(Monster::getDistance));
+        Optional<Monster> optional = monsters.stream().max(Comparator.naturalOrder());
 
         if(optional.isPresent()) {
             Monster winner = optional.get();
