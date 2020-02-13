@@ -1,94 +1,67 @@
 package MonsterRace;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.stream.IntStream;
+import java.io.FileNotFoundException;
 
 public class Race {
 
-  private int roundCount;
-  private int monsterNum;
-  private List<Monster> monsters;
-  private BufferedReader br;
+  private InputHandler inputHandler;
+  private Manager manager;
 
   public Race() {
-    monsters = new ArrayList<Monster>();
-    br = new BufferedReader(new InputStreamReader(System.in));
+    this.inputHandler = InputHandler.getInstance();
+    this.manager = new Manager();
   }
 
-  public void startRace() {
+  public void doRace() {
     try {
-      System.out.println(Text.P_START_RACE.getText());
-
-      this.setMonsterNum();
-      this.setMonsters();
-      this.setRoundCount();
-      this.printResultsOfMatch();
-
-      br.close();
+      manager.setMonsters();
+    } catch (FileNotFoundException e) {
+      System.out.println(Text.E_FILE);
     } catch (Exception e) {
-      System.out.println(Text.E_INPUT.getText());
+      System.out.println(Text.E_MONSTER_INFO_LOAD);
     }
-  }
 
-  private void setMonsterNum() {
-    System.out.println(Text.Q_MONSTER_COUNT.getText());
+    int input = 0;
 
-    try {
-      this.monsterNum = Integer.parseInt(br.readLine());
-    } catch (Exception e) {
-      System.out.println(Text.E_INPUT.getText());
-    }
-  }
-
-  private void setMonsters() {
-    System.out.println(Text.Q_MONSTER_INFO.getText());
-
-    IntStream.range(0, this.monsterNum).forEach(i -> {
+    while (input != 3) {
       try {
-        this.addMonster(br.readLine());
-      } catch (IOException e) {
-        System.out.println(Text.E_INPUT.getText());
+        System.out.println(Text.P_START_RACE_MENU);
+        input = inputHandler.getInteger();
+
+        switch (input) {
+          case 1: // 1. 몬스터 정보
+            manager.monsterInfoWork();
+            break;
+          case 2: // 2. 게임 시작
+            startRace();
+            break;
+          case 3: // 3. 종료
+            break;
+          default:
+            throw new Exception();
+        }
+
+      } catch (Exception e) {
+        System.out.println(Text.E_INPUT);
       }
-    });
-  }
-
-  private void setRoundCount() {
-    System.out.println(Text.Q_ROUND_COUNT.getText());
-
-    try {
-      this.roundCount = Integer.parseInt(br.readLine());
-    } catch (Exception e) {
-      System.out.println(Text.E_INPUT.getText());
     }
   }
 
-  private void addMonster(String input) {
-    String[] splitInput = input.replaceAll(" ", "").split(",");
-    String name = splitInput[0];
-    String type = splitInput[1];
-    this.monsters.add(new Monster(name, type));
-    System.out.println();
-  }
+  private void startRace() throws Exception {
+    System.out.println(Text.Q_ROUND_COUNT);
+    int roundCount;
+    if ((roundCount = inputHandler.getInteger()) < 1)
+      throw new Exception();
 
-  public void printResultsOfMatch() {
-    for (int i = 0; i < this.monsters.size(); i++) {
-      this.monsters.get(i).move(this.roundCount);
-      System.out.println(this.monsters.get(i));
-    }
-
-    Comparator<Monster> comparator = Comparator.comparing(Monster::getMovedDistance);
-    String winner = this.monsters.stream().max(comparator).get().getName();
-
-    System.out.println(Text.P_RACE_RESULT1.getText() + winner + Text.P_RACE_RESULT2.getText());
+    manager.moveMonsters(roundCount);
+    manager.printRaceResult();
+    System.out.println(Text.P_RACE_RESULT1
+        + manager.getWinner().getName() + Text.P_RACE_RESULT2 + "\n");
   }
 
   public static void main(String[] args) {
     Race race = new Race();
-    race.startRace();
+
+    race.doRace();
   }
 }

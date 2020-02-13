@@ -1,45 +1,30 @@
 package MonsterRace;
 
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+import java.util.Objects;
 
 public class Monster {
 
   private MoveBehavior moveBehavior;
   private String name;
   private String type;
-  private String movedDistance;
+  private int distance;
 
   public Monster(String name, String type) {
-    try {
-      switch (type) {
-        case "달리기":
-          this.moveBehavior = new Run();
-          break;
-        case "비행":
-          this.moveBehavior = new Fly();
-          break;
-        case "에스퍼":
-          this.moveBehavior = new Esper();
-          break;
-        default:
-          throw new Exception();
-      }
-    } catch (Exception e) {
-      System.out.println(Text.E_MONSTER_INFO.getText());
-    }
-
+    this.moveBehavior = MonsterType.valueOf(type.trim()).getMoveBehavior();
     this.name = name;
     this.type = type;
   }
 
+//  public void move(int roundCount) {
+//    movedDistance = new String(new char[moveBehavior.getMoveCount(roundCount)]).replace("\0", "-");
+//  }
+
   public void move(int roundCount) {
-    movedDistance = (Stream.generate(() -> "-").limit(moveBehavior.getMoveCount(roundCount)))
-        .collect(Collectors.joining());
+    distance = moveBehavior.getMoveCount(roundCount);
   }
 
-  public String getMovedDistance() {
-    return movedDistance;
+  public int getDistance() {
+    return distance;
   }
 
   public String getName() {
@@ -47,7 +32,24 @@ public class Monster {
   }
 
   @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    Monster monster = (Monster) o;
+    return Objects.equals(name, monster.name) &&
+        Objects.equals(type, monster.type);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(name, type);
+  }
+
+  @Override
   public String toString() {
-    return this.name + " [" + this.type + " : " + movedDistance.length() + "] : " + this.movedDistance;
+    return name + " [" + type + "]";
+//    return name + " [" + type + " : " + movedDistance.length() + "] : " + movedDistance;
   }
 }
+
+
