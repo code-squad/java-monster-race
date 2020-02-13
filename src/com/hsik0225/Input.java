@@ -1,38 +1,38 @@
 package com.hsik0225;
 
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import static com.hsik0225.OutputStrings.INPUT_DIGIT;
+import static com.hsik0225.OutputStrings.INPUT_TYPE;
 
 public class Input {
-    private int MONSTER_COUNT;
-    private int CHALLENGE_COUNT;
+    private static final Pattern DIGIT_PATTERN = Pattern.compile("^[1-9][0-9]*$");
+    private static final Pattern MONSTER_INFO_PATTERN = Pattern.compile(".*([,])\\s*(비행|에스퍼|달리기)\\s*");
     private Scanner scanner;
 
     public Input() {
         scanner = new Scanner(System.in);
     }
 
-    private int inputDigit() {
+    private String inputLine(Pattern pattern, OutputStrings outputString) {
         String inputLine = scanner.nextLine();
-        while (!inputLine.matches("[1-9][0-9]*")) {
-            System.out.println("1~9 사이의 숫자를 입력해주세요");
+        Matcher matcher = pattern.matcher(inputLine);
+        while (!matcher.matches()) {
+            System.out.println(outputString);
             inputLine = scanner.nextLine();
+            matcher = pattern.matcher(inputLine);
         }
-        return Integer.parseInt(inputLine);
+        return inputLine;
     }
 
-    public int getMONSTER_COUNT() {
-        return MONSTER_COUNT;
+    public int inputDigit() {
+        String digit = inputLine(DIGIT_PATTERN, INPUT_DIGIT);
+        return Integer.parseInt(digit);
     }
 
-    public void setMONSTER_COUNT() {
-        this.MONSTER_COUNT = inputDigit();
-    }
-
-    public int getCHALLENGE_COUNT() {
-        return CHALLENGE_COUNT;
-    }
-
-    public void setCHALLENGE_COUNT() {
-        this.CHALLENGE_COUNT = inputDigit();
+    public String inputMonstersInfo() {
+        return inputLine(MONSTER_INFO_PATTERN, INPUT_TYPE);
     }
 }
