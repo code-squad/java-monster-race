@@ -1,13 +1,12 @@
 package com.han95210.codesquad.monsterRace.step3;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Input {
     private Scanner scanner;
     public int NumberOfMonster;
-    private int NumberOfAttempts;
-    private String[] monstersNameAndSpecies;
+    public int NumberOfAttempts;
+    public String[] monstersNameAndSpecies;
 
     public Input() {
         scanner = new Scanner(System.in);
@@ -54,12 +53,5 @@ public class Input {
                 System.out.println("잘못 입력했습니다. 숫자만 입력해주세요.");
             }
         }
-    }
-
-    public static void main(String[] args) {
-        Input ip = new Input();
-        System.out.println(ip.NumberOfMonster);
-        System.out.println(ip.NumberOfAttempts);
-        System.out.println(Arrays.toString(ip.monstersNameAndSpecies));
     }
 }
