@@ -3,6 +3,10 @@ package com.beemiel.monsterrace;
 import java.util.Random;
 
 public abstract class Monster {
+    static final int RUN_NUMBER_OF_RUNNING = 4;
+    static final int RUN_NUMBER_OF_FLYING = 6;
+    static final int RUN_NUMBER_OF_ESPER = 9;
+
     private String name;
     private String type;
     protected int isRunNumber;
@@ -10,19 +14,15 @@ public abstract class Monster {
     protected Random random;
     protected StringBuffer stringBuffer;
 
-    public Monster(String type, int isRunNumber){
+    public Monster(String type, String name){
+        this.name = name;
         this.type = type;
-        this.isRunNumber = isRunNumber;
         this.random = new Random();
         this.totalMove = "";
     }
 
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public boolean isMove(){
