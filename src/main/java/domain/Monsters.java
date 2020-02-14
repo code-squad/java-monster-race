@@ -2,12 +2,11 @@ package domain;
 
 import domain.monster.Monster;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
+import java.util.OptionalInt;
 import util.Log;
 
 public class Monsters {
@@ -26,21 +25,19 @@ public class Monsters {
   }
 
   public void printAllMonsters() {
-    Iterator iterator = monsters.keySet().iterator();
-
-    while (iterator.hasNext()) {
-      Monster monster = monsters.get(iterator.next());
-      System.out.println(monster.toString());
-    }
-
+    monsters.keySet()
+        .stream()
+        .map(x -> monsters.get(x))
+        .forEach(System.out::println);
   }
 
   public String getWinner() {
     findWinner();
+
     StringBuilder sb = new StringBuilder();
     winner.stream()
         .map(x -> x.getName())
-        .forEach(s -> sb.append(s+","));
+        .forEach(s -> sb.append(s + " "));
     return sb.toString();
   }
 
@@ -48,25 +45,20 @@ public class Monsters {
     if (monsters.size() < 1) {
       throw new NoSuchElementException("등록된 몬스터가 없어요!");
     }
-    Iterator iterator = monsters.keySet().iterator();
-
-    while (iterator.hasNext()) {
-      Monster monster = monsters.get(iterator.next());
-      monster.attempt(tryCount);
-    }
+    monsters.keySet()
+        .stream()
+        .map(x -> monsters.get(x))
+        .forEach(x -> x.attempt(tryCount));
   }
 
   public void printMonstersForward() {
     if (monsters.size() < 1) {
       throw new NoSuchElementException("등록된 몬스터가 없어요!");
     }
-    Iterator iterator = monsters.keySet().iterator();
-
-    while (iterator.hasNext()) {
-      Monster monster = monsters.get(iterator.next());
-      monster.start();
-    }
-
+    monsters.keySet()
+        .stream()
+        .map(x -> monsters.get(x))
+        .forEach(x -> x.start());
   }
 
   public void deleteMonster(String name) {
@@ -77,28 +69,28 @@ public class Monsters {
     if (monsters.size() < 1) {
       throw new NoSuchElementException("등록된 몬스터가 없어요!");
     }
-    Iterator iterator = monsters.keySet().iterator();
-
     log = Log.getInstance();
-    int index = 1;
-    while (iterator.hasNext()) {
-      Monster monster = monsters.get(iterator.next());
-      log.write(+index + " : " + monster.toString() + " step : " + monster.getStep());
-      index++;
-    }
+    monsters.keySet()
+        .stream()
+        .map(x -> monsters.get(x))
+        .forEach(x -> log.write(x.toString() + " step :" + x.getStep()));
   }
 
 
   private void findWinner() {
-    String maxKey = Collections.max(monsters.keySet());
-    int maxValue = monsters.get(maxKey).getStep();
-    Iterator iterator = monsters.keySet().iterator();
+    int maxValue = findMaxValue().getAsInt();
 
-    while (iterator.hasNext()) {
-      Monster monster = monsters.get(iterator.next());
-      if (monster.getStep() == maxValue) {
-        winner.add(monster);
-      }
-    }
+    monsters.keySet()
+        .stream()
+        .map(x -> monsters.get(x))
+        .filter(x -> x.getStep() == maxValue)
+        .forEach(x -> winner.add(x));
+  }
+
+  private OptionalInt findMaxValue() {
+    return monsters.keySet()
+        .stream()
+        .mapToInt(x -> monsters.get(x).getStep())
+        .max();
   }
 }

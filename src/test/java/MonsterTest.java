@@ -140,7 +140,7 @@ public class MonsterTest {
     monsters.getMonsters().put(jk, flier);
     monsters.getMonsters().put(honux, psychic);
 
-    assertEquals(monsters.getWinner().trim(), psychic.getName() + ",");
+    assertEquals(monsters.getWinner().trim(), psychic.getName());
   }
 
   @Test
@@ -162,7 +162,8 @@ public class MonsterTest {
     monsters.getMonsters().put("2", b);
     monsters.getMonsters().put("3", c);
 
-    assertThat(monsters.getWinner()).isEqualTo(a.getName()+","+b.getName()+","+c.getName()+",");
+    assertThat(monsters.getWinner())
+        .isEqualTo(a.getName() + " " + b.getName() + " " + c.getName() + " ");
 
   }
 

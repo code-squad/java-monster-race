@@ -260,7 +260,7 @@ public class Menu {
           && !type.equals(MonsterType.PSYCHIC.getName())) {
         throw new IllegalArgumentException();
       }
-    } catch (IllegalArgumentException e) {
+    } catch (IllegalArgumentException | ArrayIndexOutOfBoundsException e) {
       message.printCheckNameAndTypeError();
       printSubMenu();
     }

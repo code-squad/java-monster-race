@@ -8,7 +8,7 @@ public class Message {
   private final String deleteMonster = "삭제하고 싶은 몬스터의 이름을 입력해주세요 ";
   private final String monsterCount = "몬스터는 모두 몇 마리인가요?";
   private final String errorNoMonsters = "[ERROR] 몬스터 정보를 먼저 입력해주세요";
-  private final String modifyType = "수정하고 싶은 몬스터 타입 입력하세요. \n타입 예시 (running, flying, psychic) \n>";
+  private final String modifyType = "수정하고 싶은 몬스터 타입 입력하세요. \n타입 예시 (running, flying, psychic)";
   private final String nameAndType = "경주할 몬스터 이름과 종류를 입력하세요 (쉼표(,)를 기준으로 구분) \n타입 예시 (running, flying, psychic) ";
   private final String tryCount = "시도할 회수는 몇 회 인가요?";
   private final String start = "<경기 시작>";
