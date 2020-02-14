@@ -236,6 +236,7 @@ public class Menu {
   }
 
   private void createMonster(String name, String type) {
+
     if (type.equals(MonsterType.RUNNING.getName())) {
       monsters.getMonsters().put(name, new Running(name));
     }
@@ -286,6 +287,4 @@ public class Menu {
       printSubMenu();
     }
   }
-
-
 }

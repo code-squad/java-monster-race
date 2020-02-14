@@ -1,9 +1,11 @@
 package domain;
 
 import domain.monster.Monster;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
 import util.Log;
@@ -11,11 +13,12 @@ import util.Log;
 public class Monsters {
 
   private Map<String, Monster> monsters;
-  private Monster winner;
+  private List<Monster> winner;
   private Log log;
 
   public Monsters() {
     monsters = new HashMap<>();
+    winner = new ArrayList<>();
   }
 
   public Map<String, Monster> getMonsters() {
@@ -34,7 +37,11 @@ public class Monsters {
 
   public String getWinner() {
     findWinner();
-    return winner.getName();
+    StringBuilder sb = new StringBuilder();
+    winner.stream()
+        .map(x -> x.getName())
+        .forEach(s -> sb.append(s+","));
+    return sb.toString();
   }
 
   public void addTryCount(int tryCount) {
@@ -84,7 +91,14 @@ public class Monsters {
 
   private void findWinner() {
     String maxKey = Collections.max(monsters.keySet());
-    winner = monsters.get(maxKey);
-  }
+    int maxValue = monsters.get(maxKey).getStep();
+    Iterator iterator = monsters.keySet().iterator();
 
+    while (iterator.hasNext()) {
+      Monster monster = monsters.get(iterator.next());
+      if (monster.getStep() == maxValue) {
+        winner.add(monster);
+      }
+    }
+  }
 }

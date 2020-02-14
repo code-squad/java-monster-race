@@ -140,6 +140,47 @@ public class MonsterTest {
     monsters.getMonsters().put(jk, flier);
     monsters.getMonsters().put(honux, psychic);
 
-    assertEquals(monsters.getWinner(), psychic.getName());
+    assertEquals(monsters.getWinner().trim(), psychic.getName() + ",");
+  }
+
+  @Test
+  public void 중복_우승자_이름() {
+    Running a = new Running("1");
+    Running b = new Running("2");
+    Running c = new Running("3");
+
+    a.attempt(randomRunner, tryCount);
+    a.forward();
+
+    b.attempt(randomRunner, tryCount);
+    b.forward();
+
+    c.attempt(randomRunner, tryCount);
+    c.forward();
+
+    monsters.getMonsters().put("1", a);
+    monsters.getMonsters().put("2", b);
+    monsters.getMonsters().put("3", c);
+
+    assertThat(monsters.getWinner()).isEqualTo(a.getName()+","+b.getName()+","+c.getName()+",");
+
+  }
+
+  @Test
+  public void 몬스터_정보_출력() {
+    running.attempt(randomRunner, tryCount);
+    running.forward();
+
+    flier.attempt(randomFlying, tryCount);
+    flier.forward();
+
+    psychic.attempt(randomPsychic, tryCount);
+    psychic.forward(randomPsychic);
+
+    monsters.getMonsters().put(crong, running);
+    monsters.getMonsters().put(jk, flier);
+    monsters.getMonsters().put(honux, psychic);
+
+    monsters.createMonsterLog();
   }
 }

@@ -58,7 +58,7 @@ public class Message {
   }
 
   public void printCelebrationMessage(String name) {
-    System.out.println("\n" + "축하합니다 ! " + name + "가 몬스터 레이스에서 우승했습니다" + "\n");
+    System.out.println("\n" + "축하합니다 ! " + name + "이(가) 몬스터 레이스에서 우승했습니다" + "\n");
   }
 
   public void printCloseMessage() {
