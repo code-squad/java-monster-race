@@ -26,16 +26,13 @@ public enum MonsterType {
 
     public Monster makeMonsterByType(String name){
         if(type.equals("비행")){
-            System.out.println("비행 타입 생성");
             return new Flying(type,name);
         }
 
         if(type.equals("달리기")){
-            System.out.println("달리기 타입 생성");
             return new Running(type,name);
         }
 
-        System.out.println("에스퍼 타입 생성");
         return new Psychic(type,name);
     }
 }
