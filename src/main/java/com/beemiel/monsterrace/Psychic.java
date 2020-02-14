@@ -2,8 +2,9 @@ package com.beemiel.monsterrace;
 
 public class Psychic extends Monster {
 
-    public Psychic(String type){
-        super(type,9);
+    public Psychic(String type, String name){
+        super(type,name);
+        super.isRunNumber = RUN_NUMBER_OF_ESPER;
     }
 
     @Override
