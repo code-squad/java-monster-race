@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class Input {
     private Scanner scanner;
-    private int NumberOfMonster;
+    public int NumberOfMonster;
     private int NumberOfAttempts;
     private String[] monstersNameAndSpecies;
 
@@ -40,7 +40,6 @@ public class Input {
                 System.out.println("경주할 몬스터 이름과 종류를 입력하세요(쉼표(,)를 기준으로 구분).");
                 i--;
             }
-            if (monstersInfo[i].contains("!"))
         }
         return monstersInfo;
     }
