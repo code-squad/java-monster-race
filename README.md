@@ -1,38 +1,74 @@
-# java-monster-race
+# Step 3
 
-코드스쿼드 백엔드 자바 학습 프로젝트 1
+## 1. 설계와 디자인
 
-## 구현하기
+![img](./monster_race.png)
 
-- lucas의 요구사항 문서를 참고해서 구현한다.
-- 요구사항에 대한 구현을 완료한 후 자신의 github 아이디에 해당하는 브랜치에 Pull Request(이하 PR)를 통해 코드 리뷰 요청을 한다.
+#### Race 객체
 
-## PR 보내는 법
+- 경기 규칙을 설정하는 책임이 있다. (Rule 객체에게 위임)
+- 참가자를 등록하는 책임이 있다. (Reception 객체에게 위임)
+- 경기를 시작하는 책임이 있다.
+- 경기 내용을 보여주는 책임이 있다. (Dashboard 객체에게 위임)
 
-- 코드 리뷰 피드백에 대한 개선 작업을 하고 다시 PUSH한다.
-- 모든 피드백을 완료하면 다음 단계를 도전하고 앞의 과정을 반복한다.
+#### Rule 객체
 
-## 온라인 코드 리뷰 과정
+- 경기 규칙을 설정하는 책임이 있다.
 
-- [텍스트와 이미지로 살펴보는 코드스쿼드의 온라인 코드 리뷰 과정](https://github.com/code-squad/codesquad-docs/blob/master/codereview/README.md)
-- [동영상으로 살펴보는 코드스쿼드의 온라인 코드 리뷰 과정](https://youtu.be/a5c9ku-_fok)
+#### Reception 객체
 
-## Step 2
+- 게임에 참가할 몬스터들을 생성하는 책임이 있다.
 
-### 설계
+#### Monster 객체
 
-- GameController
+- 움직이는 책임이 있다. (Movable 인터페이스에 위임)
 
-게임 전체 로직을 진행하는 역할과 책임을 갖는다.
+#### InputInterface 객체
 
-- Input
+- 사용자로부터 유효한 입력을 얻는 책임이 있다.
 
-게임 진행에 필요한 정보를 사용자로부터 입력을 얻는다. 유효한 정보를 얻는다.
+#### Dashboard 객체
 
-- Monster
+- 경기 내용과 결과를 출력하는 책임이 있다.
 
-몬스터 객체의 속성인 거리를 관리한다.
+## 2. 학습정리
 
-- Output
+### 1. singleton
 
-게임 결과를 확인할 수 있는 정보를 출력한다.
+InputInterface 객체는 사용자로부터 유효한 입력값을 얻어오는 객체이다. 이를 위해 내부적으로
+표준 입력에 접근한다. 하드웨어 리소스를 사용할 때는 리소스를 사용하고 반환해주어야 한다. 하지만
+매번 메서드에서 Scanner 객체를 생성하고 반환하는 작업은 오버헤드가 큰 작업이라고 생각한다. 
+매번 Scanner 객체를 생성하지 않으면서 데드락을 피할 수 있는 방법은 무엇이 있을까? 싱글톤을
+방식이면서 thread-safe 한 방식으로 구현하면 문제가 해결할 수 있다.
+
+싱글톤 구현하는 방식이 3 가지 존재한다. 
+
+1. 직접 구현(private 생성자, getInstance)
+2. static 변수와 메소드로만 구성된 클래스
+3. Enum 키워드
+
+static 클래스는 컴파일 타임에 바인딩돼서 성능면에서 좋다. enum은 serialize를 지원한다.
+
+reference
+ 
+>https://gmlwjd9405.github.io/2018/07/06/singleton-pattern.html
+>https://stackoverflow.com/questions/519520/difference-between-static-class-and-singleton-pattern  
+>https://stackoverflow.com/questions/5548453/java-enum-style-singleton-vs-static-instance-getter/5548700
+
+### 2. member variable 없는 객체는 static 메소드로 선언하는 것이 좋은가?
+
+멤버 변수가 존재하지 않는다면 static 메소드로 작성하는 것은 합리적이다.
+
+reference
+
+> https://stackoverflow.com/questions/658407/should-all-methods-be-static-if-their-class-has-no-member-variables
+
+### 3. 자율성 높은 객체 설계
+
+Rule 객체는 현실에서 주도적으로 규칙을 설정할 수 없지만 객체의 자율성을 높이기 위해 규칙을 스스로 설정할 수 있도록 구현했다. 현재 Race 객체가 다른 객체에 의존성이 높은것 같지만 개선 사항을 찾지 못했다.
+
+## 3. 질문사항
+
+Race 객체가 Reception 객체를 갖고 있었는데 굳이 멤버 변수로 갖고 있을 필요 없어서 제거 했습니다.
+제 생각에는 객체가 가능한 상태값이 없는것이 좋을것 같습니다. 인스턴스 변수 없이 지역 변수로 요구사항을
+충족하는 경우 인스턴스 변수를 제거하는 것이 좋은 방법일까요?
