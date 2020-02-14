@@ -2,8 +2,9 @@ package com.beemiel.monsterrace;
 
 public class Flying extends Monster {
 
-    public Flying(String type){
-        super(type,6);
+    public Flying(String type, String name){
+        super(type,name);
+        super.isRunNumber = RUN_NUMBER_OF_FLYING;
     }
 
     @Override
