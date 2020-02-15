@@ -1,100 +1,77 @@
 package dev.idion.monsterrace;
 
-import java.util.*;
-import java.util.stream.IntStream;
+import dev.idion.monsterrace.monster.MonsterManager;
+import dev.idion.monsterrace.util.io.Input;
+import dev.idion.monsterrace.util.io.Printer;
 
-import static dev.idion.monsterrace.StringConstants.*;
+import java.io.IOException;
+
+import static dev.idion.monsterrace.StringConstants.GAME_EXIT_MESSAGE;
+import static dev.idion.monsterrace.StringConstants.GAME_NAME;
+import static dev.idion.monsterrace.StringConstants.PLEASE_SELECT_MENUS_MAIN;
 
 public class Game {
-    private int attemptCount;
-    private int winnerMoveCount;
-    private Monster[] monsters;
-    private final Map<Integer, List<String>> rankMap;
+    private final InGameMonsterManager inGameMonsterManager;
+    private final ScoreBoard scoreBoard;
     private final Input input;
     private final Printer printer;
 
     public Game() {
-        this.rankMap = new HashMap<>();
-        this.input = new Input(new Scanner(System.in));
+        this.scoreBoard = new ScoreBoard();
+        this.input = new Input();
         this.printer = new Printer();
+        this.inGameMonsterManager = new InGameMonsterManager(input);
     }
 
     public static void main(String[] args) {
         Game game = new Game();
-        game.readyGame();
-        game.startGame();
-        game.rankMonsters();
-        game.printGameResult();
-        game.terminateGame(0); // Normal Shutdown
-    }
-
-    private void readyGame() {
-        System.out.println(GAME_NAME);
-        initializeMonsters();
-        attemptCount = input.inputValue(ATTEMPT_COUNT_STRING);
-    }
-
-    private void initializeMonsters() {
-        monsters = new Monster[input.inputValue(MONSTER_COUNT_STRING)];
-        inputMonstersInfo();
-    }
-
-    private void inputMonstersInfo() {
-        System.out.println(INPUT_MONSTER_NAME_AND_TYPE);
-        System.out.println(SHOW_MONSTER_TYPES);
-        IntStream.range(0, monsters.length).forEach(this::makeMonster);
-    }
-
-    private void makeMonster(int index) {
-        while (true) {
+        boolean loopCondition = true;
+        while (loopCondition) {
             try {
-                monsters[index] = input.inputMonsterInfo();
-                break;
-            } catch (IllegalArgumentException e) {
-                System.out.println(TYPE_NOT_EXIST);
-            } catch (ArrayIndexOutOfBoundsException e) {
+                loopCondition = game.selectMenu();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (IllegalStateException e) {
                 System.out.println(e.getMessage());
             }
         }
+        game.terminateGame();
     }
 
-    private void startGame() {
-        randomAttempt();
-    }
-
-    private void randomAttempt() {
-        Arrays.stream(monsters).forEach(this::attemptMoveMonster);
-    }
-
-    private void attemptMoveMonster(Monster monster) {
-        for (int i = 0; i < attemptCount; i++) {
-            tryMonsterMove(monster);
+    private boolean selectMenu() throws IOException {
+        switch (input.selectMenu(PLEASE_SELECT_MENUS_MAIN).getPositiveInt()) {
+            case 1:
+                return new MonsterManager(input).waitInputMenuNumber();
+            case 2:
+                return playGame();
+            case 3:
+                return exitGameMenu();
+            default:
+                return printer.printNotValidNumber();
         }
     }
 
-    private void tryMonsterMove(Monster monster) {
-        monster.move();
+    private boolean playGame() {
+        startGame();
+        printer.printGameResult(inGameMonsterManager, scoreBoard);
+        return true;
     }
 
-    private void printGameResult() {
-        printer.printMonstersMovingDistance(monsters);
-        printer.printWinnerMonster(rankMap, winnerMoveCount);
+    private boolean exitGameMenu() {
+        return false;
     }
 
-    private void rankMonsters() {
-        Arrays.stream(monsters)
-                .forEach(monster -> {
-                    int moveCount = monster.getMoveCount();
-                    winnerMoveCount = Math.max(winnerMoveCount, moveCount);
-                    List<String> winners = rankMap.getOrDefault(moveCount, new ArrayList<>());
-                    winners.add(monster.getMonsterName());
-                    rankMap.put(moveCount, winners);
-                });
+    private void startGame() {
+        System.out.println(GAME_NAME);
+        inGameMonsterManager.setMonstersFromFile();
+        inGameMonsterManager.inputAttemptCount();
+        inGameMonsterManager.moveMonsters();
+        scoreBoard.rankMonsters(inGameMonsterManager.getMonsters());
     }
 
-    private void terminateGame(int exitStatus) {
+    private void terminateGame() {
         System.out.println(GAME_EXIT_MESSAGE);
         input.close();
-        System.exit(exitStatus);
+        System.exit(0);
     }
 }
