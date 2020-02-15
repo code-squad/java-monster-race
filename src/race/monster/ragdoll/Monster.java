@@ -1,40 +1,63 @@
 package race.monster.ragdoll;
 
-import java.util.Random;
 import java.lang.StringBuilder;
+import java.util.Random;
 
-public class Monster {
-    private int moveCount;
+enum Types {
+    RUNNER("달리기"), FLYING("비행"), ESPER("에스퍼");
 
-    public Monster() {}
+    private final String typeName;
 
-    private boolean decideMoveOrStop() {
-        boolean decision = false;
-
-        Random random = new Random();
-        int randomNum = random.nextInt(10);
-        if (randomNum >= 4) {
-            decision = true;
-        }
-
-        return decision;
+    Types(String typeName) {
+        this.typeName = typeName;
     }
 
-    private void move(boolean decision) {
-        if (decision) {
-            moveCount++;
-        }
+    public String getTypeName() {
+        return typeName;
+    }
+}
+
+public abstract class Monster {
+    private String name;
+    private Types type;
+    int moveCount;
+    int rangeAbility;
+
+    public Monster(String name, Types type) {
+        this.name = name;
+        this.type = type;
+    }
+
+    public Monster(String name, Types type, int rangeAbility) {
+        this(name, type);
+        this.rangeAbility = rangeAbility;
+    }
+
+    abstract boolean isMove();
+
+    abstract void move(boolean decision);
+
+    public String getName() {
+        return name;
+    }
+
+    int generateRandomNumber(int bound) {
+        Random random = new Random();
+
+        return random.nextInt(bound);
     }
 
     void run(int numOfTries) {
         for (int i = 0; i < numOfTries; i++) {
-            boolean decision = decideMoveOrStop();
+            boolean decision = isMove();
             move(decision);
         }
     }
 
+    @Override
     public String toString() {
-        StringBuilder strBuilder = new StringBuilder(" ");
+        String monsterProperties = name + " [" + type.getTypeName() + "] : ";
+        StringBuilder strBuilder = new StringBuilder(monsterProperties);
 
         for (int i = 0; i < moveCount; i++) {
             strBuilder.append("-");
