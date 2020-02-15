@@ -1,10 +1,10 @@
-import java.io.IOException;
+import controller.Menu;
 
 public class Main {
 
-    public static void main(String[] args) throws IOException {
-        Game game = new Game();
-        game.run();
+  public static void main(String[] args) {
+    Menu menu = new Menu();
+    menu.start();
 
-    }
+  }
 }
